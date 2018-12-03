@@ -1,0 +1,26 @@
+---
+layout:     post
+title:      "Welcome come to Kara Blog"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2018-12-03 21:59:12
+author:     "kara"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - 生活
+---
+
+> “I'did it!”
+
+
+## 止まった時計を回すんだ...
+
+kara 的 Blog 就这么开通了。
+
+时隔很久的重返ubuntu，许多的困难以及其所带来的心得让我认识到自己必须有个窝。大学入学已经一年多了，kara依旧是条杂鱼...
+
+网站还有很多很多不足，只能之后再完善了。
+
+2018.12.03明年的博客会是什么样子呢，稍微期待一下吧。
+
+感谢[asutorufa](https://asutorufa.github.io/)让我认识到开源的魅力，以及所提供的技术援助
+感谢[huangxuan](http://huangxuan.me)所提供的这么漂亮的模板
