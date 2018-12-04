@@ -80,10 +80,12 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 
 
 # Friends
-friends: {
+friends: [
+    {
         title: "pixiv"
         href: "https://www.pixiv.net/member.php?id=8940726"
     },{
         title: "asutorufa",
         href: "http://asutorufa.github.io"
     }
+]
