@@ -2,6 +2,14 @@
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
+
+        <!-- live2d  -->
+        <div id="landlord">
+            <div class="message" style="opacity:0"></div>
+            <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+            <div class="hide-button">隐藏</div>
+        </div> 
+
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
                 <span class="sr-only">Toggle navigation</span>
@@ -35,32 +43,32 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+            </nav>
+            <script>
+                // Drop Bootstarp low-performance Navbar
+                // Use customize navbar with high-quality material design animation
+                // in high-perf jank-free CSS3 implementation
+                var $body   = document.body;
+var $toggle = document.querySelector('.navbar-toggle');
+var $navbar = document.querySelector('#huxblog_navbar');
+var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
+$toggle.addEventListener('click', handleMagic)
+function handleMagic(e){
+    if ($navbar.className.indexOf('in') > 0) {
         // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
+        $navbar.className = " ";
+        // wait until animation end.
+        setTimeout(function(){
+            // prevent frequently toggle
+            if($navbar.className.indexOf('in') < 0) {
+                $collapse.style.height = "0px"
+            }
+        },400)
+    }else{
         // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
+        $collapse.style.height = "auto"
+        $navbar.className += " in";
     }
-</script>
+}
+            </script>
