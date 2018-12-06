@@ -72,11 +72,11 @@
                 <p class="copyright text-muted">
                     Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
                     <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                        <a href="https://github.com/kara07/kara07.github.io">kara07</a> |
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                        src="https://ghbtns.com/github-btn.html?user=kara07&repo=kara07.github.io&type=star&count=true" >
                     </iframe>
                 </p>
             </div>
@@ -182,4 +182,17 @@
       s.parentNode.insertBefore(hm, s);
     })();
 </script>
+
+<!-- live2d  -->
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = 'https://kara07.github.io/'  //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "/live2d/model/tia/model.json");
+</script>
+
+
 {% endif %}
