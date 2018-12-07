@@ -1,6 +1,9 @@
 {
     "version":"1.0.0",
     "model":"model.moc",
+    "textures":[
+        "textures/pajamas-costume.png"
+    ],
     "layout":{
         "center_x":0.0,
         "center_y":-0.05,
@@ -22,7 +25,7 @@
             {"file":"motions/Breath7.mtn"},
             {"file":"motions/Breath8.mtn"}
         ],
-        "sleepy":[
+		"sleepy":[
             {"file":"motions/Sleeping.mtn"}
         ],
         "flick_head":[

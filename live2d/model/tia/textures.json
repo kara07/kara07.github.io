@@ -1,7 +1,0 @@
-{
-    "pioUrl": [
-        {"default-costume":"textures/default-costume.png"},
-        {"jersey-costume-blue": "textures/jersey-costume-blue.png"},
-        {"pajamas-costume-green": "textures/pajamas-costume-green.png"}
-    ]
-}
