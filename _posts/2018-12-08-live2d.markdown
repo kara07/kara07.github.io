@@ -1,0 +1,189 @@
+---
+layout:     post
+title:      "从解包开始，让手游里的live2d角色成为你的看板娘吧！"
+subtitle:   "附带随机换装js脚本"
+date:       2018-12-08 21:50:00
+author:     "kara"
+header-img: "img/live2d/live2d.jpg"
+tags:
+    - 中文
+    - 技术
+    - live2d
+    - 博客
+    - 安卓
+---
+
+> 本文参考自[后宫学长](https://haremu.com/p/205)的博客。他给我提供了很大的帮助。
+> 本文对于原文有所删改
+
+花了一整天时间将药水制作师的pio酱和tia酱请到了我的博客里。
+虽然都是些照葫芦画瓢的工作，但实际上却遇到了很多的困难。
+
+明明是考试周却还这么不务正业。先立一波挂科预定的flag。
+以及盯着电脑看一整天是真的累啊...一想到之后这种日子可能还有很多，
+以后还是加入自宅警备队算了。
+
+具体的效果就已经呈现在我博客的右下角啦。还有什么困难的话尽情问我哦~不过现在
+网站的评论功能还没有完善，所以...你懂的。觉得有帮助的话关注star走一波吧~
+
+# 安卓解包篇
+
+> 可以先从游戏安装包中获得你所喜爱的live2d模型哦~
+
+所需要的解包工具：[AssertStudio](https://ci.appveyor.com/project/Perfare/assetstudio/branch/master/artifacts)
+已经是解压即用的版本了，请选择适合自己系统的下载哦。大部分机器选择x64的就行了。
+
+我找到的这个解包工具貌似只有win10可以用。linux和macos系统的话请参照网上其他的解包教程哦。
+实际使用和后期写博文的时候因为用的是linux系统的原因我重启了好几次...所以如果有好(简单)的linux解包工具的话请分享给我哦~
+
+另外当然还需要药水制作师的安卓apk安装包。可以去google商店和taptap等各种地方上找到各个版本的安装包。
+想尝试其他游戏解包的话可能会各种碰壁，想简单实现的话推荐去网上找一些已经配置好的live2d模型及其配置文件。
+
+将apk安装包用winRAR等工具解压，模型数据位于assets/bin/Data目录。linux系统推荐使用google的apktool解压。这是一个非常强大的工具，具体的命令可以寻找其他教程学习。
+
+将AssertStudio下载之后解压。直接运行AssetStudioGUI.exe
+
+可以看到其界面和使用极其简洁。个人感觉稍微了解一下就能熟练解包了。
+
+![avatar](/home/picture/assertstudio.jpg)
+
+点击左上角的file，选择load folder，然后选择刚才解压的Data目录。等到加载完毕后在Asset List选项卡中可以看到许多资源文件。live2d的模型文件后缀名是.moc，动作数据后缀名是.mtn，在过滤器填入后缀名，可以只显示此类资源。贴图文件type为texture2d，大小一般为4m左右。
+
+选中所需要的文件，点击左上角的export，选择selected assets，选择一个目录放置解包后的数据。
+
+模型数据和所有的动作数据在apk安装包里都能找到，但贴图文件，也就是服装贴图只能找到三张，pio的话分别是
+
+* default-custome
+* school-costume
+* pajamas-costume
+
+其他的服装贴图在爆肝游戏之后才能获得。存放在Android/data目录下。个人认为这是一个非常有趣的过程，游戏也很好玩，因此强烈安利一下[药水制作师](https://www.taptap.com/app/10512)这部游戏。
+
+因为网站实现的限制，在我的github中能获得我所获得的所有的服装文件。因为模型版权均为开发商所有，所以我觉得解包之后共享到公共平台是一个不好的行为...
+
+在我获得自己的域名之后，我打算用WordPress搭建自己的闭源网站，届时我会取消这些模型和数据的共享。(绅士们抓紧时间，疯狂star吧
+
+#页面实现篇
+
+> 获得了模型和数据之后就可以将其引入你自己的站点啦！
+
+<b>准备工作</b>
+
+首先可以到我的[Github](https://github.com/kara07/kara07.github.io)去下载源文件，只需要live2d文件夹中的内容。毕竟其他内容我已经整合进自己的网站源码了。
+
+如果只需要载入功能而不需要随机服装功能的话请使用原文配套的模型配置文件哦
+* /live/model/pio/model.json
+
+[我是原文](https://haremu.com/p/205)
+
+live2d文件夹中包含所有的样式，脚本，以及此游戏到目前为止所有的模型服装，请自行按需摄取。
+
+下载后将live2d文件夹放置到你的博客网站根目录去。
+
+<b>正式开工</b>
+
+在你博客程序头部文件（header）引入界面样式，在 head 标签内插入如下代码：
+
+```html
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+```
+
+在 body 标签内合适的位置插入 Live2D 看板娘的元素，按照 Html 书写规范写 ~
+
+```html
+<div id="landlord">
+    <div class="message" style="opacity:0"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    <div class="hide-button">隐藏</div>
+</div>
+```
+
+在你博客程序页脚文件（footer）引入脚本，在 body 标签结束前插入如下代码：
+
+```html
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = 'https://haremu.com/'  //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
+<!--<script type="text/javascript">
+    loadlive2d("live2d", "/live2d/model/pio/model.json");
+</script>-->
+```
+
+<b>我所注释掉的部分因为我已对model.json做了修改以实现随机服装功能。如果不需要此功能的话直接无视注释就行啦。在下一篇脚本篇会提到这个功能哦~</b>
+
+我将pio放置在右边，并且取消了文字提示和隐藏按钮。只需要更改/live2d/css/live2d.css/和<body>标记中的<div>标记属性就行啦。
+
+鼠标放在页面某个元素上时，需要 Live2D 看板娘提示的请修改 message.json 文件。
+
+<b>实例：</b>
+
+```json
+{
+    "mouseover": [
+        {
+            "selector": ".title a",  //此处修改为你页面元素的标签名
+            "text": ["要看看 {text} 么？"]  //此处修改为你需要提示的文字
+        },
+        {
+            "selector": "#searchbox",
+            "text": ["在找什么东西呢，需要帮忙吗？"]
+        }
+    ],
+    "click": [  //此处是 Live2D 看板娘的触摸事件提示
+        {
+            "selector": "#landlord #live2d",
+            "text": ["不要动手动脚的！快把手拿开~~", "真…真的是不知羞耻！","Hentai！", "再摸的话我可要报警了！⌇●﹏●⌇", "110吗，这里有个变态一直在摸我(ó﹏ò｡)"]
+        }
+    ]
+}
+```
+
+然后，刷新你的博客页面，看看效果吧！
+
+注意路径别弄错了噢 ~
+
+<b>模型说明</b>
+
+<br>
+
+> Live2D 并不是一种先进的技术，它产生的效果，都是用基本的平移、旋转、透明、曲面变形等操作实现的。
+最终的效果与贴图关系很大，而每一个动作，都需要制作师的精细调整。
+这是一个需要消耗大量时间精力的过程，因此质量好的模型并不多，质量好的也一般是在游戏中，版权受到保护，不能随意使用。
+
+# 随机服装脚本篇
+
+> 将pio酱请到你的空间后，一直一套衣服是不是有些寂寞呢？
+
+按照前文这里要用到run_local.js脚本，可以在前文所提到的/live2d/js/中获得。
+
+首先在网页的footer部分引入run_local.js脚本。用下列的程序段替代上一篇中所注释掉的内容
+
+```js
+<script type="text/javascript" src="/live2d/js/run_local.js"></script>
+```
+
+或
+
+```js
+$.getJSON(`${live2d_Path}model.json`, function (model) {
+    $.getJSON(`${live2d_Path}textures.json`, function (textures) {
+        const modelObj = JSON.parse(JSON.stringify(model, null, 2))
+        const texturesObj = JSON.parse(JSON.stringify(textures, null, 2))
+        const pioUrl = texturesObj.pioUrl
+        const randomIndex = Math.floor(Math.random() * pioUrl.length);
+        const pio = pioUrl[randomIndex]
+        for (url in pio) {
+            modelObj.textures = [`${live2d_Path}${pio[url]}`]
+        }
+        loadlive2d('live2d', live2d_Path, '', modelObj);
+    })
+});
+```
+
+我对model.json做了修改，新建了textures.json列出textures文件夹中全部的服装文件以作为脚本变量。
+如果想加入新的服装的话，只需要将服装文件放到对应人物模型的textures文件夹中，然后在textures.json中按格式引入就行啦~
+
+一只pio能治愈一天的疲惫，赶紧去你的博客里尽情调戏吧！

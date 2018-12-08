@@ -4,7 +4,7 @@ title:      "「クビキリサイクル」に関する後日談"
 subtitle:   "Diamond cut Diamond"
 date:       2018-12-06 19:30:00
 author:     "kara"
-header-img: "img/kubikiri.jpg"
+header-img: "img/kubikiri/kubikiri.jpg"
 tags:
     - 日本語
     - 后日谈
