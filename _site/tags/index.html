@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="description" content="博客,kara">
+    <meta name="keyword"  content="各种各样的学习中">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Tags - kara的博客 | kara blog</title>
+    <title>Tags - Kara's utopia</title>
 
     <link rel="canonical" href="http://kara07.github.io/tags/">
 
@@ -30,11 +30,13 @@
 
 
     <!-- Hux Delete, sad but pending in China
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+        css'>
     -->
 
+    <!-- live2d elements quoted https://github.com/galnetwen/Live2D -->
+    <link rel="stylesheet" href="/live2d/css/live2d.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,10 +50,18 @@
 </head>
 
 
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-
-    <!-- Navigation -->
+    <!-- hack iOS CSS :active style -->
+    <body ontouchstart="">
+        
+        <!-- live2d  -->
+        <div id="landlord">
+            <!--<div class="message" style="opacity:0"></div>-->
+            <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+            <!--<div class="hide-button">隐藏</div>-->
+        </div>
+        
+        
+        <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -92,38 +102,38 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+            </nav>
+            <script>
+                // Drop Bootstarp low-performance Navbar
+                // Use customize navbar with high-quality material design animation
+                // in high-perf jank-free CSS3 implementation
+                var $body   = document.body;
+var $toggle = document.querySelector('.navbar-toggle');
+var $navbar = document.querySelector('#huxblog_navbar');
+var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
+$toggle.addEventListener('click', handleMagic)
+function handleMagic(e){
+    if ($navbar.className.indexOf('in') > 0) {
         // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
+        $navbar.className = " ";
+        // wait until animation end.
+        setTimeout(function(){
+            // prevent frequently toggle
+            if($navbar.className.indexOf('in') < 0) {
+                $collapse.style.height = "0px"
+            }
+        },400)
+    }else{
         // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
+        $collapse.style.height = "auto"
+        $navbar.className += " in";
     }
-</script>
+}
+            </script>
 
 
-    <!-- Page Header -->
+        <!-- Page Header -->
 <header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
     <div class="container">
         <div class="row">
@@ -146,17 +156,7 @@
 				
 				<a href="#生活" title="生活" rel="1">生活</a>
 				
-				<a href="#OS" title="OS" rel="1">OS</a>
-				
-				<a href="#Unix" title="Unix" rel="1">Unix</a>
-				
-				<a href="#Linux" title="Linux" rel="1">Linux</a>
-				
-				<a href="#前端开发" title="前端开发" rel="3">前端开发</a>
-				
-				<a href="#JavaScript" title="JavaScript" rel="3">JavaScript</a>
-				
-				<a href="#翻译" title="翻译" rel="1">翻译</a>
+				<a href="#后日谈" title="后日谈" rel="1">后日谈</a>
 				
 			</div>
 
@@ -168,13 +168,13 @@
                 </span>
 				
 				  <!-- <li class="listing-item">
-				  <time datetime="2015-01-29">2015-01-29</time>
-				  <a href="/2015/01/29/hello-2015/" title="Welcome to Hux Blog">Welcome to Hux Blog</a>
+				  <time datetime="2018-12-04">2018-12-04</time>
+				  <a href="/2018/12/04/hello/" title="Welcome come to Kara Blog">Welcome come to Kara Blog</a>
 				  </li> -->
 				 <div class="post-preview">
-				    <a href="/2015/01/29/hello-2015/">
+				    <a href="/2018/12/04/hello/">
 				        <h2 class="post-title">
-                            Welcome to Hux Blog
+                            Welcome come to Kara Blog
 				        </h2>
 				        
 				        <h3 class="post-subtitle">
@@ -182,239 +182,33 @@
 				        </h3>
 				        
 				    </a>
-				    <!-- <p class="post-meta">2015-01-29</p> -->
+				    <!-- <p class="post-meta">2018-12-04</p> -->
 				</div>
 				<hr>
 				
 			</div>
 			
 			<div class="one-tag-list">
-			  	<span class="fa fa-tag listing-seperator" id="OS">
-                    <span class="tag-text">OS</span>
+			  	<span class="fa fa-tag listing-seperator" id="后日谈">
+                    <span class="tag-text">后日谈</span>
                 </span>
 				
 				  <!-- <li class="listing-item">
-				  <time datetime="2015-04-14">2015-04-14</time>
-				  <a href="/2015/04/14/unix-linux-note/" title="Example Post">Example Post</a>
+				  <time datetime="2018-12-07">2018-12-07</time>
+				  <a href="/2018/12/07/kubikiri/" title="「クビキリサイクル」に関する後日談">「クビキリサイクル」に関する後日談</a>
 				  </li> -->
 				 <div class="post-preview">
-				    <a href="/2015/04/14/unix-linux-note/">
+				    <a href="/2018/12/07/kubikiri/">
 				        <h2 class="post-title">
-                            Example Post
+                            「クビキリサイクル」に関する後日談
 				        </h2>
 				        
 				        <h3 class="post-subtitle">
-				            不适合人类阅读，非常水的自我笔记
+				            Diamond cut Diamond
 				        </h3>
 				        
 				    </a>
-				    <!-- <p class="post-meta">2015-04-14</p> -->
-				</div>
-				<hr>
-				
-			</div>
-			
-			<div class="one-tag-list">
-			  	<span class="fa fa-tag listing-seperator" id="Unix">
-                    <span class="tag-text">Unix</span>
-                </span>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-04-14">2015-04-14</time>
-				  <a href="/2015/04/14/unix-linux-note/" title="Example Post">Example Post</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/04/14/unix-linux-note/">
-				        <h2 class="post-title">
-                            Example Post
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            不适合人类阅读，非常水的自我笔记
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-04-14</p> -->
-				</div>
-				<hr>
-				
-			</div>
-			
-			<div class="one-tag-list">
-			  	<span class="fa fa-tag listing-seperator" id="Linux">
-                    <span class="tag-text">Linux</span>
-                </span>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-04-14">2015-04-14</time>
-				  <a href="/2015/04/14/unix-linux-note/" title="Example Post">Example Post</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/04/14/unix-linux-note/">
-				        <h2 class="post-title">
-                            Example Post
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            不适合人类阅读，非常水的自我笔记
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-04-14</p> -->
-				</div>
-				<hr>
-				
-			</div>
-			
-			<div class="one-tag-list">
-			  	<span class="fa fa-tag listing-seperator" id="前端开发">
-                    <span class="tag-text">前端开发</span>
-                </span>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-09-22">2015-09-22</time>
-				  <a href="/2015/09/22/js-version/" title="Example Post">Example Post</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/09/22/js-version/">
-				        <h2 class="post-title">
-                            Example Post
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-09-22</p> -->
-				</div>
-				<hr>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-07-09">2015-07-09</time>
-				  <a href="/2015/07/09/js-module-7day/" title="Example Post using Keynote Layout">Example Post using Keynote Layout</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/07/09/js-module-7day/">
-				        <h2 class="post-title">
-                            Example Post using Keynote Layout
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            Keynote: JavaScript Modularization Journey
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-07-09</p> -->
-				</div>
-				<hr>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-05-25">2015-05-25</time>
-				  <a href="/2015/05/25/js-module-loader/" title="Example Post with Code Highlight">Example Post with Code Highlight</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/05/25/js-module-loader/">
-				        <h2 class="post-title">
-                            Example Post with Code Highlight
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            CommonJS，RequireJS，SeaJS 归纳笔记
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-05-25</p> -->
-				</div>
-				<hr>
-				
-			</div>
-			
-			<div class="one-tag-list">
-			  	<span class="fa fa-tag listing-seperator" id="JavaScript">
-                    <span class="tag-text">JavaScript</span>
-                </span>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-09-22">2015-09-22</time>
-				  <a href="/2015/09/22/js-version/" title="Example Post">Example Post</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/09/22/js-version/">
-				        <h2 class="post-title">
-                            Example Post
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-09-22</p> -->
-				</div>
-				<hr>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-07-09">2015-07-09</time>
-				  <a href="/2015/07/09/js-module-7day/" title="Example Post using Keynote Layout">Example Post using Keynote Layout</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/07/09/js-module-7day/">
-				        <h2 class="post-title">
-                            Example Post using Keynote Layout
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            Keynote: JavaScript Modularization Journey
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-07-09</p> -->
-				</div>
-				<hr>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-05-25">2015-05-25</time>
-				  <a href="/2015/05/25/js-module-loader/" title="Example Post with Code Highlight">Example Post with Code Highlight</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/05/25/js-module-loader/">
-				        <h2 class="post-title">
-                            Example Post with Code Highlight
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            CommonJS，RequireJS，SeaJS 归纳笔记
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-05-25</p> -->
-				</div>
-				<hr>
-				
-			</div>
-			
-			<div class="one-tag-list">
-			  	<span class="fa fa-tag listing-seperator" id="翻译">
-                    <span class="tag-text">翻译</span>
-                </span>
-				
-				  <!-- <li class="listing-item">
-				  <time datetime="2015-09-22">2015-09-22</time>
-				  <a href="/2015/09/22/js-version/" title="Example Post">Example Post</a>
-				  </li> -->
-				 <div class="post-preview">
-				    <a href="/2015/09/22/js-version/">
-				        <h2 class="post-title">
-                            Example Post
-				        </h2>
-				        
-				        <h3 class="post-subtitle">
-				            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
-				        </h3>
-				        
-				    </a>
-				    <!-- <p class="post-meta">2015-09-22</p> -->
+				    <!-- <p class="post-meta">2018-12-07</p> -->
 				</div>
 				<hr>
 				
@@ -426,12 +220,21 @@
 </div>
 
 
-    <!-- Footer -->
+        <!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
                     
                     
                     <li>
@@ -446,15 +249,6 @@
 
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
                     
-                    
-                    <li>
-                        <a target="_blank" href="http://weibo.com/Kara_7">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
                     
 
 
@@ -473,11 +267,11 @@
                 <p class="copyright text-muted">
                     Copyright &copy; l'enfer, c'est les Autres. 2018
                     <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                        <a href="https://github.com/kara07/kara07.github.io">kara07</a> |
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                        src="https://ghbtns.com/github-btn.html?user=kara07&repo=kara07.github.io&type=star&count=true" >
                     </iframe>
                 </p>
             </div>
@@ -554,7 +348,7 @@
 <script>
     // dynamic User by Hux
     var _gaId = 'UA-49627206-1';
-    var _gaDomain = 'huangxuan.me';
+    var _gaDomain = 'kara07.gitgub.io';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -584,13 +378,26 @@
     })();
 </script>
 
+<!-- live2d  -->
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = 'https://kara07.github.io/'  //此处修改为你的域名，必须带斜杠
+    var live2d_Path = '/live2d/model/pio/'
+</script>
+
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
+<!-- costum changing achieves -->
+<script type="text/javascript" src="/live2d/js/run_local.js"></script>
 
 
 
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
 
-</body>
+
+        <!-- Image to hack wechat -->
+        <img src="/img/icon_wechat.png" width="0" height="0" />
+        <!-- Migrate from head to bottom, no longer block render and still work -->
+
+    </body>
 
 </html>

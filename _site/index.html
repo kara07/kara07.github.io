@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="description" content="博客,kara">
+    <meta name="keyword"  content="各种各样的学习中">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>kara的博客 | kara blog</title>
+    <title>Kara's utopia</title>
 
     <link rel="canonical" href="http://kara07.github.io/">
 
@@ -30,11 +30,13 @@
 
 
     <!-- Hux Delete, sad but pending in China
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+        css'>
     -->
 
+    <!-- live2d elements quoted https://github.com/galnetwen/Live2D -->
+    <link rel="stylesheet" href="/live2d/css/live2d.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,10 +50,18 @@
 </head>
 
 
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-
-    <!-- Navigation -->
+    <!-- hack iOS CSS :active style -->
+    <body ontouchstart="">
+        
+        <!-- live2d  -->
+        <div id="landlord">
+            <!--<div class="message" style="opacity:0"></div>-->
+            <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+            <!--<div class="hide-button">隐藏</div>-->
+        </div>
+        
+        
+        <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -92,38 +102,38 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+            </nav>
+            <script>
+                // Drop Bootstarp low-performance Navbar
+                // Use customize navbar with high-quality material design animation
+                // in high-perf jank-free CSS3 implementation
+                var $body   = document.body;
+var $toggle = document.querySelector('.navbar-toggle');
+var $navbar = document.querySelector('#huxblog_navbar');
+var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
+$toggle.addEventListener('click', handleMagic)
+function handleMagic(e){
+    if ($navbar.className.indexOf('in') > 0) {
         // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
+        $navbar.className = " ";
+        // wait until animation end.
+        setTimeout(function(){
+            // prevent frequently toggle
+            if($navbar.className.indexOf('in') < 0) {
+                $collapse.style.height = "0px"
+            }
+        },400)
+    }else{
         // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
+        $collapse.style.height = "auto"
+        $navbar.className += " in";
     }
-</script>
+}
+            </script>
 
 
-    <!-- Page Header -->
+        <!-- Page Header -->
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
@@ -131,7 +141,7 @@
                 <div class="site-heading">
                     <h1>l'enfer, c'est les Autres.</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">Boilerplate of Hux Blog</span>
+                    <span class="subheading">Kara's Personal Page</span>
                 </div>
             </div>
         </div>
@@ -140,139 +150,50 @@
 
 <!-- Main Content -->
 <div class="container">
-	<div class="row">
+    <div class="row">
         
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			
+        <!-- USE SIDEBAR -->
+        <!-- Post Container -->
+        <div class="
+        col-lg-8 col-lg-offset-1
+        col-md-8 col-md-offset-1
+        col-sm-12
+        col-xs-12
+        post-container
+        ">
+            
 <div class="post-preview">
-    <a href="/2015/09/22/js-version/">
+    <a href="/2018/12/07/kubikiri/">
         <h2 class="post-title">
-            Example Post
+            「クビキリサイクル」に関する後日談
         </h2>
         
         <h3 class="post-subtitle">
-            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
-        </h3>
-        
-        <div class="post-content-preview">
-            JavaScript 有着很奇怪的命名史。
-
-1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript （当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）
-
-
-歪果仁的笑话怎么一点都不好...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on September 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/07/09/js-module-7day/">
-        <h2 class="post-title">
-            Example Post using Keynote Layout
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Keynote: JavaScript Modularization Journey
+            Diamond cut Diamond
         </h3>
         
         <div class="post-content-preview">
             
-  下滑这里查看更多内容
+  君の意見は完全に間違えっているという点に目を瞑れば概ね正解だ
 
 
-7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近 200 人转发，阅读达到 10w，获得了还不错的评价。
+正直言う、自分のブログに日本語を使いたくなかった。もとも技術を上がるためこのページを作った。人には多少見られたくないものがある、それを書き出して利用するため一応ここに書いた方がいい。だから誰でも読み辛い日本語はいい選択たと思う。後日談と言っても、だいたいアニメその自身の紹介じゃなくて、ぼくの感想です。
 
-于是，我决定将它重新发到我的博客上，并为它专门制作了适用于 Keynote 展示文稿的新布局。它能自动根据屏幕大小/旋转以一定...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on July 9, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/05/25/js-module-loader/">
-        <h2 class="post-title">
-            Example Post with Code Highlight
-        </h2>
-        
-        <h3 class="post-subtitle">
-            CommonJS，RequireJS，SeaJS 归纳笔记
-        </h3>
-        
-        <div class="post-content-preview">
-            Foreword
-
-
-  Here comes Module!
-
-
-随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试……我们不得不使用软件工程的方法，来管理网页的业务逻辑。
-
-于是，JavaScript 的模块化成为迫切需求。在 ES6 Module 来临之前，JavaScript...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on May 25, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/04/14/unix-linux-note/">
-        <h2 class="post-title">
-            Example Post
-        </h2>
-        
-        <h3 class="post-subtitle">
-            不适合人类阅读，非常水的自我笔记
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-Catagory
-
-
-  Unix
-    
-      Bell Labs
-      Xenix
-      BSD
-      FreeBSD &amp; Apple
-      NeXTStep
-      Darwin
-      POSIX
-    
+戯れ言葉と物語
 ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on April 14, 2015
+        Posted by kara on December 7, 2018
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/hello-2015/">
+    <a href="/2018/12/04/hello/">
         <h2 class="post-title">
-            Welcome to Hux Blog
+            Welcome come to Kara Blog
         </h2>
         
         <h3 class="post-subtitle">
@@ -281,24 +202,24 @@ Catagory
         
         <div class="post-content-preview">
             
-  “Yeah It’s on. ”
+  “I’did it!”
 
 
-前言
+止まった時計を回すんだ…
 
-Hux 的 Blog 就这么开通了。
+kara 的 Blog 就这么开通了。
 
-跳过废话，直接看技术实现 
+时隔很久的重返ubuntu，许多的困难以及其所带来的心得让我认识到自己必须有个窝。大学入学已经一年多了，kara依旧是条杂鱼…
 
-2015 年，Hux 总算有个地方可以好好写点东西了。
+网站还有很多很多不足，只能之后再完善了。
 
-作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。
+现在是2018.12.03。明年这个时候的博客会是什么样子呢，稍微期待一下吧。
 
-在玩了一...
+感谢asutorufa让我认识到开...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on January 29, 2015
+        Posted by kara on December 4, 2018
     </p>
 </div>
 <hr>
@@ -307,124 +228,111 @@ Hux 的 Blog 就这么开通了。
 <!-- Pager -->
 
 
-    		</div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                                <a href="/tags/#前端开发" title="前端开发" rel="3">
-                                    前端开发
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#JavaScript" title="JavaScript" rel="3">
-                                    JavaScript
-                                </a>
-                            
-                        
-                            
-                        
-                    </div>
-                </section>
-                
+        </div>
+        <!-- Sidebar Container -->
+        <div class="
+        col-lg-3 col-lg-offset-0
+        col-md-3 col-md-offset-0
+        col-sm-12
+        col-xs-12
+        sidebar-container
+        ">
+            <!-- Featured Tags -->
+            
+            <section>
+                <hr class="hidden-sm hidden-xs">
+                <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                <div class="tags">
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </section>
+            
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
+            <!-- Short About -->
+            <section class="visible-md visible-lg">
+                <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                <div class="short-about">
+                    
+                    <img src="/img/kara-head.jpg" />
+                    
+                    
+                    <p>世界に爆炎を</p>
+                    
+                    <!-- SNS Link -->
+                    <ul class="list-inline">
                         
-                            <img src="/img/avatar-hux.jpg" />
+                        <li>
+                            <a href="/feed.xml">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
                         
                         
-                            <p>真想回家看动画....</p>
+                        <li>
+                            <a href="https://twitter.com/kara_471">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
                         
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            <li>
-                                <a href="https://twitter.com/kara_471">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/Kara_7">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/kara07">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
+                        
+                        
+                        
+                        
+                        <li>
+                            <a target="_blank" href="https://github.com/kara07">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </section>
+            <!-- Friends Blog -->
+            
+            <hr>
+            <h5>FRIENDS</h5>
+            <ul class="list-inline">
                 
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="#">Foo</a></li>
-                    
-                        <li><a href="#">Bar</a></li>
-                    
-                        <li><a href="#">Example Friends</a></li>
-                    
-                        <li><a href="#">It helps SEO</a></li>
-                    
-                </ul>
+                <li><a href="https://www.pixiv.net/member.php?id=8940726">pixiv</a></li>
                 
-    		</div>
+                <li><a href="http://asutorufa.github.io">asutorufa</a></li>
+                
+            </ul>
+            
+        </div>
         
-	</div>
+    </div>
 </div>
 
 
-    <!-- Footer -->
+        <!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
                     
                     
                     <li>
@@ -439,15 +347,6 @@ Hux 的 Blog 就这么开通了。
 
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
                     
-                    
-                    <li>
-                        <a target="_blank" href="http://weibo.com/Kara_7">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
                     
 
 
@@ -466,11 +365,11 @@ Hux 的 Blog 就这么开通了。
                 <p class="copyright text-muted">
                     Copyright &copy; l'enfer, c'est les Autres. 2018
                     <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                        <a href="https://github.com/kara07/kara07.github.io">kara07</a> |
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                        src="https://ghbtns.com/github-btn.html?user=kara07&repo=kara07.github.io&type=star&count=true" >
                     </iframe>
                 </p>
             </div>
@@ -547,7 +446,7 @@ Hux 的 Blog 就这么开通了。
 <script>
     // dynamic User by Hux
     var _gaId = 'UA-49627206-1';
-    var _gaDomain = 'huangxuan.me';
+    var _gaDomain = 'kara07.gitgub.io';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -577,13 +476,26 @@ Hux 的 Blog 就这么开通了。
     })();
 </script>
 
+<!-- live2d  -->
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = 'https://kara07.github.io/'  //此处修改为你的域名，必须带斜杠
+    var live2d_Path = '/live2d/model/pio/'
+</script>
+
+<script type="text/javascript" src="/live2d/js/live2d.js"></script>
+<script type="text/javascript" src="/live2d/js/message.js"></script>
+<!-- costum changing achieves -->
+<script type="text/javascript" src="/live2d/js/run_local.js"></script>
 
 
 
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
 
-</body>
+
+        <!-- Image to hack wechat -->
+        <img src="/img/icon_wechat.png" width="0" height="0" />
+        <!-- Migrate from head to bottom, no longer block render and still work -->
+
+    </body>
 
 </html>
