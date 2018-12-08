@@ -1,0 +1,20 @@
+---
+layout:     post
+title:      "从解包开始，让手游里的live2d角色成为你的看板娘"
+subtitle:   "附带随机换装js脚本"
+date:       2018-12-06 19:30:00
+author:     "kara"
+header-img: "img/live2d.jpg"
+tags:
+    - 中文
+    - 技术
+    - live2d
+    - 安卓
+---
+
+> 本文原文出自[后宫学长](https://haremu.com/p/205)的博客
+> 本文对于原文有所删改
+
+# 安卓解包篇
+
+所需要的工具：

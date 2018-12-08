@@ -6,7 +6,9 @@ date:       2018-12-06 19:30:00
 author:     "kara"
 header-img: "img/kubikiri.jpg"
 tags:
+    - 日本語
     - 后日谈
+    - 漫谈
 ---
 
 > 君の意見は完全に間違えっているという点に目を瞑れば概ね正解だ
