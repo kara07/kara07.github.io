@@ -71,7 +71,7 @@ tags:
 首先可以到我的[Github](https://github.com/kara07/kara07.github.io)去下载源文件，只需要live2d文件夹中的内容。毕竟其他内容我已经整合进自己的网站源码了。
 
 如果只需要载入功能而不需要随机服装功能的话请使用原文配套的模型配置文件，路径如下：
-* /live/model/pio/model.json
+* /live2d/model/pio/model.json
 
 [我是原文](https://haremu.com/p/205)
 
