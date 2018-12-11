@@ -25,6 +25,7 @@ cool-retro-term是一款复古终端模拟器，能够将终端变成一台复�
 ---
 
 **使用包管理器**
+
 直接运行以下命令：
 
 ```shell
@@ -45,6 +46,7 @@ sudo apt-get install cool-retro-term
 ---
 
 **编译安装**
+
 进行编译之前，先要安装一些依赖。不同的发行版所需的依赖不太一样，具体可以参考文档的[Dependencies](https://github.com/Swordfish90/cool-retro-term/blob/master/README.md#dependencies)部分
 
 > 同样对于ubuntu只支持到17.10版本。因为本人是直接使用包管理器安装完成的，所以不清楚编译过程中是否还存在依赖等问题。
