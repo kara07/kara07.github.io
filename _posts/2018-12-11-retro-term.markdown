@@ -4,7 +4,7 @@ title:      "ubuntu 18.04下配置复古终端模拟器"
 subtitle:   "cool-retro-term settings"
 date:       2018-12-11 13:06:00
 author:     "kara"
-header-img: "img/post-bg-2015.jpg"
+header-img: "img/retro-term/hacking.jpg"
 tags:
     - 技术
     - linux
