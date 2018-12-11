@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Welcome come to Kara Blog"
+title:      "Welcome to Kara Blog"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2018-12-03 21:59:12
 author:     "kara"
