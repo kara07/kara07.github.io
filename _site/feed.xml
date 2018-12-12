@@ -5,9 +5,93 @@
     <description>博客,kara</description>
     <link>http://kara07.github.io/</link>
     <atom:link href="http://kara07.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 11 Dec 2018 13:13:36 +0800</pubDate>
-    <lastBuildDate>Tue, 11 Dec 2018 13:13:36 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Dec 2018 18:15:38 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Dec 2018 18:15:38 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>ubuntu 18.04下配置复古终端模拟器</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/img/retro-term/welcome.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;拥有一台上世纪八十年代的古董电脑或是古董游戏机一直是每个宅男的梦想(&lt;del&gt;至少是我的梦想&lt;/del&gt;。充满像素感的文字散发着淡淡的微光，这便是早期CRT(阴极射线管)显示器的醍醐味。然而笨重，清晰度低的CRT显示器最终为LCD(液晶显示器)所取代。在获得更高分辨率，更丰富的色彩的同时却失去了早期显示器朦胧的韵味。&lt;/p&gt;
+
+&lt;p&gt;cool-retro-term是一款复古终端模拟器，能够将终端变成一台复古的CRT显示器。支持自定义配置及从外部加载配置。整体呈现效果十分美观。&lt;/p&gt;
+
+&lt;h2 id=&quot;安装&quot;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;在这里我只介绍ubuntu18.04下的安装，其他linux发行版的用户可以参考&lt;a href=&quot;https://github.com/Swordfish90/cool-retro-term/blob/master/README.md#build-instructions-osx&quot;&gt;原文档&lt;/a&gt;，macos用户可以下载已经编译好的&lt;a href=&quot;https://github.com/Swordfish90/cool-retro-term/releases&quot;&gt;DMG&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;使用包管理器&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;直接运行以下命令：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;add-apt-repository ppa:vantuz/cool-retro-term
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install cool-retro-term
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;原项目对于ubuntu系统只提供到17.10的支持，在我的18.04系统下出现了很多依赖问题。原软件包的一些依赖已经被废弃或是不兼容，在软件发布源中已不能够被下载。&lt;/p&gt;
+
+&lt;p&gt;他们是：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;qtdeclarative5-dialogs-plugin&lt;/li&gt;
+  &lt;li&gt;libqt5qml-graphicaleffects&lt;/li&gt;
+  &lt;li&gt;qml-module-qtquick-controls&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可以在我的&lt;a href=&quot;https://github.com/kara07/cool-retro-term-dependence#cool-retro-term-dependence&quot;&gt;github&lt;/a&gt;中找到这些依赖。之后只要对每个.deb软件包跑一遍&lt;em&gt;dpkg -i&lt;/em&gt;就行了。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;编译安装&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;进行编译之前，先要安装一些依赖。不同的发行版所需的依赖不太一样，具体可以参考文档的&lt;a href=&quot;https://github.com/Swordfish90/cool-retro-term/blob/master/README.md#dependencies&quot;&gt;Dependencies&lt;/a&gt;部分&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;同样对于ubuntu只支持到17.10版本。因为本人是直接使用包管理器安装完成的，所以不清楚编译过程中是否还存在依赖等问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;编译(首先需要Qt 5.2以上的版本支持)：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 将其克隆到本地&lt;/span&gt;
+git clone &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; https://github.com/Swordfish90/cool-retro-term.git
+
+&lt;span class=&quot;c&quot;&gt;# 进入目录&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;cool-retro-term
+
+&lt;span class=&quot;c&quot;&gt;# 编译 ( Fedora 和 OpenSUSE 的用户应使用 qmake-qt5 来替代 qmake )&lt;/span&gt;
+qmake &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make
+
+&lt;span class=&quot;c&quot;&gt;# 玩的开心!&lt;/span&gt;
+./cool-retro-term
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;配置&quot;&gt;配置&lt;/h2&gt;
+&lt;p&gt;打开Cool Retro Term后，默认呈现的就是一台古老的CRT显示器的样子。若不喜欢默认样式，点击Edit-Settings可以进行设置。&lt;/p&gt;
+
+&lt;p&gt;Genreal选项卡里的Profile有一些自带的配置文件Profile，点击Load按钮可以加载它们。点击New新建一个配置文件，然后可以进行具体的配置，调整效果实时可见，十分方便。&lt;/p&gt;
+
+&lt;p&gt;我的配置如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/retro-term/setting.jpg&quot; alt=&quot;充满噪点和抖动的球形屏让人欲罢不能&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 11 Dec 2018 21:06:00 +0800</pubDate>
+        <link>http://kara07.github.io/2018/12/11/retro-term/</link>
+        <guid isPermaLink="true">http://kara07.github.io/2018/12/11/retro-term/</guid>
+        
+        <category>技术</category>
+        
+        <category>linux</category>
+        
+        <category>终端</category>
+        
+        <category>ubuntu</category>
+        
+        
+      </item>
     
       <item>
         <title>从解包开始，让手游里的live2d角色成为你的看板娘吧！</title>

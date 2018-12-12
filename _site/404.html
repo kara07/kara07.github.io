@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="博客,kara">
-    <meta name="keyword"  content="各种各样的学习中">
+    <meta name="keyword" content="各种各样的学习中">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>Kara's utopia</title>
@@ -38,6 +38,17 @@
     <!-- live2d elements quoted https://github.com/galnetwen/Live2D -->
     <link rel="stylesheet" href="/live2d/css/live2d.css" />
 
+    <!-- click effect quoted https://animejs.com -->
+    <style>
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            widows: 100%;
+            height: 100%;
+        }
+    </style>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,19 +60,12 @@
     <script></script>
 </head>
 
+<!-- hack iOS CSS :active style -->
 
-    <!-- hack iOS CSS :active style -->
-    <body ontouchstart="">
-        
-        <!-- live2d  -->
-        <div id="landlord">
-            <!--<div class="message" style="opacity:0"></div>-->
-            <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
-            <!--<div class="hide-button">隐藏</div>-->
-        </div>
-        
-        
-        <!-- Navigation -->
+<body ontouchstart="">
+
+
+    <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -133,7 +137,7 @@ function handleMagic(e){
             </script>
 
 
-        <!-- Page Header -->
+    <!-- Page Header -->
 <header class="intro-header" style="background-image: url('/img/404-bg.jpg')">
 	<div class="container">
 		<div class="row">
@@ -152,7 +156,7 @@ function handleMagic(e){
 </script>
 
 
-        <!-- Footer -->
+    <!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
@@ -310,26 +314,38 @@ function handleMagic(e){
     })();
 </script>
 
-<!-- live2d  -->
-<script type="text/javascript">
-    var message_Path = '/live2d/'
-    var home_Path = 'https://kara07.github.io/'  //此处修改为你的域名，必须带斜杠
-    var live2d_Path = '/live2d/model/pio/'
-</script>
-
-<script type="text/javascript" src="/live2d/js/live2d.js"></script>
-<script type="text/javascript" src="/live2d/js/message.js"></script>
-<!-- costum changing achieves -->
-<script type="text/javascript" src="/live2d/js/run_local.js"></script>
 
 
 
 
+    <!-- Image to hack wechat -->
+    <img src="/img/icon_wechat.png" width="0" height="0" />
+    <!-- Migrate from head to bottom, no longer block render and still work -->
 
-        <!-- Image to hack wechat -->
-        <img src="/img/icon_wechat.png" width="0" height="0" />
-        <!-- Migrate from head to bottom, no longer block render and still work -->
+    <!-- live2d  -->
+    <div id="landlord">
+        <!--<div class="message" style="opacity:0"></div>-->
+        <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+        <!--<div class="hide-button">隐藏</div>-->
+    </div>
 
-    </body>
+    <!-- live2d  -->
+    <script type="text/javascript">
+        var message_Path = '/live2d/'
+        var home_Path = 'https://kara07.github.io/'  //此处修改为你的域名，必须带斜杠
+        var live2d_Path = '/live2d/model/pio/'
+    </script>
+
+    <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+    <script type="text/javascript" src="/live2d/js/message.js"></script>
+    <!-- costum changing achieves -->
+    <script type="text/javascript" src="/live2d/js/run_local.js"></script>
+
+    <!-- click effect fireworks -->
+    <canvas class="fireworks"></canvas>
+    <script src="/js/anime.min.js"></script>
+    <script src="/js/fireworks.js"></script>
+
+</body>
 
 </html>

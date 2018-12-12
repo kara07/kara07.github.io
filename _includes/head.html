@@ -4,7 +4,7 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.description }}">
-    <meta name="keyword"  content="{{ site.keyword }}">
+    <meta name="keyword" content="{{ site.keyword }}">
     <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico">
 
     <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
@@ -34,6 +34,17 @@
 
     <!-- live2d elements quoted https://github.com/galnetwen/Live2D -->
     <link rel="stylesheet" href="/live2d/css/live2d.css" />
+
+    <!-- click effect quoted https://animejs.com -->
+    <style>
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            widows: 100%;
+            height: 100%;
+        }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
