@@ -87,7 +87,7 @@ Genreal选项卡里的Profile有一些自带的配置文件Profile，点击Load�
 更改应用结果为
 
 ```
-exec  x-terminal-emulator
+exec  cool-retro-term
 exec-arg -e
 ```
 
