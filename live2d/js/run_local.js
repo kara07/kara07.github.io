@@ -1,3 +1,5 @@
+var live2d_Path = '/live2d/model/tia/'
+
 $.getJSON(`${live2d_Path}model.json`, function (model) {
     $.getJSON(`${live2d_Path}textures.json`, function (textures) {
         const modelObj = JSON.parse(JSON.stringify(model, null, 2))

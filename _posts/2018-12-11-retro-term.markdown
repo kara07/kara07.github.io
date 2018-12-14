@@ -76,4 +76,21 @@ Genreal选项卡里的Profile有一些自带的配置文件Profile，点击Load�
 
 ![充满噪点和抖动的球形屏让人欲罢不能](/img/retro-term/setting.jpg)
 
+# 将cool-retro-term设为默认启动
+
+首先应安装 *dconf-tools*
+
+`$ sudo apt-get install dconf-tools`
+
+直接从应用程序界面打开 *dconf-tools*,依次打开 org > gnome > desktop > applications > terminal 
+
+更改应用结果为
+
+```
+exec  x-terminal-emulator
+exec-arg -e
+```
+
+摁一下 ctrl+shift+t 测试以下修改结果吧。
+
 
