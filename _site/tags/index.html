@@ -159,9 +159,9 @@ function handleMagic(e){
             <!-- 标签云 -->
 			<div id='tag_cloud' class="tags">
 				
-				<a href="#生活" title="生活" rel="1">生活</a>
+				<a href="#生活" title="生活" rel="2">生活</a>
 				
-				<a href="#后日谈" title="后日谈" rel="1">后日谈</a>
+				<a href="#后日谈" title="后日谈" rel="2">后日谈</a>
 				
 				<a href="#漫谈" title="漫谈" rel="1">漫谈</a>
 				
@@ -189,6 +189,25 @@ function handleMagic(e){
                 </span>
 				
 				  <!-- <li class="listing-item">
+				  <time datetime="2018-12-18">2018-12-18</time>
+				  <a href="/2018/12/18/zatsudan/" title="雑談二つ">雑談二つ</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2018/12/18/zatsudan/">
+				        <h2 class="post-title">
+                            雑談二つ
+				        </h2>
+				        
+				        <h3 class="post-subtitle">
+				            meanless reflections
+				        </h3>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2018-12-18</p> -->
+				</div>
+				<hr>
+				
+				  <!-- <li class="listing-item">
 				  <time datetime="2018-12-04">2018-12-04</time>
 				  <a href="/2018/12/04/hello/" title="Welcome to Kara Blog">Welcome to Kara Blog</a>
 				  </li> -->
@@ -213,6 +232,25 @@ function handleMagic(e){
 			  	<span class="fa fa-tag listing-seperator" id="后日谈">
                     <span class="tag-text">后日谈</span>
                 </span>
+				
+				  <!-- <li class="listing-item">
+				  <time datetime="2018-12-18">2018-12-18</time>
+				  <a href="/2018/12/18/zatsudan/" title="雑談二つ">雑談二つ</a>
+				  </li> -->
+				 <div class="post-preview">
+				    <a href="/2018/12/18/zatsudan/">
+				        <h2 class="post-title">
+                            雑談二つ
+				        </h2>
+				        
+				        <h3 class="post-subtitle">
+				            meanless reflections
+				        </h3>
+				        
+				    </a>
+				    <!-- <p class="post-meta">2018-12-18</p> -->
+				</div>
+				<hr>
 				
 				  <!-- <li class="listing-item">
 				  <time datetime="2018-12-07">2018-12-07</time>
@@ -607,7 +645,7 @@ function handleMagic(e){
     <!-- live2d -->
     <div id="landlord">
         <!--<div class="message" style="opacity:0"></div>-->
-        <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+        <canvas id="live2d" width="300" height="495" class="live2d"></canvas>
         <!--<div class="hide-button">隐藏</div>-->
     </div>
 
@@ -619,11 +657,11 @@ function handleMagic(e){
 
     <script type="text/javascript" src="/live2d/js/live2d.js"></script>
     <script type="text/javascript" src="/live2d/js/message.js"></script>
-    <!--<script type="text/javascript">
-        loadlive2d("live2d", "/live2d/model/pio/model.json");
-    </script>-->
+    <script type="text/javascript">
+        loadlive2d("live2d", "/live2d/model/saya/model.json");
+    </script>
     <!-- costum changing achieves -->
-    <script type="text/javascript" src="/live2d/js/run_local.js"></script>
+    <!--<script type="text/javascript" src="/live2d/js/run_local.js"></script>-->
 
     <!-- click effect fireworks -->
     <!--<canvas class="fireworks"></canvas>
