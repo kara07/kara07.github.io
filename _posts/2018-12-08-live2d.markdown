@@ -71,7 +71,7 @@ tags:
 如果只需要载入功能而不需要随机服装功能的话请使用原文配套的模型配置文件，路径如下：
 * /live2d/model/pio/model.json
 
-[我是原文](https://haremu.com/p/205)
+[我是原文](https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02)
 
 live2d文件夹中包含所有的样式，脚本，以及此游戏到目前为止所有的模型服装，请自行按需摄取。
 
