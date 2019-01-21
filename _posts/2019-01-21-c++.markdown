@@ -1,0 +1,44 @@
+---
+layout:     post
+title:      "可能会用上的 C++ 相关知识点总结"
+subtitle:   "C Linguistic Literature"
+date:       2019-01-21 00:00:00
+author:     "kara"
+header-img: "img/c++/c++.jpg"
+tags:
+    - 技术
+    - C family
+---
+
+## 排序相关
+
+**algorithm** 头文件中的 sort 算法，效率貌似比~~自己写的~~快排要快。使用方法很简单
+
+```c++
+sort(arr, arr + 5, cmp);
+```
+
+自己尝试后前两个区间参数一定要有，第三个排序方法参数可以省略。另有 **is_sorted()** 判断是否已排好序，参数跟使用方法和 sort() 一模一样。但感觉用处不大。第三个方法参数 cmp 需要自己定义，例如定义为从大到小排序：
+
+```c++
+bool cmp(int x,int y)
+{
+	return x > y;
+}
+```
+
+只是从大到小排序的话我更倾向于用 sort(arr, arr + 5, greater<elemType>()); 其中elemType就是所需要排序的元素类型。顺便说一下 **reverse()** 函数。作用是将容器内的元素倒序。同样有两个范围参数 begin() 和 end()。值得一提的是 javascript 里的 reverse() 是将元素降序排列，而 sort() 功能基本一样。
+
+---
+
+## 排列组合
+
+STL提供了两个用来计算排列组合关系的算法，分别是 **next_permutation** 和 **prev_permutation** 。next_permutation()会取得[first,last)所标示之序列的下一个排列组合，如果没有下一个排列组合，便返回false;否则返回true。貌似可以用于排列所有情况暴力求解，不过一次都没遇到过。
+
+```
+while(next_permutation(arr,arr+n));
+```
+
+
+
+

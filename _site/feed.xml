@@ -5,9 +5,119 @@
     <description>博客,kara</description>
     <link>http://kara07.github.io/</link>
     <atom:link href="http://kara07.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 08 Jan 2019 22:50:04 +0800</pubDate>
-    <lastBuildDate>Tue, 08 Jan 2019 22:50:04 +0800</lastBuildDate>
+    <pubDate>Mon, 21 Jan 2019 20:15:12 +0800</pubDate>
+    <lastBuildDate>Mon, 21 Jan 2019 20:15:12 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>可能会用上的 C++ 相关知识点总结</title>
+        <description>&lt;h2 id=&quot;排序相关&quot;&gt;排序相关&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;algorithm&lt;/strong&gt; 头文件中的 sort 算法，效率貌似比&lt;del&gt;自己写的&lt;/del&gt;快排要快。使用方法很简单&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;自己尝试后前两个区间参数一定要有，第三个排序方法参数可以省略。另有 &lt;strong&gt;is_sorted()&lt;/strong&gt; 判断是否已排好序，参数跟使用方法和 sort() 一模一样。但感觉用处不大。第三个方法参数 cmp 需要自己定义，例如定义为从大到小排序：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;只是从大到小排序的话我更倾向于用 sort(arr, arr + 5, greater&lt;elemType&gt;()); 其中elemType就是所需要排序的元素类型。顺便说一下 **reverse()** 函数。作用是将容器内的元素倒序。同样有两个范围参数 begin() 和 end()。值得一提的是 javascript 里的 reverse() 是将元素降序排列，而 sort() 功能基本一样。&lt;/elemType&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;排列组合&quot;&gt;排列组合&lt;/h2&gt;
+
+&lt;p&gt;STL提供了两个用来计算排列组合关系的算法，分别是 &lt;strong&gt;next_permutation&lt;/strong&gt; 和 &lt;strong&gt;prev_permutation&lt;/strong&gt; 。next_permutation()会取得[first,last)所标示之序列的下一个排列组合，如果没有下一个排列组合，便返回false;否则返回true。貌似可以用于排列所有情况暴力求解，不过一次都没遇到过。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;while(next_permutation(arr,arr+n));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 21 Jan 2019 08:00:00 +0800</pubDate>
+        <link>http://kara07.github.io/2019/01/21/c++/</link>
+        <guid isPermaLink="true">http://kara07.github.io/2019/01/21/c++/</guid>
+        
+        <category>技术</category>
+        
+        <category>C family</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Bangdream拆包及模型配置小记</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;西历2019年1月8日下午4点，本学期最后一门考试结束，宣告为历时数月的校内课程画下结点。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;期末考试终于告一段落，这个学期花了太多时间摆弄电脑和手机。自我感觉成绩肯定没有上个学期好(&lt;del&gt;从入学到现在一路下跌&lt;/del&gt;。回家肯定又会被母上大人各种BB。&lt;/p&gt;
+
+&lt;p&gt;痛定思痛,我最终下定决心，更多的看电脑。&lt;/p&gt;
+
+&lt;p&gt;如果这个站点有幸迎来台式终端的访问者的话，一定会注意到右下角的live2d角色被我更换成了bangdream里的山吹纱绫。此次多是繁琐的配置调试过程，并没有什么技术性的问题。姑且稍作记录。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;拆包篇&quot;&gt;拆包篇&lt;/h2&gt;
+
+&lt;p&gt;既然是bangdream的拆包的话，当然需要一个各种版本的bangdream游戏安装包。这里我采用的是安卓版日服安装包。可以&lt;a href=&quot;https://play.google.com/store/apps/details?id=jp.co.craftegg.band&amp;amp;hl=zh_CN&quot;&gt;点击这里&lt;/a&gt;进行下载安装。这部分操作我都是在手机上完成的，也可以用模拟器进行安装，相对的与电脑进行资料交换也会更方便一些。&lt;/p&gt;
+
+&lt;p&gt;安装完之后进入游戏，进行第一次下载。国外的游戏与国内的有些不同，一般安装包非常轻量，大部分数据都是在游戏内进行下载。而中国特色的安装包则动辄几百兆甚至几个G。轻量化的安装包所带来的好处主要是升级更新操作更易实现，因为游戏主体框架已有，只需要对其中数据进行删改就行，而大型安装包因其资源全部整合到一个包中，更新一次通常要把新版安装包下载之后再整体安装。这之间浪费了相当多的时间和资源写入量。最近崩坏三从2.7版本开始采用了游戏内下载方式，也算是与国际接轨了。(&lt;del&gt;中美结合，文体两开花&lt;/del&gt;。但在2.7版本之前九游服就已经采用了这种方式，米忽悠是在拿九游服进行测试吗？&lt;/p&gt;
+
+&lt;p&gt;说哪去了。继续拆包工作。第一次下载花的时间通常比较长，而且依版本不同，可能要进行多次。这里需将所有数据递归下载下来直至能进入游戏。下载完毕后，可以在 &lt;strong&gt;&lt;em&gt;Android/data&lt;/em&gt;&lt;/strong&gt; 目录下找到所下载的全部数据。这里我使用的是es文件管理器。想要现成的直接&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.estrongs.android.pop&quot;&gt;戳这里&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;可以在Android/data目录下翻到名叫 &lt;strong&gt;&lt;em&gt;jp.co.craftegg.band&lt;/em&gt;&lt;/strong&gt; 的目录，其中的 &lt;strong&gt;./files/data&lt;/strong&gt; 就是我们所需要的目录了。可以直接把 data 目录压缩包发到电脑解压，然后用拆包软件进行拆包。拆包具体操作与&lt;a href=&quot;https://kara07.github.io/2018/12/08/live2d/&quot;&gt;上篇文章&lt;/a&gt;别无二致，可以参考其进行操作。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;配置篇&quot;&gt;配置篇&lt;/h2&gt;
+
+&lt;p&gt;最终将我们所得到的文件进行整理。一套分别是&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;一个 .moc 模型文件&lt;/li&gt;
+  &lt;li&gt;一些 .mtn 动作文件&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;与模型相对应的一个 texture_00.png 贴图文件。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这里需要注意的是，bangdream与其他游戏不同，一个贴图文件对应一个模型文件。这说明了游戏中的每一套衣服都需要重新建模，每套衣服有唯一的模型，反之也成立。所以路径就不能像上一篇文章所说的设置，必须将贴图文件按照如下目录关系放置&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.
+├── model.json
+├── saya_2019newyear
+│   ├── motions
+│   │   ├── ando01.mtn
+│   │   ├── uwame01.mtn
+│   │   ├── wink01.mtn
+│   │   └── ...//other .mtn files
+│   └── texture_00.png
+└── saya_2019newyear.moc
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这里我用了纱绫的新年和服模型来进行说明，最重要的就是将贴图文件 texture_00.png 放置于一个和模型文件同名的目录下，同时动作文件 motions 目录也放在此目录下。&lt;/p&gt;
+
+&lt;p&gt;最后和原先加载模型的方法一样在js脚本中调用loadlive2d函数就可以了。因为bangdream模型和贴图文件的特殊性，随机换装脚本可能会比较难写。只能每次切换界面重新加载模型，这会花费比较长的时间。本身用的github page服务在境内访问速度堪忧，这个功能近期还是不考虑了。以后要是有这些需求在考虑怎么实现吧。(kirari ☆~~&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 09 Jan 2019 04:44:00 +0800</pubDate>
+        <link>http://kara07.github.io/2019/01/09/bangdream/</link>
+        <guid isPermaLink="true">http://kara07.github.io/2019/01/09/bangdream/</guid>
+        
+        <category>技术</category>
+        
+        <category>live2d</category>
+        
+        <category>博客</category>
+        
+        <category>安卓</category>
+        
+        
+      </item>
     
       <item>
         <title>雑談二つ</title>
@@ -233,7 +343,7 @@ exec-arg -e
   &lt;li&gt;/live2d/model/pio/model.json&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://haremu.com/p/205&quot;&gt;我是原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02&quot;&gt;我是原文&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;live2d文件夹中包含所有的样式，脚本，以及此游戏到目前为止所有的模型服装，请自行按需摄取。&lt;/p&gt;
 
