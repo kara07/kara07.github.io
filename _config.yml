@@ -4,7 +4,7 @@ SEOTitle: Kara's utopia
 header-img: img/home-bg.jpg
 email: karadeyouxiang7@gmail.com
 description: "博客,kara"
-keyword: "各种各样的学习中"
+keyword: "博客,kara"
 url: "http://kara07.github.io"              # your host, for absolute URL
 baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -69,7 +69,7 @@ ga_domain: #kara07.gitgub.io
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "世界に爆炎を"
+sidebar-about-description: "为世界献上爆炎"
 sidebar-avatar: /img/kara-head.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
@@ -83,10 +83,10 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "pixiv",
-        href: "https://www.pixiv.net/member.php?id=8940726"
-    },{
         title: "asutorufa",
         href: "http://asutorufa.github.io"
-    }
+    },{
+        title: "",
+        href: "https://www.pixiv.net/member.php?id=8940726"
+    },
 ]
