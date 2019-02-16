@@ -5,9 +5,274 @@
     <description>博客,kara</description>
     <link>http://kara07.github.io/</link>
     <atom:link href="http://kara07.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 21 Jan 2019 20:15:12 +0800</pubDate>
-    <lastBuildDate>Mon, 21 Jan 2019 20:15:12 +0800</lastBuildDate>
+    <pubDate>Sat, 16 Feb 2019 16:15:58 +0800</pubDate>
+    <lastBuildDate>Sat, 16 Feb 2019 16:15:58 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>终端复用软件tmux操作总结</title>
+        <description>&lt;h3 id=&quot;前言&quot;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;很早之前我就接触tmux了，但其操作并不简单，所以我依旧习惯打开多个终端进行操作。理所当然的会存在几个弊端。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;经常会引起无法辨认哪个终端运行的是哪个程序而导致误操作。&lt;/li&gt;
+  &lt;li&gt;手机切换终端没电脑那么简单。&lt;/li&gt;
+  &lt;li&gt;多终端操作难免会需要鼠标进行操作，各种意义上不方便。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;于是在使用过程中将经常使用的操作记下来方便查阅。也算是一篇比较水的教程，如果能有人能获得帮助就好了。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;认识tmux结构&quot;&gt;认识tmux结构&lt;/h2&gt;
+
+&lt;p&gt;在开启了tmux服务器后，会首先创建一个会话，而这个会话则会首先创建一个窗口，其中仅包含一个面板；也就是说，这里看到的所谓终端控制台应该称作tmux的一个面板，虽然其使用方法与终端控制台完全相同。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;server&lt;/td&gt;
+      &lt;td&gt;服务器。输入tmux命令时就开启了一个服务器。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;session&lt;/td&gt;
+      &lt;td&gt;会话。一个服务器可以包含多个会话。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;window&lt;/td&gt;
+      &lt;td&gt;窗口。一个会话可以包含多个窗口。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;panel&lt;/td&gt;
+      &lt;td&gt;面板。一个窗口可以包含多个面板。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;光这么说过于抽象了，以下以图文以及一些最基本的操作做一些说明。首先 &lt;strong&gt;ctrl+b&lt;/strong&gt; 激活控制台，摁下ctrl+b(不需要长摁)后所进行的操作才会生效。&lt;strong&gt;以下所有操作，如查看会话的 ctrl+b,s 默认为激活控制台情况进行的操作，在此简写为 s 。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在终端中每次运行 tmux 命令都会创建一个会话，而 s 能够查看当前的会话情况并可以选择切换会话。如下图所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/tmux/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此图中一共有三个会话，其中第二个会话有三个窗口(windows)。(attached)表示当前正在进行的会话。d 退出当前会话，D 能够选择要退出的会话，: 进入命令行模式。比较重要的是 [ 进入复制模式，此时可以滚屏进行其他操作，按q/esc退出。&lt;/p&gt;
+
+&lt;p&gt;一般的操作都是在窗口和面板层面上进行，如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/tmux/2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;p n切换当前的窗口。% 能将窗口左右分成两个面板，” 能将窗口上下分成两个面板。其中面板的编号0,1,2,3,4可以使用 q 查看，使用 x 关闭当前面板。默认分屏之后是能分的，可以按住 ctrl+b 然后使用方向键进行调整。alt+方向键能够一次调整五个单位长度。! 将当前面板置于新窗口；即新建一个窗口，其中仅包含当前面板。&lt;/p&gt;
+
+&lt;p&gt;面板的置换和分布调整可以使用 { 和 } 来实现，也可以通过 ctrl+o 或是 alt+o 来实现整个面板的顺时针或是逆时针旋转置换。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/tmux/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在面板 1 使用 } 将面板 1 与面板 2 进行置换。可以看到红色编号的面板 2 现在成了1号。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/tmux/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;使用 ctrl+o 将面板顺时针进行旋转后，可以看到所有面板都向前移动了一格，相反的 alt+o 可以将所有面板都向后移动一格以归位。&lt;/p&gt;
+
+&lt;p&gt;此外，tmux还预置了一些面板布局，可以按space进行切换。通常都是一些等分面板样式，其布局只根据面板个数来进行调整。&lt;/p&gt;
+
+&lt;h2 id=&quot;全部常用操作&quot;&gt;全部常用操作&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;操作表如下以方便查看&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ctrl+b&lt;/td&gt;
+      &lt;td&gt;激活控制台；此时以下按键生效&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;系统操作&lt;/td&gt;
+      &lt;td&gt;?&lt;/td&gt;
+      &lt;td&gt;列出所有快捷键；按q返回&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;d&lt;/td&gt;
+      &lt;td&gt;脱离当前会话；这样可以暂时返回Shell界面，输入tmux attach能够重新进入之前的会话&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;D&lt;/td&gt;
+      &lt;td&gt;选择要脱离的会话；在同时开启了多个会话时使用&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Ctrl+z&lt;/td&gt;
+      &lt;td&gt;挂起当前会话&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;r&lt;/td&gt;
+      &lt;td&gt;强制重绘未脱离的会话&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;s&lt;/td&gt;
+      &lt;td&gt;选择并切换会话；在同时开启了多个会话时使用&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;进入命令行模式；此时可以输入支持的命令，例如kill-server可以关闭服务器&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[&lt;/td&gt;
+      &lt;td&gt;进入复制模式；此时的操作与vi/emacs相同，按q/Esc退出&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;~&lt;/td&gt;
+      &lt;td&gt;列出提示信息缓存；其中包含了之前tmux返回的各种提示信息&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;窗口操作&lt;/td&gt;
+      &lt;td&gt;c&lt;/td&gt;
+      &lt;td&gt;创建新窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&amp;amp;&lt;/td&gt;
+      &lt;td&gt;关闭当前窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;数字键&lt;/td&gt;
+      &lt;td&gt;切换至指定窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;p&lt;/td&gt;
+      &lt;td&gt;切换至上一窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;n&lt;/td&gt;
+      &lt;td&gt;切换至下一窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;l&lt;/td&gt;
+      &lt;td&gt;在前后两个窗口间互相切换&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;w&lt;/td&gt;
+      &lt;td&gt;通过窗口列表切换窗口&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;,&lt;/td&gt;
+      &lt;td&gt;重命名当前窗口；这样便于识别&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;.&lt;/td&gt;
+      &lt;td&gt;修改当前窗口编号；相当于窗口重新排序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;f&lt;/td&gt;
+      &lt;td&gt;在所有窗口中查找指定文本&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;面板操作&lt;/td&gt;
+      &lt;td&gt;”&lt;/td&gt;
+      &lt;td&gt;将当前面板平分为上下两块&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;%&lt;/td&gt;
+      &lt;td&gt;将当前面板平分为左右两块&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;x&lt;/td&gt;
+      &lt;td&gt;关闭当前面板&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;!&lt;/td&gt;
+      &lt;td&gt;将当前面板置于新窗口；即新建一个窗口，其中仅包含当前面板&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Ctrl+方向键&lt;/td&gt;
+      &lt;td&gt;以1个单元格为单位移动边缘以调整当前面板大小&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Alt+方向键&lt;/td&gt;
+      &lt;td&gt;以5个单元格为单位移动边缘以调整当前面板大小&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Space&lt;/td&gt;
+      &lt;td&gt;在预置的面板布局中循环切换；依次包括even-horizontal、even-vertical、main-horizontal、main-vertical、tiled&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;q&lt;/td&gt;
+      &lt;td&gt;显示面板编号&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;o&lt;/td&gt;
+      &lt;td&gt;在当前窗口中选择下一面板&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;方向键&lt;/td&gt;
+      &lt;td&gt;移动光标以选择面板&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{&lt;/td&gt;
+      &lt;td&gt;向前置换当前面板&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;}&lt;/td&gt;
+      &lt;td&gt;向后置换当前面板&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Alt+o&lt;/td&gt;
+      &lt;td&gt;逆时针旋转当前窗口的面板&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Ctrl+o&lt;/td&gt;
+      &lt;td&gt;顺时针旋转当前窗口的面板&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Wed, 13 Feb 2019 08:00:00 +0800</pubDate>
+        <link>http://kara07.github.io/2019/02/13/tmux/</link>
+        <guid isPermaLink="true">http://kara07.github.io/2019/02/13/tmux/</guid>
+        
+        <category>技术</category>
+        
+        <category>终端</category>
+        
+        <category>linux</category>
+        
+        <category>tmux</category>
+        
+        
+      </item>
     
       <item>
         <title>可能会用上的 C++ 相关知识点总结</title>
@@ -26,7 +291,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;只是从大到小排序的话我更倾向于用 sort(arr, arr + 5, greater&lt;elemType&gt;()); 其中elemType就是所需要排序的元素类型。顺便说一下 **reverse()** 函数。作用是将容器内的元素倒序。同样有两个范围参数 begin() 和 end()。值得一提的是 javascript 里的 reverse() 是将元素降序排列，而 sort() 功能基本一样。&lt;/elemType&gt;&lt;/p&gt;
+&lt;p&gt;只是从大到小排序的话我更倾向于用 sort(arr, arr + 5, greater&lt;elemType&gt;()); 其中elemType就是所需要排序的元素类型。顺便说一下 &lt;b&gt;reverse()&lt;/b&gt; 函数。作用是将容器内的元素倒序。同样有两个范围参数 begin() 和 end()。值得一提的是 javascript 里的 reverse() 是将元素降序排列，而 sort() 功能基本一样。&lt;/elemType&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 

@@ -27,7 +27,7 @@ bool cmp(int x,int y)
 }
 ```
 
-只是从大到小排序的话我更倾向于用 sort(arr, arr + 5, greater<elemType>()); 其中elemType就是所需要排序的元素类型。顺便说一下 **reverse()** 函数。作用是将容器内的元素倒序。同样有两个范围参数 begin() 和 end()。值得一提的是 javascript 里的 reverse() 是将元素降序排列，而 sort() 功能基本一样。
+只是从大到小排序的话我更倾向于用 sort(arr, arr + 5, greater<elemType>()); 其中elemType就是所需要排序的元素类型。顺便说一下 <b>reverse()</b> 函数。作用是将容器内的元素倒序。同样有两个范围参数 begin() 和 end()。值得一提的是 javascript 里的 reverse() 是将元素降序排列，而 sort() 功能基本一样。
 
 ---
 
