@@ -1,0 +1,175 @@
+--- layout:     post
+title:      "linux 下源码打包"
+subtitle:   "sourcecode package"
+date:       2019-06-13 00:00:00
+author:     "kara"
+header-img: "img/c++/c++.jpg"
+tags:
+    - linux
+    - 技术
+--- 
+
+> 源码make完成之后直接install不好管理也不好删除，最终可能会残留文件，一个比较好的方法就是将源码打包用包管理器管理。ubuntu下可以使用deb，也可以打包为rpm
+
+# 源码处理
+
+自行编译安装一般都会有这三个步骤：
+
+```bash
+./configure
+make
+make install
+```
+
+./configure(配置）
+configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/share（而不是默认的/usr/local/share）。同时一些软件的配置文件你可以通过指定 –sys-config= 参数进行设定。有一些软件还可以加上 –with、–enable、–without、–disable 等等参数对编译加以控制，你可以通过允许 ./configure –help 察看详细的说明帮助。它常用的参数如下：
+
+
+make（编译）
+make，这一步就是编译，当执行make的时候，make会在当前目录下搜索Makefile（makefile）这个文本文件，而makefile里面记录了源码如何编译的详细信息。
+
+make install（安装）
+make insatll，这条命令来进行安装，这一步一般需要你有 root 权限（因为要向系统写入文件）。
+
+其他命令：
+
+make clean 清除编译产生的可执行文件及目标文件。
+make distclean 除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。
+make dist将程序和相关的档案包装成一个压缩文件以供发布。
+
+### ---
+layout:     post
+title:      "linux 下源码打包"
+subtitle:   "sourcecode package"
+date:       2019-06-13 00:00:00
+author:     "kara"
+header-img: "img/c++/c++.jpg"
+tags:
+    - linux
+    - 技术
+--- 
+
+> 源码make完成之后直接install不好管理也不好删除，最终可能会残留文件，一个比较好的方法就是将源码打包用包管理器管理。ubuntu下可以使用deb，也可以打包为rpm
+
+---
+
+# 源码处理
+
+自行编译安装一般都会有这三个步骤：
+
+```bash
+./configure
+make
+make install
+```
+
+./configure(配置）
+configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/share（而不是默认的/usr/local/share）。同时一些软件的配置文件你可以通过指定 –sys-config= 参数进行设定。有一些软件还可以加上 –with、–enable、–without、–disable 等等参数对编译加以控制，你可以通过允许 ./configure –help 察看详细的说明帮助。它常用的参数如下：
+
+
+make（编译）
+make，这一步就是编译，当执行make的时候，make会在当前目录下搜索Makefile（makefile）这个文本文件，而makefile里面记录了源码如何编译的详细信息。
+
+make install（安装）
+make insatll，这条命令来进行安装，这一步一般需要你有 root 权限（因为要向系统写入文件）。
+
+其他命令：
+
+make clean 清除编译产生的可执行文件及目标文件。
+make distclean 除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。
+make dist将程序和相关的档案包装成一个压缩文件以供发布。
+
+### 怎么卸载编译安装(make install)的软件？
+使用安装包自带的反安装程序
+常见的反安装target有： make uninstall/distclean/veryclean 等，但并不是每个源代码包都提供反安装，这不是个通用方法等。
+
+通过删除编译时设置的单独目录
+如果编译时设置了–prefix到一个单独的文件夹，就删除那个文件夹即可，但如果编译安装到了类似/usr这种地方，找一个临时目录重新安装一遍，如：
+
+./configure –prefix=/tmp/to_remove && make install
+
+然后遍历/tmp/to_remove的文件，删除对应安装位置的文件即可。
+
+通过安装日志删除
+安装日志里能够看得到到底安装了那些文件到那些位置，通常会使用’cp’或者’install’命令拷贝文件。可以事先记得记录’make install’的所有输出日志，’make install &> |tee make.log’。
+
+---
+
+# 源码打包
+
+### 使用checkinstall方法创建deb包
+
+checkinstall不仅可以生成deb包，还可以生成rpm包，使用简单。
+
+```bash
+checkinstall -D -install=no --pkgversion=1.00 --pkgname=xxx make install # 制作deb包
+```
+
+此时在当前目录下生成了deb包
+
+### 使用dpkg方法创建deb包
+
+```
+mv xxx xxx-1.00 # 改目录名为 包名-版本号
+cd xxx.1.00
+dh_make -f ../fceu-0.98.12.src.tar.bz2 # 生成制作deb包所需的默认信息
+```
+
+此时当前目录下生成了debian目录，此时通常修改两个文件： 1. 修改debian/control文件，配置你的信息，具体字段见参考资料部分 1. 修改debian/rules脚本，它决定编译参数(也可以不改)
+
+```bash
+dpkg-buildpackage -rfakeroot
+```
+
+此时可以看到，上层目录中已建立了deb包。
+
+
+## 修改已有deb包
+
+自己创建deb所需目录结构(控制信息和安装内容)，然后打包，一般使用这种方法来修改已有的deb包，而不是新建deb包，命令如下：
+
+```bash
+mkdir -p test
+dpkg -X xxx.deb test # 解包安装内容
+cd test
+dpkg -e ../xxx.deb # 解包控制信息
+```
+
+修改DEBIAN目录下的内容，然后重新打包：
+
+```bash
+cd ../
+dpkg -b test xxx_new.deb # 重新打包
+```
+
+## 关于deb包的常用命令
+
+1) 查看deb包含有哪些文件
+
+$ dpkg -c xxx.deb # 安装前根据deb文件查看
+$ dpkg -L debname # 安装后根据包名查看
+
+2) 安装deb包
+
+$ dpkg -i xxx.deb
+
+3) 查看某个文件属于哪个deb包
+
+$ dpkg -S filefullpath
+
+4) 卸载deb包
+
+$ dpkg -r debname
+
+5) 完全卸载deb包（包含配置文件)
+
+$ dpkg -P debname
+
+6) 下载源码包
+
+$ apt-get source packagename
+
+7) 根据软件包名模糊检索
+
+$ dpkg -l|grep xxx #在已安装的软件包列表中搜索
+$ apt-cache search xxx #在源中的所有软件包列表中搜索
