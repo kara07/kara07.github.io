@@ -5,9 +5,181 @@
     <description>博客,kara</description>
     <link>http://kara07.github.io/</link>
     <atom:link href="http://kara07.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 11 Jun 2019 15:04:02 +0800</pubDate>
-    <lastBuildDate>Tue, 11 Jun 2019 15:04:02 +0800</lastBuildDate>
+    <pubDate>Thu, 13 Jun 2019 20:50:53 +0800</pubDate>
+    <lastBuildDate>Thu, 13 Jun 2019 20:50:53 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>linux 下源码打包</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;源码make完成之后直接install不好管理也不好删除，最终可能会残留文件，一个比较好的方法就是将源码打包用包管理器管理。ubuntu下可以使用deb，也可以打包为rpm&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;源码处理&quot;&gt;源码处理&lt;/h1&gt;
+
+&lt;p&gt;自行编译安装一般都会有这三个步骤：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./configure
+make
+make install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;./configure(配置）
+configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/share（而不是默认的/usr/local/share）。同时一些软件的配置文件你可以通过指定 –sys-config= 参数进行设定。有一些软件还可以加上 –with、–enable、–without、–disable 等等参数对编译加以控制，你可以通过允许 ./configure –help 察看详细的说明帮助。它常用的参数如下：&lt;/p&gt;
+
+&lt;p&gt;make（编译）
+make，这一步就是编译，当执行make的时候，make会在当前目录下搜索Makefile（makefile）这个文本文件，而makefile里面记录了源码如何编译的详细信息。&lt;/p&gt;
+
+&lt;p&gt;make install（安装）
+make insatll，这条命令来进行安装，这一步一般需要你有 root 权限（因为要向系统写入文件）。&lt;/p&gt;
+
+&lt;p&gt;其他命令：&lt;/p&gt;
+
+&lt;p&gt;make clean 清除编译产生的可执行文件及目标文件。
+make distclean 除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。
+make dist将程序和相关的档案包装成一个压缩文件以供发布。&lt;/p&gt;
+
+&lt;h3&gt;—&lt;/h3&gt;
+&lt;p&gt;layout:     post
+title:      “linux 下源码打包”
+subtitle:   “sourcecode package”
+date:       2019-06-13 00:00:00
+author:     “kara”
+header-img: “img/c++/c++.jpg”
+tags:
+    - linux
+    - 技术
+—&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;源码make完成之后直接install不好管理也不好删除，最终可能会残留文件，一个比较好的方法就是将源码打包用包管理器管理。ubuntu下可以使用deb，也可以打包为rpm&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;源码处理-1&quot;&gt;源码处理&lt;/h1&gt;
+
+&lt;p&gt;自行编译安装一般都会有这三个步骤：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./configure
+make
+make install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;./configure(配置）
+configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/share（而不是默认的/usr/local/share）。同时一些软件的配置文件你可以通过指定 –sys-config= 参数进行设定。有一些软件还可以加上 –with、–enable、–without、–disable 等等参数对编译加以控制，你可以通过允许 ./configure –help 察看详细的说明帮助。它常用的参数如下：&lt;/p&gt;
+
+&lt;p&gt;make（编译）
+make，这一步就是编译，当执行make的时候，make会在当前目录下搜索Makefile（makefile）这个文本文件，而makefile里面记录了源码如何编译的详细信息。&lt;/p&gt;
+
+&lt;p&gt;make install（安装）
+make insatll，这条命令来进行安装，这一步一般需要你有 root 权限（因为要向系统写入文件）。&lt;/p&gt;
+
+&lt;p&gt;其他命令：&lt;/p&gt;
+
+&lt;p&gt;make clean 清除编译产生的可执行文件及目标文件。
+make distclean 除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。
+make dist将程序和相关的档案包装成一个压缩文件以供发布。&lt;/p&gt;
+
+&lt;h3 id=&quot;怎么卸载编译安装make-install的软件&quot;&gt;怎么卸载编译安装(make install)的软件？&lt;/h3&gt;
+&lt;p&gt;使用安装包自带的反安装程序
+常见的反安装target有： make uninstall/distclean/veryclean 等，但并不是每个源代码包都提供反安装，这不是个通用方法等。&lt;/p&gt;
+
+&lt;p&gt;通过删除编译时设置的单独目录
+如果编译时设置了–prefix到一个单独的文件夹，就删除那个文件夹即可，但如果编译安装到了类似/usr这种地方，找一个临时目录重新安装一遍，如：&lt;/p&gt;
+
+&lt;p&gt;./configure –prefix=/tmp/to_remove &amp;amp;&amp;amp; make install&lt;/p&gt;
+
+&lt;p&gt;然后遍历/tmp/to_remove的文件，删除对应安装位置的文件即可。&lt;/p&gt;
+
+&lt;p&gt;通过安装日志删除
+安装日志里能够看得到到底安装了那些文件到那些位置，通常会使用’cp’或者’install’命令拷贝文件。可以事先记得记录’make install’的所有输出日志，’make install &amp;amp;&amp;gt; |tee make.log’。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;源码打包&quot;&gt;源码打包&lt;/h1&gt;
+
+&lt;h3 id=&quot;使用checkinstall方法创建deb包&quot;&gt;使用checkinstall方法创建deb包&lt;/h3&gt;
+
+&lt;p&gt;checkinstall不仅可以生成deb包，还可以生成rpm包，使用简单。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;checkinstall &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-install&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;no &lt;span class=&quot;nt&quot;&gt;--pkgversion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1.00 &lt;span class=&quot;nt&quot;&gt;--pkgname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;xxx make install &lt;span class=&quot;c&quot;&gt;# 制作deb包&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;此时在当前目录下生成了deb包&lt;/p&gt;
+
+&lt;h3 id=&quot;使用dpkg方法创建deb包&quot;&gt;使用dpkg方法创建deb包&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mv xxx xxx-1.00 # 改目录名为 包名-版本号
+cd xxx.1.00
+dh_make -f ../fceu-0.98.12.src.tar.bz2 # 生成制作deb包所需的默认信息
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;此时当前目录下生成了debian目录，此时通常修改两个文件： 1. 修改debian/control文件，配置你的信息，具体字段见参考资料部分 1. 修改debian/rules脚本，它决定编译参数(也可以不改)&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dpkg-buildpackage &lt;span class=&quot;nt&quot;&gt;-rfakeroot&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;此时可以看到，上层目录中已建立了deb包。&lt;/p&gt;
+
+&lt;h2 id=&quot;修改已有deb包&quot;&gt;修改已有deb包&lt;/h2&gt;
+
+&lt;p&gt;自己创建deb所需目录结构(控制信息和安装内容)，然后打包，一般使用这种方法来修改已有的deb包，而不是新建deb包，命令如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;test
+&lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; xxx.deb &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 解包安装内容&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd test
+&lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; ../xxx.deb &lt;span class=&quot;c&quot;&gt;# 解包控制信息&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;修改DEBIAN目录下的内容，然后重新打包：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../
+dpkg &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;xxx_new.deb &lt;span class=&quot;c&quot;&gt;# 重新打包&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;关于deb包的常用命令&quot;&gt;关于deb包的常用命令&lt;/h2&gt;
+
+&lt;p&gt;1) 查看deb包含有哪些文件&lt;/p&gt;
+
+&lt;p&gt;$ dpkg -c xxx.deb # 安装前根据deb文件查看
+$ dpkg -L debname # 安装后根据包名查看&lt;/p&gt;
+
+&lt;p&gt;2) 安装deb包&lt;/p&gt;
+
+&lt;p&gt;$ dpkg -i xxx.deb&lt;/p&gt;
+
+&lt;p&gt;3) 查看某个文件属于哪个deb包&lt;/p&gt;
+
+&lt;p&gt;$ dpkg -S filefullpath&lt;/p&gt;
+
+&lt;p&gt;4) 卸载deb包&lt;/p&gt;
+
+&lt;p&gt;$ dpkg -r debname&lt;/p&gt;
+
+&lt;p&gt;5) 完全卸载deb包（包含配置文件)&lt;/p&gt;
+
+&lt;p&gt;$ dpkg -P debname&lt;/p&gt;
+
+&lt;p&gt;6) 下载源码包&lt;/p&gt;
+
+&lt;p&gt;$ apt-get source packagename&lt;/p&gt;
+
+&lt;p&gt;7) 根据软件包名模糊检索&lt;/p&gt;
+
+&lt;p&gt;$ dpkg -l|grep xxx #在已安装的软件包列表中搜索
+$ apt-cache search xxx #在源中的所有软件包列表中搜索&lt;/p&gt;
+</description>
+        <pubDate>Thu, 13 Jun 2019 08:00:00 +0800</pubDate>
+        <link>http://kara07.github.io/2019/06/13/debpack/</link>
+        <guid isPermaLink="true">http://kara07.github.io/2019/06/13/debpack/</guid>
+        
+        <category>linux</category>
+        
+        <category>技术</category>
+        
+        
+      </item>
     
       <item>
         <title>win10 1903更新</title>
@@ -992,43 +1164,6 @@ exec-arg -e
         <category>博客</category>
         
         <category>安卓</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>「クビキリサイクル」に関する後日談</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;君の意見は完全に間違えっているという点に目を瞑れば概ね正解だ&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;正直言う、自分のブログに日本語を使いたくなかった。もとも技術を上がるためこのページを作った。人には多少見られたくないものがある、それを書き出して利用するため一応ここに書いた方がいい。だから誰でも読み辛い日本語はいい選択たと思う。後日談と言っても、だいたいアニメその自身の紹介じゃなくて、ぼくの感想です。&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;戯言と物語&lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;高校二年くらい、自分が物語シリーズをめっちゃハマってた。買える小説ならすべて買いました。あの頃あんまり金の概念がないので、ただ買いたいものを買うだけ。自分が言うじゃないけど、あの時の自分は偉いだと思った。買った本をすべて読み上げた。もとも文字が多い本は嫌いので、小説はさらに。大体アニメとマンガで暇な時間を潰してきた。物語シリーズは違う。西尾先生の文字を読むと何だか目が疲れない、それは脳が仮想世界に泳げてるだとおもった。&lt;/p&gt;
-
-&lt;p&gt;戯言シリーズならアニメだけを見た、本のほうは読んでいない。いつ時間あれば集めてばいい。クビキリのアニメを見ると二つシリーズの影が重なってる。伊ちゃんとアララギくんはあってると思う、中途半端な性格でも、妙な正義感でも、喋り方でも色々なところがあっていた。自分もこのふたりのどこか似合ってるから持ち込み感がすごかった。けして中途半端なとこだね（笑。&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;能力と天才&lt;/b&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;上には上があるが頂点には下しかない&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;単純に能力を持つキャラが好き、なんどなくなりたくなる。龍之介でも、しろでも、だるこでも、玖渚でもすべて能力を持つキャラだ。僕はプログラマーになるのはこいつらの影響をうけたかもしれません。能力者は天才ではない。簡単に言う、ただの練習したからだ。それでも天才はすべて能力者だと思っている、なんにも学べなくでも考えことがかなり深い。どれくらい手を伸ばしても手を届かない、天才の前に凡人の努力はただの笑い話、42ヶ月の高校生活が教えてくれた。伊吹は天才、それとも全能者。ただの能力者は一面しかの能力をもっていないと言うなら、伊吹は全面的に手を伸ばした。何度も他の「天才」と交換し、それはもの高い勉強力を持っているだろう。&lt;/p&gt;
-
-&lt;p&gt;教育というもの、多くの方は無意義だ。実際教科書に書いたものは大体必要ない、難しくて役に立たず、それでも強制に勉強させて競争させる。自分が言うとそれは知識の戦いではなく、勉強力の戦いだ。勉強の必要性を教えてくれて、その方法をおしえてない。教育という物はただそれだけだ。&lt;/p&gt;
-
-&lt;p&gt;自分は天才じゃないけど能力者でもない、一応頑張ってみようと思ったらすぐ諦める、大学も成績でもすべて中途半端。自分がもってるのもは上に見る目玉と能力者に追う足元、それだけ。青色サヴァンの戯言遣い、ぴったりだね（笑。&lt;/p&gt;
-</description>
-        <pubDate>Fri, 07 Dec 2018 03:30:00 +0800</pubDate>
-        <link>http://kara07.github.io/2018/12/07/kubikiri/</link>
-        <guid isPermaLink="true">http://kara07.github.io/2018/12/07/kubikiri/</guid>
-        
-        <category>后日谈</category>
-        
-        <category>漫谈</category>
         
         
       </item>

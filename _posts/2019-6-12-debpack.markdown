@@ -1,4 +1,5 @@
---- layout:     post
+---
+layout:     post
 title:      "linux 下源码打包"
 subtitle:   "sourcecode package"
 date:       2019-06-13 00:00:00
@@ -7,7 +8,7 @@ header-img: "img/c++/c++.jpg"
 tags:
     - linux
     - 技术
---- 
+---
 
 > 源码make完成之后直接install不好管理也不好删除，最终可能会残留文件，一个比较好的方法就是将源码打包用包管理器管理。ubuntu下可以使用deb，也可以打包为rpm
 
