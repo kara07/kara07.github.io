@@ -20,3 +20,12 @@ tags:
 
 如果想导入 wallpaper engine 已经下载的壁纸的话直接从 /steam/steamapps/workshp/content/431960 中选择就行了，也就意味着创意工坊的大多数动态壁纸都是可以使用的。
 
+本软件Komoreb的参与开发者之一Akiba illusion
+会经常发布其自制的动态壁纸作品，可到油管查看
+
+其自建资源分享网站 https://komorebithemeslinux.jimdo.com
+
+还有一个专门提供动态壁纸动画的网站。
+这是youtube上up主OSistemático介绍的，这站上的资源是不少Wallpaper Engine壁纸的素材来源之一。
+
+网址地址 http://www.desktophut.com
