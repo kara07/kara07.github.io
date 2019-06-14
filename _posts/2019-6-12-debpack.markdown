@@ -38,48 +38,6 @@ make clean 清除编译产生的可执行文件及目标文件。
 make distclean 除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。
 make dist将程序和相关的档案包装成一个压缩文件以供发布。
 
-### ---
-layout:     post
-title:      "linux 下源码打包"
-subtitle:   "sourcecode package"
-date:       2019-06-13 00:00:00
-author:     "kara"
-header-img: "img/c++/c++.jpg"
-tags:
-    - linux
-    - 技术
---- 
-
-> 源码make完成之后直接install不好管理也不好删除，最终可能会残留文件，一个比较好的方法就是将源码打包用包管理器管理。ubuntu下可以使用deb，也可以打包为rpm
-
----
-
-# 源码处理
-
-自行编译安装一般都会有这三个步骤：
-
-```bash
-./configure
-make
-make install
-```
-
-./configure(配置）
-configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/share（而不是默认的/usr/local/share）。同时一些软件的配置文件你可以通过指定 –sys-config= 参数进行设定。有一些软件还可以加上 –with、–enable、–without、–disable 等等参数对编译加以控制，你可以通过允许 ./configure –help 察看详细的说明帮助。它常用的参数如下：
-
-
-make（编译）
-make，这一步就是编译，当执行make的时候，make会在当前目录下搜索Makefile（makefile）这个文本文件，而makefile里面记录了源码如何编译的详细信息。
-
-make install（安装）
-make insatll，这条命令来进行安装，这一步一般需要你有 root 权限（因为要向系统写入文件）。
-
-其他命令：
-
-make clean 清除编译产生的可执行文件及目标文件。
-make distclean 除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。
-make dist将程序和相关的档案包装成一个压缩文件以供发布。
-
 ### 怎么卸载编译安装(make install)的软件？
 使用安装包自带的反安装程序
 常见的反安装target有： make uninstall/distclean/veryclean 等，但并不是每个源代码包都提供反安装，这不是个通用方法等。

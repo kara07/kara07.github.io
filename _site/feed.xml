@@ -5,9 +5,33 @@
     <description>博客,kara</description>
     <link>http://kara07.github.io/</link>
     <atom:link href="http://kara07.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Jun 2019 20:50:53 +0800</pubDate>
-    <lastBuildDate>Thu, 13 Jun 2019 20:50:53 +0800</lastBuildDate>
+    <pubDate>Fri, 14 Jun 2019 13:35:47 +0800</pubDate>
+    <lastBuildDate>Fri, 14 Jun 2019 13:35:47 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>linux 动态壁纸</title>
+        <description>&lt;h1 id=&quot;动态桌面壁纸&quot;&gt;动态桌面壁纸&lt;/h1&gt;
+
+&lt;p&gt;前些日子更新了windows，wallpaper engine 对各类动态桌面有很好的支持，无论是下载安装还是管理都十分方便。linux下也有很棒的动态壁纸软件，比如说今天介绍的这款 &lt;a href=&quot;https://github.com/cheesecakeufo/komorebi/releases&quot;&gt;komobire&lt;/a&gt;(木漏れ日)&lt;/p&gt;
+
+&lt;p&gt;具体安装很方便，照着做就行了。&lt;/p&gt;
+
+&lt;p&gt;这款软件支持图片，视频，web壁纸，支持了大多数的格式。同时可以选择显示浮动时间日期。整体还是很美观的。&lt;/p&gt;
+
+&lt;p&gt;如果想导入 wallpaper engine 已经下载的壁纸的话直接从 /steam/steamapps/workshp/content/431960 中选择就行了，也就意味着创意工坊的大多数动态壁纸都是可以使用的。&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 13 Jun 2019 08:00:00 +0800</pubDate>
+        <link>http://kara07.github.io/2019/06/13/wallpaper/</link>
+        <guid isPermaLink="true">http://kara07.github.io/2019/06/13/wallpaper/</guid>
+        
+        <category>linux</category>
+        
+        <category>生活</category>
+        
+        
+      </item>
     
       <item>
         <title>linux 下源码打包</title>
@@ -16,48 +40,6 @@
 &lt;/blockquote&gt;
 
 &lt;h1 id=&quot;源码处理&quot;&gt;源码处理&lt;/h1&gt;
-
-&lt;p&gt;自行编译安装一般都会有这三个步骤：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./configure
-make
-make install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;./configure(配置）
-configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/share（而不是默认的/usr/local/share）。同时一些软件的配置文件你可以通过指定 –sys-config= 参数进行设定。有一些软件还可以加上 –with、–enable、–without、–disable 等等参数对编译加以控制，你可以通过允许 ./configure –help 察看详细的说明帮助。它常用的参数如下：&lt;/p&gt;
-
-&lt;p&gt;make（编译）
-make，这一步就是编译，当执行make的时候，make会在当前目录下搜索Makefile（makefile）这个文本文件，而makefile里面记录了源码如何编译的详细信息。&lt;/p&gt;
-
-&lt;p&gt;make install（安装）
-make insatll，这条命令来进行安装，这一步一般需要你有 root 权限（因为要向系统写入文件）。&lt;/p&gt;
-
-&lt;p&gt;其他命令：&lt;/p&gt;
-
-&lt;p&gt;make clean 清除编译产生的可执行文件及目标文件。
-make distclean 除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。
-make dist将程序和相关的档案包装成一个压缩文件以供发布。&lt;/p&gt;
-
-&lt;h3&gt;—&lt;/h3&gt;
-&lt;p&gt;layout:     post
-title:      “linux 下源码打包”
-subtitle:   “sourcecode package”
-date:       2019-06-13 00:00:00
-author:     “kara”
-header-img: “img/c++/c++.jpg”
-tags:
-    - linux
-    - 技术
-—&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;源码make完成之后直接install不好管理也不好删除，最终可能会残留文件，一个比较好的方法就是将源码打包用包管理器管理。ubuntu下可以使用deb，也可以打包为rpm&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;源码处理-1&quot;&gt;源码处理&lt;/h1&gt;
 
 &lt;p&gt;自行编译安装一般都会有这三个步骤：&lt;/p&gt;
 
@@ -966,204 +948,6 @@ exec-arg -e
         <category>终端</category>
         
         <category>ubuntu</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>从解包开始，让手游里的live2d角色成为你的看板娘吧！</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;本文参考自&lt;a href=&quot;https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02&quot;&gt;jad大佬&lt;/a&gt;的博客。他给我提供了很大的帮助。
-本文对于原文有所删改&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;自19年元旦起，我已不提供原文章pio和tia的模型与配置文件（&lt;del&gt;就这么被打入了冷宫&lt;/del&gt;，但各种模型配置方法大同小异&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;花了一整天时间将药水制作师的pio酱和tia酱请到了我的博客里。
-虽然都是些照葫芦画瓢的工作，但实际上却遇到了很多的困难。&lt;/p&gt;
-
-&lt;p&gt;明明是考试周却还这么不务正业。先立一波挂科预定的flag。
-以及盯着电脑看一整天是真的累…一想到之后这种日子可能还有很多，
-以后还是加入自宅警备队算了。&lt;/p&gt;
-
-&lt;p&gt;具体的效果就已经呈现在我博客的右下角啦。还有什么困难的话尽情问我哦~不过现在
-网站的评论功能还没有完善，所以…你懂的。觉得有帮助的话关注star走一波吧~&lt;/p&gt;
-
-&lt;h1 id=&quot;安卓解包篇&quot;&gt;安卓解包篇&lt;/h1&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;可以先从游戏安装包中获得你所喜爱的live2d模型哦~&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;所需要的解包工具：&lt;a href=&quot;https://ci.appveyor.com/project/Perfare/assetstudio/branch/master/artifacts&quot;&gt;AssertStudio&lt;/a&gt;
-已经是解压即用的版本了，请选择适合自己系统的下载。大部分机器选择x64的就行了。&lt;/p&gt;
-
-&lt;p&gt;我找到的这个解包工具貌似只有win10可以用。linux和macos系统的话请参照网上其他的解包教程。
-实际使用和后期写博文的时候因为用的是linux系统的原因我重启了好几次…所以如果有好(简单)的linux解包工具的话请分享给我&lt;/p&gt;
-
-&lt;p&gt;另外当然还需要药水制作师的安卓apk安装包。可以去google商店和taptap等各种地方上找到各个版本的安装包。
-想尝试其他游戏解包的话可能会各种碰壁，想简单实现的话推荐去网上找一些已经配置好的live2d模型及其配置文件。&lt;/p&gt;
-
-&lt;p&gt;将apk安装包用winRAR等工具解压，模型数据位于assets/bin/Data目录。linux系统推荐使用google的apktool解压。这是一个非常强大的工具，具体的命令可以寻找其他教程学习。&lt;/p&gt;
-
-&lt;p&gt;将AssertStudio下载之后解压。直接运行AssetStudioGUI.exe&lt;/p&gt;
-
-&lt;p&gt;可以看到其界面和使用极其简洁。个人感觉稍微了解一下就能熟练解包了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/live2d/assertstudio.jpg&quot; alt=&quot;avatar&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;点击左上角的file，选择load folder，然后选择刚才解压的Data目录。等到加载完毕后在Asset List选项卡中可以看到许多资源文件。live2d的模型文件后缀名是.moc，动作数据后缀名是.mtn，在过滤器填入后缀名，可以只显示此类资源。贴图文件type为texture2d，大小一般为4m左右。&lt;/p&gt;
-
-&lt;p&gt;选中所需要的文件，点击左上角的export，选择selected assets，选择一个目录放置解包后的数据。&lt;/p&gt;
-
-&lt;p&gt;模型数据和所有的动作数据在apk安装包里都能找到，但贴图文件，也就是服装贴图只能找到三张，pio的话分别是&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;default-custome&lt;/li&gt;
-  &lt;li&gt;school-costume&lt;/li&gt;
-  &lt;li&gt;pajamas-costume&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;其他的服装贴图在爆肝游戏之后才能获得。存放在Android/data目录下。个人认为这是一个非常有趣的过程，游戏也很好玩，因此强烈安利一下&lt;a href=&quot;https://www.taptap.com/app/10512&quot;&gt;药水制作师&lt;/a&gt;这部游戏。&lt;/p&gt;
-
-&lt;h1 id=&quot;页面实现篇&quot;&gt;页面实现篇&lt;/h1&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;获得了模型和数据之后就可以将其引入你自己的站点啦！&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;b&gt;准备工作&lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;首先可以到我的&lt;a href=&quot;https://github.com/kara07/kara07.github.io&quot;&gt;Github&lt;/a&gt;去下载源文件，只需要live2d文件夹中的内容。毕竟其他内容我已经整合进自己的网站源码了。&lt;/p&gt;
-
-&lt;p&gt;如果只需要载入功能而不需要随机服装功能的话请使用原文配套的模型配置文件，路径如下：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;/live2d/model/pio/model.json&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02&quot;&gt;我是原文&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;live2d文件夹中包含所有的样式，脚本，以及此游戏到目前为止所有的模型服装，请自行按需摄取。&lt;/p&gt;
-
-&lt;p&gt;下载后将live2d文件夹放置到你的博客网站根目录去。&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;正式开工&lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;在你博客程序头部文件（header）引入界面样式，在 head 标签内插入如下代码：&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/live2d/css/live2d.css&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在 body 标签内合适的位置插入 Live2D 看板娘的元素，按照 Html 书写规范写 ~&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;landlord&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;message&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;opacity:0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;canvas&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;live2d&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;280&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;250&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;live2d&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/canvas&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hide-button&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;隐藏&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在你博客程序页脚文件（footer）引入脚本，在 body 标签结束前插入如下代码：&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;message_Path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;/live2d/&#39;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;home_Path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;https://haremu.com/&#39;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//此处修改为你的域名，必须带斜杠&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/live2d/js/live2d.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/live2d/js/message.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;&amp;lt;!--&amp;lt;script type=&quot;text/javascript&quot;&amp;gt;
-    loadlive2d(&quot;live2d&quot;, &quot;/live2d/model/pio/model.json&quot;);
-&amp;lt;/script&amp;gt;--&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;b&gt;我所注释掉的部分因为我已对model.json做了修改以实现随机服装功能。如果不需要此功能的话直接把注释符号删了就行了。在下一篇脚本篇会提到这个功能&lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;我将pio放置在右边，并且取消了文字提示和隐藏按钮。只需要更改/live2d/css/live2d.css/和&amp;lt;body&amp;gt;标记中的&amp;lt;div&amp;gt;标记属性就行了。&lt;/p&gt;
-
-&lt;p&gt;鼠标放在页面某个元素上时，需要 Live2D 看板娘提示的请修改 message.json 文件。&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;实例：&lt;/b&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
-    &quot;mouseover&quot;: [
-        {
-            &quot;selector&quot;: &quot;.title a&quot;,  //此处修改为你页面元素的标签名
-            &quot;text&quot;: [&quot;要看看 {text} 么？&quot;]  //此处修改为你需要提示的文字
-        },
-        {
-            &quot;selector&quot;: &quot;#searchbox&quot;,
-            &quot;text&quot;: [&quot;在找什么东西呢，需要帮忙吗？&quot;]
-        }
-    ],
-    &quot;click&quot;: [  //此处是 Live2D 看板娘的触摸事件提示
-        {
-            &quot;selector&quot;: &quot;#landlord #live2d&quot;,
-            &quot;text&quot;: [&quot;不要动手动脚的！快把手拿开~~&quot;, &quot;真…真的是不知羞耻！&quot;,&quot;Hentai！&quot;, &quot;再摸的话我可要报警了！⌇●﹏●⌇&quot;, &quot;110吗，这里有个变态一直在摸我(ó﹏ò｡)&quot;]
-        }
-    ]
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后，刷新你的博客页面，看看效果吧！&lt;/p&gt;
-
-&lt;p&gt;注意路径别弄错了噢 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;模型说明&lt;/b&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Live2D 并不是一种先进的技术，它产生的效果，都是用基本的平移、旋转、透明、曲面变形等操作实现的。
-最终的效果与贴图关系很大，而每一个动作，都需要制作师的精细调整。
-这是一个需要消耗大量时间精力的过程，因此质量好的模型并不多，质量好的也一般是在游戏中，版权受到保护，不能随意使用。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;随机服装脚本篇&quot;&gt;随机服装脚本篇&lt;/h1&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;将pio酱请到你的空间后，一直一套衣服是不是有些寂寞呢？&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;按照前文这里要用到run_local.js脚本，可以在前文所提到的/live2d/js/中获得。&lt;/p&gt;
-
-&lt;p&gt;首先在网页的footer部分引入run_local.js脚本。用下列的程序段替代上一篇中所注释掉的内容&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/live2d/js/run_local.js&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;或&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getJSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;live2d_Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;model.json`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getJSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;live2d_Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;textures.json`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;modelObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;texturesObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pioUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;texturesObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pioUrl&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;randomIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;floor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pioUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pio&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pioUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;randomIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;modelObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textures&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;live2d_Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;loadlive2d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;live2d&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;live2d_Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;modelObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;我对model.json做了修改，新建了textures.json列出textures文件夹中全部的服装文件以作为脚本变量。
-如果想加入新的服装的话，只需要将服装文件放到对应人物模型的textures文件夹中，然后在textures.json中按格式引入就行啦~&lt;/p&gt;
-
-&lt;p&gt;一只pio能治愈一天的疲惫，赶紧去你的博客里尽情调戏吧！&lt;/p&gt;
-</description>
-        <pubDate>Sun, 09 Dec 2018 05:50:00 +0800</pubDate>
-        <link>http://kara07.github.io/2018/12/09/live2d/</link>
-        <guid isPermaLink="true">http://kara07.github.io/2018/12/09/live2d/</guid>
-        
-        <category>技术</category>
-        
-        <category>live2d</category>
-        
-        <category>博客</category>
-        
-        <category>安卓</category>
         
         
       </item>
