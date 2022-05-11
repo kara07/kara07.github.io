@@ -70,7 +70,7 @@ ga_domain: #kara07.gitgub.io
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "为世界献上爆炎"
-sidebar-avatar: /img/ayanami.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/ayanami.jpg        # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -88,5 +88,5 @@ friends: [
     },{
         title: "pixiv",
         href: "https://www.pixiv.net/member.php?id=8940726"
-    },
+    }
 ]
