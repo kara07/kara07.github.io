@@ -6,8 +6,8 @@ date:       2022-05-12 00:00:00
 author:     "kara"
 header-img: "img/tktopink.jpg"
 tags:
-    - linux
-    - 生活
+    - crypto
+    - AEAD
 ---
 
 # 回归
@@ -47,6 +47,6 @@ AEAD算法 支持两种操作：“密封”和“打开”，即传统意义上
 
 下文以ChaCha20-Poly1305算法实例详细解释AEAD算法流程：
 
-![avatar](/img/AEAD/c.pdf "ChaCha20-Poly1305加密流程")
+![avatar](/img/AEAD/c.jpg "ChaCha20-Poly1305加密流程")
 
-如图~\ref{fig:chacha20en}所示，ChaCha20-Poly1305加密流程的输入和输出为以下数据：
+如图所示，ChaCha20-Poly1305加密流程的输入和输出为以下数据：
