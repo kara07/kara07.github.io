@@ -1,5 +1,6 @@
 ---
 layout:     post
+usemathjax: true
 title:      "I'M BACK & AEAD"
 subtitle:   "RETURN"
 date:       2022-05-12 00:00:00
