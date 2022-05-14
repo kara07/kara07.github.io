@@ -133,6 +133,8 @@ Poly1305 于 2005 年发布[[8]](https://link.springer.com/content/pdf/10.1007/1
 
 > 最后尝试为本博客添加MathJax的tex数学公式支持。哪天看到下面公式渲染成功了就说明咱的渲染成功了。
 
-Marry has a little matrix $ ( \begin{smallmatrix} a&b\\c&d \end{smallmatrix} ) $.
+Marry has a little matrix $ ( \begin{smallmatrix} a&b\\ c&d \end{smallmatrix} ) $.
+
+Marry has a little matrix \\( ( \begin{smallmatrix} a&b\\ c&d \end{smallmatrix} ) \\).
 
 $$E=mc^2$$
