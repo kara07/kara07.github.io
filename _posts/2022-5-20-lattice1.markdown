@@ -1,0 +1,14 @@
+---
+layout:     post
+usemathjax: true
+title:      "LATTICE BASIC"
+subtitle:   "Tendency of the (future) day"
+date:       2022-05-20 00:00:00
+author:     "kara"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - crypto
+    - Computational Complexity Theory
+---
+
+第一篇文章以简介为主题，先从学术的角度讲一讲这一领域的历史进程。格是高维空间中的点集
