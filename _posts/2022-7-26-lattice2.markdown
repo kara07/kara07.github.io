@@ -1,13 +1,12 @@
 ---
 layout:     post
 usemathjax: true
-title:      "Latice Basic"
+title:      "Latice Cryptography"
 subtitle:   "Nanomachines, son!(m9"
-date:       2022-07-13 00:00:00
+date:       2022-07-26 00:00:00
 author:     "kara"
 header-img: "img/post-bg-unix-linux.jpg"
 tags:
-    - mathematics
     - cryptography
     - lattice
     - computational complexity theory
