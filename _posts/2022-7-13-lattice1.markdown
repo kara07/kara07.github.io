@@ -1,18 +1,18 @@
 ---
 layout:     post
 usemathjax: true
-title:      "LATTICE BASIC"
-subtitle:   "Tendency of the(future)days"
-date:       2022-05-20 00:00:00
+title:      "Latice Cryptography"
+subtitle:   "Nanomachines, son!(m9"
+date:       2022-07-13 00:00:00
 author:     "kara"
 header-img: "img/post-bg-unix-linux.jpg"
 tags:
-    - crypto
-    - Computational Complexity Theory
-    - Mathematics
+    - cryptography
+    - lattice
+    - computational complexity theory
 ---
 
-前面所讲的计算复杂性理论在格的研究中有着非常重要的作用，格密码之所以被公认能够地抗量子计算攻击很大程度上取决于数学家以及理论计算机科学家对格上的计算问题的研究。先整个简介。
+一堆定理引理懒得在这里写了，用到的时候再查罢。直接整点密码学。
 
 # 为什么研究格？
 
@@ -57,15 +57,11 @@ $$\forall \varepsilon >0,\exists v_{1},v_{2}\in \mathcal{L},s.t.,\left | \left |
 
 拿矩阵来定义，也就是最普遍的定义一个格的方式。现在很多论文只会给你一个矩阵，但不会告诉你如何用一个矩阵来定义对应的格。一方面来说，这样的定义隐藏了格的细节，也正是最坏情况复杂度到平均情况复杂度的归约所用到的核心思想：模糊格，方便了参数的选择。另一方面，对于我这种~~菜鸡~~初学者，需要去了解格的性质，因此需要知道如何从一个矩阵定义一个格。
 
-不同地方定义一个格的方式五花八门。比如拿行向量作为基向量的[Mathematics of Public Key Cryptography](https://www.math.auckland.ac.nz/~sgal018/crypto-book/main.pdf),也有拿满足内射性(~~列线性无关~~)的矩阵作为线性变换的，也就是拿列向量作为基向量的，比如[Prof. Daniele Micciancio’s lecture note](https://cseweb.ucsd.edu/classes/fa19/cse206A-a/lec1.pdf)和[Prof. Oded Regev's lecture note](https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/introduction.pdf)。同样一个矩阵可以用不同的方法定义一对有微妙对偶关系的格。毕竟是向量空间的子群，不管怎样定义，都有跟向量空间一样的性质。比如基向量个数，秩(rank)，小于等于空间的维度(dimansion)。有的地方也把秩叫做维度，混着叫，比如3x2的矩阵所定义的是秩为2的格，有的地方也叫做3维欧式空间中的2维格。不是太被密码学家在意感觉，就跟很多复杂问题的归约方向性似的。如果向量个数等于维度，这个格就叫做满秩格或者满维度格。
-
-格和向量空间本质区别就是向量空间基向量的系数可以是任何数，但格只能是整系数，也就满足了他的离散性。典型例子，\\(2\mathbf{B}\\)跟\\(\mathbf{B}\\)生成的是同一个线性空间，但生成的格完全不一样。
-
-\\(2\mathbf{B}\\)的正好是密度低一半的子格。有两种特殊的子格\\(\Lambda^{\prime}\\)，秩跟\\(\Lambda\\)相同的叫满秩子格，\\(\Lambda^{\prime}=\Lambda \cap \operatorname{span}\left(\Lambda^{\prime}\right)\\)叫满子格。又是满秩子格又是满子格的只有\\(\Lambda\\)本身。\\(\Lambda\\)和\\(\Lambda^{\prime}\\)的基之间正好差一个整数矩阵。
+不同地方定义一个格的方式五花八门。比如拿行向量作为基向量的[Mathematics of Public Key Cryptography](https://www.math.auckland.ac.nz/~sgal018/crypto-book/main.pdf),也有拿满足内射性(~~列线性无关~~)的矩阵作为线性变换的，也就是拿列向量作为基向量的，比如[Prof. Daniele Micciancio’s lecture note](https://cseweb.ucsd.edu/classes/fa19/cse206A-a/lec1.pdf)和[Prof. Oded Regev's lecture note](https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/introduction.pdf)。同样一个矩阵可以用不同的方法定义一对有微妙对偶关系的格。毕竟是向量空间的子群，不管怎样定义，都有跟向量空间一样的性质。比如基向量个数，秩(rank)，小于等于空间的维度(dimansion)。有的地方也把秩叫做维度，混着叫，比如3x2的矩阵cryptography \prime}\\)，秩跟\\(\Lambda\\)相同的叫满秩子格，\\(\Lambda^{\prime}=\Lambda \cap \operatorname{span}\left(\Lambda^{\prime}\right)\\)叫满子格。又是满秩子格又是满子格的只有\\(\Lambda\\)本身。\\(\Lambda\\)和\\(\Lambda^{\prime}\\)的基之间正好差一个整数矩阵。
 
 # 基
 
-很多格困难问题实际上就是找基。基和基之间又差一个可逆整数矩阵。所有可逆整数矩阵在矩阵乘法下组成一个群\\(GL(n,\matical(Z))\\)，general linear group。然后这个群里的所有的矩阵行列式都为1，所以我们管这种矩阵叫做幺模矩阵。幺模矩阵经过初等列变换可以变为中性元\\(\mathbf{I}\\)，放到格里面就是所有基都可以经过变换变成标准正交基。其实上面所说的这几条都是等价的，最终得到对任意矩阵\\(\mathbf{U} \in \mathbb{Z}^{n \times n}\\)，下面的几种说法都是等价的：
+很多格困难问题实际上就是找基。基和基之间又差一个可逆整数矩阵。所有可逆整数矩阵在矩阵乘法下组成一个群\\(GL(n,\mathbb(Z))\\)，general linear group。然后这个群里的所有的矩阵行列式都为1，所以我们管这种矩阵叫做幺模矩阵。幺模矩阵经过初等列变换可以变为中性元\\(\mathbf{I}\\)，放到格里面就是所有基都可以经过变换变成标准正交基。其实上面所说的这几条都是等价的，最终得到对任意矩阵\\(\mathbf{U} \in \mathbb{Z}^{n \times n}\\)，下面的几种说法都是等价的：
 
 1. \\(\mathbf{U}=\sigma(\mathbf{I})\\)对一系列初等行变换\\(\sigma\\)
 2. \\(\mathbf{U}\\)可逆，\\(i.e.,\mathbf{U} \in G L(n, \mathbb{Z})\\)

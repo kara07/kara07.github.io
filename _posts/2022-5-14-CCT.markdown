@@ -8,7 +8,7 @@ author:     "kara"
 header-img: "img/post-bg-unix-linux.jpg"
 tags:
     - crypto
-    - Computational Complexity Theory
+    - computational complexity theory
 ---
 
 > It sure is Cryptomania of my world!!!            
