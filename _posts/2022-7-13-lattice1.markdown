@@ -19,7 +19,7 @@ tags:
 
 格在密码学中的作用与有限域上的椭圆曲线类似，都是一种代数，而在这种代数上有很多密码学家所期望的数学性质，比如后面将会讲到的格密码作为欧几理德空间(向量空间)的离散子集，主要使用的是有限域上的加模、乘模运算，无需使用经典代数里的指数、对数运算等，运算效率会高很多；一些格上的计算问题存在从最坏情况到平均情况的归约，我们将这些计算问题归约到自己的密码方案后，其安全性基于计算问题的最坏情况复杂度，换言之，基于格问题的密码原语总是存在安全性归约且有充分的安全性证明，这是RSA等基于平均情况复杂度的方案所很难做到的，[我们无法将整数分解问题归约至RSA](https://crypto.stackexchange.com/questions/89883/is-it-proven-that-breaking-rsa-is-equivalent-to-factoring-as-of-2021)。这一点也是很多学者认为格密码可以抵抗量子计算攻击的一个依据，并且这是在其他代数结构里未被发现的一个性质。格还有很多出色的性质，后面有机会会详细讲到。
 
-关于格在密码学中的应用。人们总是过度关注格在抗量子计算攻击中的应用，但实际上利用格可以实现几乎所有的密码原语，可以在"[minicrypt]((https://www2.karlin.mff.cuni.cz/~krajicek/ri5svetu.pdf))"高度，也可以在"[cryptomania]((https://www2.karlin.mff.cuni.cz/~krajicek/ri5svetu.pdf))"高度(平均复杂度的五个世界)。其在许多领域也有关键应用，比如
+关于格在密码学中的应用。人们总是过度关注格在抗量子计算攻击中的应用，但实际上利用格可以实现几乎所有的密码原语，可以在"[minicrypt](https://www2.karlin.mff.cuni.cz/~krajicek/ri5svetu.pdf)"高度，也可以在"[cryptomania](https://www2.karlin.mff.cuni.cz/~krajicek/ri5svetu.pdf)"高度(平均复杂度的五个世界)。其在许多领域也有关键应用，比如
 
 1. 密码分析：格基归约破解RSA
 2. 编码理论：无线电传输
@@ -58,17 +58,19 @@ $$\forall \varepsilon >0,\exists v_{1},v_{2}\in \mathcal{L},s.t.,\left | \left |
 
 拿矩阵来定义，也就是最普遍的定义一个格的方式。现在很多论文只会给你一个矩阵，但不会告诉你如何用一个矩阵来定义对应的格。一方面来说，这样的定义隐藏了格的细节，也正是最坏情况复杂度到平均情况复杂度的归约所用到的核心思想：模糊格，方便了参数的选择。另一方面，对于我这种~~菜鸡~~初学者，需要去了解格的性质，因此需要知道如何从一个矩阵定义一个格。
 
-不同地方定义一个格的方式五花八门。比如拿行向量作为基向量的[Mathematics of Public Key Cryptography](https://www.math.auckland.ac.nz/~sgal018/crypto-book/main.pdf),也有拿满足内射性(~~列线性无关~~)的矩阵作为线性变换的，也就是拿列向量作为基向量的，比如[Prof. Daniele Micciancio’s lecture note](https://cseweb.ucsd.edu/classes/fa19/cse206A-a/lec1.pdf)和[Prof. Oded Regev's lecture note](https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/introduction.pdf)。同样一个矩阵可以用不同的方法定义一对有微妙对偶关系的格。毕竟是向量空间的子群，不管怎样定义，都有跟向量空间一样的性质。比如基向量个数，秩(rank)，小于等于空间的维度(dimansion)。有的地方也把秩叫做维度，混着叫，比如3x2的矩阵cryptography \prime}\\)，秩跟\\(\Lambda\\)相同的叫满秩子格，\\(\Lambda^{\prime}=\Lambda \cap \operatorname{span}\left(\Lambda^{\prime}\right)\\)叫满子格。又是满秩子格又是满子格的只有\\(\Lambda\\)本身。\\(\Lambda\\)和\\(\Lambda^{\prime}\\)的基之间正好差一个整数矩阵。
+不同地方定义一个格的方式五花八门。比如拿行向量作为基向量的[Mathematics of Public Key Cryptography](https://www.math.auckland.ac.nz/~sgal018/crypto-book/main.pdf),也有拿满足内射性(~~列线性无关~~)的矩阵作为线性变换的，也就是拿列向量作为基向量的，比如[Prof. Daniele Micciancio’s lecture note](https://cseweb.ucsd.edu/classes/fa19/cse206A-a/lec1.pdf)和[Prof. Oded Regev's lecture note](https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/introduction.pdf)。同样一个矩阵可以用不同的方法定义一对有微妙对偶关系的格。毕竟是向量空间的子群，不管怎样定义，都有跟向量空间一样的性质。
+
+基向量个数，秩(rank)，小于等于空间的维度(dimansion)。有的地方也会把秩叫做维度反过来乱叫，遇到的话要分辨一下。秩跟\\(\Lambda\\)相同的子格叫满秩子格，\\(\Lambda^{\prime}=\Lambda \cap \operatorname{span}\left(\Lambda^{\prime}\right)\\)叫满子格，类似\\(\Lambda\\)在对应空间上的投影。又是满秩子格又是满子格的只有\\(\Lambda\\)本身。
 
 # 基
 
-很多格困难问题实际上就是找基。基和基之间又差一个可逆整数矩阵。所有可逆整数矩阵在矩阵乘法下组成一个群\\(GL(n,\mathbb(Z))\\)，general linear group。然后这个群里的所有的矩阵行列式都为1，所以我们管这种矩阵叫做幺模矩阵。幺模矩阵经过初等列变换可以变为中性元\\(\mathbf{I}\\)，放到格里面就是所有基都可以经过变换变成标准正交基。其实上面所说的这几条都是等价的，最终得到对任意矩阵\\(\mathbf{U} \in \mathbb{Z}^{n \times n}\\)，下面的几种说法都是等价的：
+很多格困难问题实际上就是找基。基和基之间又差一个可逆整数矩阵。所有可逆整数矩阵在矩阵乘法下组成一个群\\(GL(n,\mathbb{Z})\\)，general linear group。然后这个群里的所有的矩阵行列式都为1，所以我们管这种矩阵叫做幺模矩阵。幺模矩阵经过初等列变换可以变为中性元\\(\mathbf{I}\\)，放到格里面就是所有基都可以经过变换变成标准正交基。其实上面所说的这几条都是等价的，最终得到对任意矩阵\\(\mathbf{U} \in \mathbb{Z}^{n \times n}\\)，下面的几种说法都是等价的：
 
-1. \\(\mathbf{U}=\sigma(\mathbf{I})\\)对一系列初等行变换\\(\sigma\\)
+1. \\(\mathbf{U}=\sigma(\mathbf{I})\\)对于一系列初等列变换\\(\sigma\\)
 2. \\(\mathbf{U}\\)可逆，\\(i.e.,\mathbf{U} \in G L(n, \mathbb{Z})\\)
 3. \\(\mathbf{U}\\)是幺模矩阵，\\(i.e.,\operatorname{det}(\mathbf{U})=\pm 1\\)
 
-合起来说，基基之间差一系列初等列变换，也就是有相同的HNF。咱就可以根据这个判断两组基是否生成的是同一个格。但HNF给的基通常很烂，这就需要施密特正交化。
+合起来说，基和基之间差一系列初等列变换，也就是有相同的HNF(Hermite normal form)。咱就可以根据这个判断两组基是否生成的是同一个格。但HNF给的基通常很烂，这就需要施密特正交化。
 
 # 施密特正交化
 
