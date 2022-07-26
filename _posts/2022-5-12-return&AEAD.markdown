@@ -1,6 +1,5 @@
 ---
 layout:     post
-usemathjax: true
 title:      "I'M BACK & AEAD"
 subtitle:   "RETURN"
 date:       2022-05-12 00:00:00
@@ -135,6 +134,6 @@ Poly1305 于 2005 年发布[[8]](https://link.springer.com/content/pdf/10.1007/1
 
 Marry has a little matrix $ ( \begin{smallmatrix} a&b\\ c&d \end{smallmatrix} ) $.
 
-Marry has a little matrix \\( ( \begin{smallmatrix} a&b\\ c&d \end{smallmatrix} ) \\).
+Marry has a little matrix \\( ( \begin{smallmatrix} a&b\\ c&d \end{smallmatrix} ) $.
 
 $$E=mc^2$$
