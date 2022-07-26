@@ -1,6 +1,5 @@
 ---
 layout:     post
-usemathjax: true
 title:      "Lattice Cryptography"
 subtitle:   "Cryptomania, son!(m9"
 date:       2022-07-26 00:00:00
@@ -16,6 +15,14 @@ tags:
 
 # 平均情况格计算问题
 
-咱都知道格上许多计算问题都有最坏情况困难性，比如广为人知的$SVP_{\gamma}$,$CVP_{\gamma}$,\\SIVP_{\gamma}$等等。但我们实际构造密码学组件时却不用这些困难问题，一个原因是这些问题不便于密码学使用，毕竟密码学的使用场景要求其安全性基于平均情况困难性，因此咱广泛使用以下几个平均情况格计算问题构造密码学组件，也就是这几个问题敲开了格密码cryptomania的大门。
+咱都知道格上许多计算问题都有最坏情况困难性，比如广为人知的$\mathrm{SVP}_{\gamma}$,$\mathrm{CVP}_{\gamma}$,$\mathrm{SIVP}_{\gamma}$等等。但我们实际构造密码学组件时却不用这些困难问题，一个原因是这些问题不便于密码学使用，毕竟密码学的使用场景要求其安全性基于平均情况困难性，因此咱广泛使用以下几个平均情况格计算问题构造密码学组件，也就是这几个问题敲开了格密码cryptomania的大门。这些有以下参数：$n,m,q$和短向量集合$X\subseteq\mathbb{Z}^m$,e.g.,集合$X=\{\mathbf{x} \mid\|\mathbf{x}\| \leq \beta\}$即所有欧几里得范数为$\beta$所约束的向量。
 
-**定义 1**: The Short Integer Solution problem SIS, 输入一个矩阵$A \in \mathbb{Z}^{n\times m}_{q}$
+**定义 1**: Short Integer Solution problem **SIS**, 输入一个矩阵$\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$，要求找到一个非0向量$\mathbf{x}\in X:\mathbf{A x}=0 \quad(\bmod\enspace q)$
+
+**定义 2**: Learning With Errors problem **LWE**, 输入一个矩阵$\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$和一个向量$\mathbf{b}$，要求找到一个向量$\mathbf{s}:\mathbf{b}-\mathbf{A}^{t}\mathbf{s}\in X$
+
+以上两个是典中典，也有一些变体,e.g.,Inhomogeneous SIS
+
+**定义 3**: The Inhomogeneous SIS problem **SIS′**, 输入一个矩阵$\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$和一个向量$\mathbf{b}\in \mathbb{Z}^{n}_{q}$，要求找到一个向量$\mathbf{x}\in X:\mathbf{A x}=\mathbf{b} \quad(\bmod\enspace q)$
+
+注意到$\mathbf{x}$在**SIS**里要求是非零的毕竟要避免平凡解，但在**SIS′**里不需要这样的约束。**SIS′**可以看作是更一般情况的**SIS**，[实际上这两个问题是等价的，可以互相归约](https://crypto.stackexchange.com/questions/87097/the-equivalence-of-sis-and-isisinhomogeneous-sis)，归约算法也很简单。
