@@ -1,7 +1,7 @@
 ---
 layout:     post
 usemathjax: true
-title:      "Latice Basic"
+title:      "Lattice Basic"
 subtitle:   "Nanomachines, son!(m9"
 date:       2022-07-13 00:00:00
 author:     "kara"
