@@ -15,7 +15,7 @@ tags:
 
 # 平均情况格计算问题
 
-咱都知道格上许多计算问题都有最坏情况困难性，比如广为人知的$SVP_{\gamma}$,$\mathrm{CVP}_{\gamma}$,$\mathrm{SIVP}_{\gamma}$等等。但我们实际构造密码学组件时却不用这些困难问题，一个原因是这些问题不便于密码学使用，毕竟密码学的使用场景要求其安全性基于平均情况困难性，因此咱广泛使用以下几个平均情况格计算问题构造密码学组件，也就是这几个问题敲开了格密码cryptomania的大门。这些有以下参数：$n,m,q$和短向量集合$X\subseteq\mathbb{Z}^m$,e.g.,集合$X=\{\mathbf{x} \mid\|\mathbf{x}\| \leq \beta\}$即所有欧几里得范数为$\beta$所约束的向量。
+咱都知道格上许多计算问题都有最坏情况困难性，比如广为人知的$SVP_{\gamma}$,$\mathrm{e}^{\pi\mathrm{i}}+1=0$,$\mathrm{CVP}_{\gamma}$,$\mathrm{SIVP}_{\gamma}$等等。但我们实际构造密码学组件时却不用这些困难问题，一个原因是这些问题不便于密码学使用，毕竟密码学的使用场景要求其安全性基于平均情况困难性，因此咱广泛使用以下几个平均情况格计算问题构造密码学组件，也就是这几个问题敲开了格密码cryptomania的大门。这些有以下参数：$n,m,q$和短向量集合$X\subseteq\mathbb{Z}^m$,e.g.,集合$X=\{\mathbf{x} \mid\|\mathbf{x}\| \leq \beta\}$即所有欧几里得范数为$\beta$所约束的向量。
 
 **定义 1**: Short Integer Solution problem **SIS**, 输入一个矩阵$\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$，要求找到一个非0向量$\mathbf{x}\in X:\mathbf{A x}=0 \quad(\bmod\enspace q)$
 
