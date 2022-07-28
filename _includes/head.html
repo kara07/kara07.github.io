@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="/live2d/css/live2d.css" />
 
     <!-- click effect quoted https://animejs.com -->
-    <style>
+    <!-- <style>
         .fireworks {
             position: fixed;
             right: 0px;
@@ -45,13 +45,31 @@
             height: 250px;
             z-index: 100000;
         }
-    </style>
+    </style> -->
 
     <!-- add MathJax for latex math support -->
     <!-- for mathjax support -->
     <!-- for mathjax support -->
 
     <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        jax: ["input/TeX","input/MathML","output/SVG", "output/CommonHTML"],
+    extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "CHTML-preview.js"],
+    TeX: {
+        extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+    },
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+    <!-- <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -59,8 +77,7 @@
         }
     });
     </script>
-<!--     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
 
     <!--{% if page.usemathjax %}
     <script type="text/x-mathjax-config">
