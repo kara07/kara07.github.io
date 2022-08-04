@@ -25,6 +25,6 @@ tags:
 
 以上两个是典中典，也有一些变体,e.g.,Inhomogeneous SIS
 
-**定义 3**: The Inhomogeneous SIS problem **SIS′**, 输入一个矩阵$\mathbf{A} \in \mathbb{Z}_{q}^{n\times m}$和一个向量$\mathbf{b}\in \mathbb{Z}^{n}_{q}$，要求找到一个向量$\mathbf{x}\in X:\mathbf{A x}=\mathbf{b} \quad(\bmod\enspace q)$
+**定义 3**: The Inhomogeneous SIS problem **SIS′**, 输入一个矩阵$\mathbf{A} \in \mathbb{Z}\_{q}^{n\times m}$和一个向量$\mathbf{b}\in \mathbb{Z}^{n}_{q}$，要求找到一个向量$\mathbf{x}\in X:\mathbf{A x}=\mathbf{b} \quad(\bmod\enspace q)$
 
 注意到$\mathbf{x}$在**SIS**里要求是非零的毕竟要避免平凡解，但在**SIS′**里不需要这样的约束。**SIS′**可以看作是更一般情况的**SIS**，[实际上这两个问题是等价的，可以互相归约](https://crypto.stackexchange.com/questions/87097/the-equivalence-of-sis-and-isisinhomogeneous-sis)，归约算法也很简单。
