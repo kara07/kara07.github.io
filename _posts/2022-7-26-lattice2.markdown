@@ -17,18 +17,18 @@ tags:
 
 咱都知道格上许多计算问题都有最坏情况困难性，比如广为人知的 $\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}$,$\mathbf{SIVP}_{\gamma}$ 等等。
 
-但我们实际构造密码学组件时却不用这些困难问题，一个原因是这些问题不便于密码学使用，毕竟密码学的使用场景要求其安全性基于平均情况困难性，因此咱广泛使用以下几个平均情况格计算问题构造密码学组件，也就是这几个问题敲开了格密码cryptomania的大门。这些有以下参数：$n,m,q$ 和短向量集合 $X\subseteq\mathbb{Z}^m$,e.g.,集合 $X=\{\mathbf{x} \mid\|\mathbf{x}\| \leq \beta\}$ 即所有欧几里得范数为 $\beta$ 所约束的向量。
+但我们实际构造密码学组件时却不用这些困难问题，一个原因是这些问题不便于密码学使用，毕竟密码学的使用场景要求其安全性基于平均情况困难性，因此咱广泛使用以下几个平均情况格计算问题构造密码学组件，也就是这几个问题敲开了格密码cryptomania的大门。这些有以下参数：$n,m,q$ 和短向量集合 $X\subseteq\mathbb{Z}^m$, e.g., 集合 $X=\{\mathbf{x} \mid\|\mathbf{x}\| \leq \beta\}$ 即所有欧几里得范数为 $\beta$ 所约束的向量。
 
-**定义 1**: Short Integer Solution problem $\mathbf{SIS}$, 输入一个矩阵 $\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$ ，要求找到一个非零向量 $\mathbf{x}\in X:\mathbf{A x}=0 \quad(\bmod\enspace q)$
+**定义 1**: Short Integer Solution _problem_ $\mathbf{SIS}$, _输入一个矩阵 $\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$ ，要求找到一个非零向量 $\mathbf{x}\in X$ such that $\mathbf{A x}=0 \quad(\bmod\enspace q)$_。
 
-**定义 2**: Learning With Errors problem $\mathbf{LWE}$, 输入一个矩阵 $\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$ 和一个向量 $\mathbf{b}$ ，要求找到一个向量 $\mathbf{s}:\mathbf{b}-\mathbf{A}^{t}\mathbf{s}\in X$
+**定义 2**: Learning With Errors _problem_ $\mathbf{LWE}$, _输入一个矩阵 $\mathbf{A} \in \mathbb{Z}^{n\times m}_{q}$ 和一个向量 $\mathbf{b}$ ，要求找到一个向量 $\mathbf{s}$ such that $\mathbf{b}-\mathbf{A}^{t}\mathbf{s}\in X$_
 
-以上两个是典中典，也有一些变体,e.g.,Inhomogeneous SIS
+以上两个是典中典，也有一些变体, e.g., $\mathbf{SIS'}$。
 
-**定义 3**: The Inhomogeneous SIS problem $\mathbf{SIS'}$, 输入一个矩阵$\mathbf{A} \in \mathbb{Z}\_{q}^{n\times m}$和一个向量$\mathbf{b}\in \mathbb{Z}^{n}_{q}$，要求找到一个向量$\mathbf{x}\in X:\mathbf{A x}=\mathbf{b} \quad(\bmod\enspace q)$
+**定义 3**: _The_ Inhomogeneous SIS _problem_  $\mathbf{SIS'}$_, 输入一个矩阵 $\mathbf{A} \in \mathbb{Z}\_{q}^{n\times m}$ 和一个向量 $\mathbf{b}\in \mathbb{Z}^{n}_{q}$，要求找到一个向量 $\mathbf{x}\in X$ such that $\mathbf{A x}=\mathbf{b} \quad(\bmod\enspace q)$。_
 
-注意到$\mathbf{x}$在$\mathbf{SIS}$里要求是非零的毕竟要避免平凡解，但在$\mathbf{SIS'}$里不需要这样的约束。$\mathbf{SIS}$可以看作是更一般情况的$\mathbf{SIS}$，[实际上这两个问题是等价的，可以互相归约](https://crypto.stackexchange.com/questions/87097/the-equivalence-of-sis-and-isisinhomogeneous-sis)，归约算法也很简单。
+注意到 $\mathbf{x}$ 在 $\mathbf{SIS}$ 里要求是非零的毕竟要避免平凡解，但在 $\mathbf{SIS'}$ 里不需要这样的约束。$\mathbf{SIS'}$ 可以看作是更一般情况的 $\mathbf{SIS}$，[实际上这两个问题是等价的，可以互相归约](https://crypto.stackexchange.com/questions/87097/the-equivalence-of-sis-and-isisinhomogeneous-sis)，归约算法也很简单。
 
-密码学里面$\mathbf{SIS}$,$\mathbf{LWE}$,$\mathbf{SIS'}$通常被用作平均情况困难问题，这要求定义输入实例的近似概率分布。通常：
+密码学里面 $\mathbf{SIS}$,$\mathbf{LWE}$,$\mathbf{SIS'}$ 通常被用作平均情况困难问题，这要求定义输入实例的近似概率分布。通常：
 
-* 矩阵$\mathbf{A}$
+* 矩阵 $\mathbf{A}$
