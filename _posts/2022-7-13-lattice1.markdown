@@ -47,7 +47,7 @@ tags:
 
 离散：
 
-$\exists \varepsilon >0$ 使得 $\forall \mathbf{v}_{1},\mathbf{v}_{2}\in \mathcal{L} ,\left | \left | \mathbf{v}_{1}-\mathbf{v}_{2} \right |  \right | >\varepsilon$
+$\exists \varepsilon >0$ 使得 $\forall \mathbf{v}_{1},\mathbf{v}_{2}\in \mathcal{L} ,\left \| \left \| \mathbf{v}_{1}-\mathbf{v}_{2} \right \|  \right \| >\varepsilon$
 
 $\mathbb{Z}^n$就是一个格，离散的(有最短距离1)，子群(构成群的子集)。$\mathbb{Q}^n$就不是。虽然它是$\mathbb{R}^n$的子群，但它不离散，因为：
 
