@@ -8,7 +8,7 @@ header-img: "img/bangdream/saya.jpg"
 tags:
     - 技术
     - live2d
-    - 博客
+    - blog
     - 安卓
 ---
 
