@@ -45,7 +45,7 @@ tags:
 
 大多数密码方案都通常可以由 _函数家族_ 描述, i.e., 一系列函数 $f\_{k}:X\rightarrow Y$ 且由一个键值 $k\in K$ 索引。密码学应用里面一般会要求其为单向函数, i.e., 计算简单(给定函数键值 $k$ 和输入 $x$)，但逆向计算困难(给定 $k$ 和目标值 $y=f(x)$)。
 
-**定义 4** *一个函数家族是一类函数 $\mathcal{F}=\left\{f\_{k}: X \rightarrow Y\right\}\_{k \in K}$ 有着共同的定义域 $X$ 和陪域 $Y$，由键值空间 $K$ 索引，伴随一个(通常是均匀随机的)键值上的概率分布 $k\leftarrow K$。*
+**定义 4** *一个函数家族是一类函数 $\mathcal{F}=\left\{f_{k}: X \rightarrow Y\right\}_{k \in K}$ 有着共同的定义域 $X$ 和陪域 $Y$，由键值空间 $K$ 索引，伴随一个(通常是均匀随机的)键值上的概率分布 $k\leftarrow K$。*
 
 通常，定义域 $X$ 也会被赋予一个概率分布 $x\leftarrow X$。为了规范化渐进方法下的高效计算的概念，需要考虑的一系列函数家族 $\mathcal{F}\_n$ 由安全参数 $n$ 索引，也就是说定义域 $X\_n$，陪域 $Y\_n$ 和键值空间 $K_{n}$ 都取决于 $n$。跟前面文章所讲过的一样，高效计算被确定为能在关于 $n$ 多项式时间内进行的计算，反过来不可行的计算就是运行时间关于 $n$ 呈超多项式关系(比如指数)。方便起见，接下来的内容里咱会固定安全参数 $n$ 的值不变，然后考虑一个单一的函数家族 $\mathcal{F}=\left\{f\_{k}: X \rightarrow Y\right\}\_{k \in K}$，隐含其对安全参数 $n$ 的依赖。
 
@@ -53,6 +53,6 @@ tags:
 
 函数家族可定义多种安全属性。两个最基本的是抗碰撞性和单向性。
 
-**定义 5** *一个函数家族 $\mathcal{F}=\left\{f_{k}: X \rightarrow Y\right\}$ 是抗碰撞的如果对于任意PPT算法 $\mathcal{A}$，*
+**定义 5** *一个函数家族 $\mathcal{F}=\left\{f\_{k}: X \rightarrow Y\right\}$ 是抗碰撞的如果对于任意PPT算法 $\mathcal{A}$，*
 
-$$\operatorname{Pr}\left\{x\_{1}, x\_{2} \in X \wedge x\_{1} \neq x\_{2} \wedge f\_{k}\left(x\_{1}\right)=f\_{k}\left(x\_{2}\right) \mid k \leftarrow K,\left(x\_{1}, x\_{2}\right) \leftarrow \mathcal{A}(k)\right\} \leq \epsilon$$
+$$\operatorname{Pr}\left\{x_{1}, x_{2} \in X \wedge x_{1} \neq x_{2} \wedge f_{k}\left(x\_{1}\right)=f\_{k}\left(x\_{2}\right) \mid k \leftarrow K,\left(x\_{1}, x\_{2}\right) \leftarrow \mathcal{A}(k)\right\} \leq \epsilon$$
