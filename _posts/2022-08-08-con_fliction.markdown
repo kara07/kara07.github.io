@@ -17,13 +17,13 @@ Jekyll 里使用 $\LaTeX$ 渲染公式暂时没找到更好的工具。但必须
 
 行内公式有问题：
 
-$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
+$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
 
-$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}_{\gamma}$,balabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabala$\mathbf{SIVP}_{\gamma}$$|$$\|$
+$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,balabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabala$\mathbf{SIVP}_{\gamma}$$|$$\|$
 
 $\mathbf{SVP}\_{\gamma},\mathbf{CVP}_{\gamma},\mathbf{SIVP}_{\gamma}$
 
-这个地方第一个下划线必须转义成 \\_，但第二次出现就不用转义了。
+这个地方第一个下划线必须转义成 \\_，第二次出现的也需要转义，第三个好像就不用了。
 
 $X=\{\mathbf{x} \mid\\|\mathbf{x}\| \leq \beta\}$
 
