@@ -21,7 +21,9 @@ $\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
 
 这个地方第一个下划线必须转义成\\_，但第二次出现就不用转义了。
 
-$\mathcal{F}=\\{f_{k}: X \rightarrow Y\\}_{k \in K}$
+$\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}\_{k \in K}$
+
+$\mathcal{F}=\\{f_{k}: X \rightarrow Y\}_{k \in K}$
 
 这个地方花括号{}必须转义成\\\\{\\\\}，但下划线_却不用转义。试了试\\\\(\\\\)括起来的公式，效果如下：
 
