@@ -19,15 +19,17 @@ Jekyll 里使用 $\LaTeX$ 渲染公式暂时没找到更好的工具。但必须
 
 $\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
 
-$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,balabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabala$\mathbf{SIVP}_{\gamma}$$|$$\|$
+$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,balabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabala$\mathbf{SIVP}_{\gamma}$
 
 $\mathbf{SVP}\_{\gamma},\mathbf{CVP}_{\gamma},\mathbf{SIVP}_{\gamma}$
 
 这个地方第一个下划线必须转义成 \\_，第二次出现的也需要转义，第三个好像就不用了。
 
-$X=\{\mathbf{x} \mid\\|\mathbf{x}\| \leq \beta\}$
+$X=\{\mathbf{x} \mid\\|\mathbf{x}\\| \leq \beta\}$
 
-这个地方\\|也必须转义成\\\\|，第二个出现的不用转义
+$\|$$\|$$|$
+
+这个地方\\|也必须转义成\\\\|，第二个出现的也需要转义。试了下第三个出现的好像就不用了。
 
 $\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}\_{k \in K}$
 
