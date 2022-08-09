@@ -23,9 +23,9 @@ $\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
 
 $\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}\_{k \in K}$
 
-$\mathcal{F}=\\{f_{k}: X \rightarrow Y\}_{k \in K}$
+$\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}\_{k \in K}$
 
-这个地方花括号{}必须转义成\\\\{\\\\}，但下划线_却不用转义。试了试\\\\(\\\\)括起来的公式，效果如下：
+这个地方花括号{}必须转义成\\\\{\\\\}，并且两个都需要转义，但下划线_却不用转义。试了试\\\\(\\\\)括起来的公式，效果如下：
 
 \\(\mathcal{F}=\\{f_{k}: X \rightarrow Y\\}_{k \in K}\\)
 
