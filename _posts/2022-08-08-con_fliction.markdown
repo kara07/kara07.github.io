@@ -17,15 +17,17 @@ Jekyll 里使用 $\LaTeX$ 渲染公式暂时没找到更好的工具。但必须
 
 行内公式有问题：
 
-$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
+$\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
 
-这个地方第一个下划线必须转义成\\_，但第二次第三次出现就不用转义了。
+这个地方第一个下划线必须转义成\\_，但第二次出现就不用转义了。
 
 $\mathcal{F}=\\{f_{k}: X \rightarrow Y\\}_{k \in K}$
 
 这个地方花括号{}必须转义成\\\\{\\\\}，但下划线_却不用转义。试了试\\\\(\\\\)括起来的公式，效果如下：
 
-\\(mathcal{F}=\\{f_{k}: X \rightarrow Y\\}_{k \in K}\\)
+\\(\mathcal{F}=\\{f_{k}: X \rightarrow Y\\}_{k \in K}\\)
+
+\\(\mathcal{F}=\{f_{k}: X \rightarrow Y\}_{k \in K}\\)
 
 行间公式貌似没有问题
 
