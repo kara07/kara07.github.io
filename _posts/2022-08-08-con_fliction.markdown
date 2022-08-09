@@ -21,7 +21,9 @@ $\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,$\mathbf{SIVP}_{\gamma}$
 
 $\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,balabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabala$\mathbf{SIVP}_{\gamma}$
 
-$\mathbf{SVP}\_{\gamma},\mathbf{CVP}_{\gamma},\mathbf{SIVP}_{\gamma}$
+$\mathbf{SVP}\_{\gamma},\mathbf{CVP}\_{\gamma},\mathbf{SIVP}_{\gamma}$
+
+$A\_a$$A\_a$$A_a$
 
 这个地方第一个下划线必须转义成 \\_，第二次出现的也需要转义，第三个好像就不用了。
 
@@ -33,7 +35,7 @@ $\\|$$\\|$$|$
 
 $\|$bala$\|$bala$|$
 
-这个地方\\|也必须转义成\\\\|，第二个出现的也需要转义。试了下第三个出现的好像就不用了。
+这个地方\\|也必须转义成\\\\|，貌似是出现的每一个都需要转义。
 
 $\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}\_{k \in K}$
 
