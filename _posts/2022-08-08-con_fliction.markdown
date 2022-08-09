@@ -23,13 +23,13 @@ $\mathbf{SVP}\_{\gamma}$,$\mathbf{CVP}\_{\gamma}$,balabalabalabalabalabalabalaba
 
 $\mathbf{SVP}\_{\gamma},\mathbf{CVP}\_{\gamma},\mathbf{SIVP}_{\gamma}$
 
-$A\_a$$A\_a$$A_a$
+$A\_a$$B\_b$$C_c$
 
 这个地方第一个下划线必须转义成 \\_，第二次出现的也需要转义，第三个好像就不用了。
 
 $X=\{\mathbf{x} \mid\\|\mathbf{x}\\| \leq \beta\}$
 
-$\|$$\|$$|$
+$A\|A$$B\|B$$C|C$
 
 $\\|$$\\|$$|$
 
