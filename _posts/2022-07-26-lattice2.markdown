@@ -69,5 +69,5 @@ $$\operatorname{Pr}\left\{x^{\prime} \in X \wedge f_{k}\left(x^{\prime}\right)=y
 
 另一个重要的密码原语里常见的安全定义是伪随机性。
 
-**定义 7** *一个函数家族 $\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}$ 是一个在输入分布 $X$ 上的伪随机生成器，如果这两个分布 $D\_{0}=\\{\left(k, f\_{k}(x)\right) \mid k \leftarrow K, x \leftarrow X\\}$ 和 $D\_{1}=\\{(k, y) \mid k \leftarrow K, y \leftarrow Y\\}$ 是 $\epsilon$-不可区分的对于一些可忽略的 $\epsilon$，i.e.，对任意PPT算法 $\mathcal{A}$，*
+**定义 7** *一个函数家族 $\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}$ 是一个在输入分布 $X$ 上的伪随机生成器，如果这两个分布 $D\_{0}=\\{\left(k, f\_{k}(x)\right) \mid k \leftarrow K, x \leftarrow X\\}$ 和 $D\_{1}=\\{(k, y) \mid k \leftarrow K, y \leftarrow Y\\}$ 是 $\epsilon$-不可区分的对于一些可忽略的 $\epsilon$，i.e.，对任意PPT算法 $\mathcal{A}\norm{a}$，*
 
