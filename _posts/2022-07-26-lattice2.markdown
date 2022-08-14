@@ -43,7 +43,7 @@ tags:
 
 最简单的密码学原语：单向函数和抗碰撞哈希函数。
 
-大多数密码方案都通常可以由 _函数家族_ 描述, i.e., 一系列函数 $f_{k}:X\rightarrow Y$ 且由一个键值 $k\in K$ 索引。密码学应用里面一般会要求其为单向函数, i.e., 计算简单(给定函数键值 $k$ 和输入 $x$)，但逆向计算困难(给定 $k$ 和目标值 $y=f(x)$)。
+大多数密码方案都通常可以由 _函数家族_ 描述，i.e.，一系列函数 $f_{k}:X\rightarrow Y$ 且由一个键值 $k\in K$ 索引。密码学应用里面一般会要求其为单向函数，i.e.，计算简单(给定函数键值 $k$ 和输入 $x$)，但逆向计算困难(给定 $k$ 和目标值 $y=f(x)$)。
 
 **定义 4** *一个函数家族是一类函数 $\mathcal{F}=\\{f_{k}: X \rightarrow Y\\}_{k \in K}$ 有着共同的定义域 $X$ 和陪域 $Y$，由键值空间 $K$ 索引，伴随一个(通常是均匀随机的)键值上的概率分布 $k\leftarrow K$。*
 
@@ -53,6 +53,21 @@ tags:
 
 函数家族可定义多种安全属性。两个最基本的是抗碰撞性和单向性。
 
-**定义 5** *一个函数家族 $\mathcal{F}=\left\\{f\_{k}: X \rightarrow Y\right\\}$ 是抗碰撞的如果对于任意PPT算法 $\mathcal{A}$，*
+**定义 5** *一个函数家族 $\mathcal{F}=\left\\{f\_{k}: X \rightarrow Y\right\\}$ 是抗碰撞的如果其对于任意PPT算法 $\mathcal{A}$，*
 
 $$\operatorname{Pr}\left\{x_{1}, x_{2} \in X \wedge x_{1} \neq x_{2} \wedge f_{k}\left(x_{1}\right)=f_{k}\left(x_{2}\right) \mid k \leftarrow K,\left(x_{1}, x_{2}\right) \leftarrow \mathcal{A}(k)\right\} \leq \epsilon$$
+
+*对于可忽略的 $\epsilon=n^{-\omega(1)}$。* 比如指数级小数 $\epsilon=2^{-\Omega(n)}$。
+
+**定义 6** *一个函数家族 $\mathcal{F}=\left\\{f\_{k}: X \rightarrow Y\right\\}$ 是关于(可高效采样的)输入分布 $X$ 单向的如果其对于任意PPT算法 $\mathcal{A}$，*
+
+$$\operatorname{Pr}\left\{x^{\prime} \in X \wedge f_{k}\left(x^{\prime}\right)=y \mid k \leftarrow K, x \leftarrow X, y=f_{k}(x), x^{\prime} \leftarrow \mathcal{A}(k, y)\right\} \leq \epsilon$$
+
+*对于可忽略的 $\epsilon=n^{-\omega(1)}$。*
+
+咱看到单向性的定义里面敌手算法 $\mathcal{A}$ 所输出的 $x'$ 的值没要求跟去计算 $y$ 的值相同，这是为了避免平凡函数也被定义成单向的，比如 $f(x)=0$，毕竟对于这种常函数如果要求找相同的值的话概率是可忽略的。但如果 $f\_k$ 在 $X$ 上是单射的，$\mathcal{A}$ 就只能计算跟原来相同的值才能成功了。
+
+另一个重要的密码原语里常见的安全定义是伪随机性。
+
+**定义 7** *一个函数家族 $\mathcal{F}=\\{f\_{k}: X \rightarrow Y\\}$ 是一个在输入分布 $X$ 上的伪随机生成器，如果这两个分布 $D\_{0}=\\{\left(k, f\_{k}(x)\right) \mid k \leftarrow K, x \leftarrow X\\}$ 和 $D\_{1}=\\{(k, y) \mid k \leftarrow K, y \leftarrow Y\\}$ 是 $\epsilon$-不可区分的对于一些可忽略的 $\epsilon$，i.e.，对任意PPT算法 $\mathcal{A}$，*
+
