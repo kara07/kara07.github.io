@@ -1,11 +1,11 @@
 window.MathJax = {
     loader: {load: ['[tex]/physics']},
     tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        packages: {'[+]': ['physics']
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    packages: {'[+]': ['physics']}
     },
     svg: {
-        fontCache: 'global'
+    fontCache: 'global'
     }
 };
 

@@ -1,11 +1,11 @@
 ---
-layout\colon     post
-title\colon      "Lattice Cryptography"
-subtitle\colon   "Cryptomania, son!(m9"
-date\colon       2022-07-26 00\colon00\colon00
-author\colon     "kara"
-header-img\colon "img/post-bg-unix-linux.jpg"
-tags\colon
+layout:          post
+title:           "Lattice Cryptography"
+subtitle:        "Cryptomania, son!(m9"
+date:            2022-07-26 00:00:00
+author:          "kara"
+header-img:      "img/post-bg-unix-linux.jpg"
+tags:
     - cryptography
     - lattice
     - computational complexity theory
@@ -27,7 +27,7 @@ tags\colon
 
 **定义 3** _The_ Inhomogeneous SIS _problem  $\mathbf{SIS'}$, 输入一个矩阵 $\mathbf{A} \in \mathbb{Z}\_{q}^{n\times m}$ 和一个向量 $\mathbf{b}\in \mathbb{Z}^{n}\_{q}$，要求找到一个向量 $\mathbf{x}\in X$ 使得 $\mathbf{A x}=\mathbf{b} \quad(\bmod\enspace q)$。_
 
-注意到 $\mathbf{x}$ 在 $\mathbf{SIS}$ 里要求是非零的毕竟要避免平凡解，但在 $\mathbf{SIS'}$ 里不需要这样的约束。$\mathbf{SIS'}$ 可以看作是更一般情况的 $\mathbf{SIS}$，[实际上这两个问题是等价的，可以互相归约](https\colon//crypto.stackexchange.com/questions/87097/the-equivalence-of-sis-and-isisinhomogeneous-sis)，归约算法也很简单。
+注意到 $\mathbf{x}$ 在 $\mathbf{SIS}$ 里要求是非零的毕竟要避免平凡解，但在 $\mathbf{SIS'}$ 里不需要这样的约束。$\mathbf{SIS'}$ 可以看作是更一般情况的 $\mathbf{SIS}$，[实际上这两个问题是等价的，可以互相归约](https://crypto.stackexchange.com/questions/87097/the-equivalence-of-sis-and-isisinhomogeneous-sis)，归约算法也很简单。
 
 密码学里面 $\mathbf{SIS},\mathbf{LWE},\mathbf{SIS'}$ 通常被用作平均情况困难问题，这要求定义输入实例的近似概率分布。通常：
 
@@ -43,7 +43,7 @@ tags\colon
 
 最简单的密码学原语：单向函数和抗碰撞哈希函数。
 
-大多数密码方案都通常可以由 _函数家族_ 描述，i.e.，一系列函数 $f_{k}\colonX\to Y$ 且由一个键值 $k\in K$ 索引。密码学应用里面一般会要求其为单向函数，i.e.，计算简单(给定函数键值 $k$ 和输入 $x$)，但逆向计算困难(给定 $k$ 和目标值 $y=f(x)$)。
+大多数密码方案都通常可以由 _函数家族_ 描述，i.e.，一系列函数 $f_{k}\colon X\to Y$ 且由一个键值 $k\in K$ 索引。密码学应用里面一般会要求其为单向函数，i.e.，计算简单(给定函数键值 $k$ 和输入 $x$)，但逆向计算困难(给定 $k$ 和目标值 $y=f(x)$)。
 
 **定义 4** *一个函数家族是一类函数 $\mathcal{F}=\\{f_{k}\colon X \to Y\\}_{k \in K}$ 有着共同的定义域 $X$ 和陪域 $Y$，由键值空间 $K$ 索引，伴随一个(通常是均匀随机的)键值上的概率分布 $k\gets K$。*
 
