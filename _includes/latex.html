@@ -1,10 +1,12 @@
 <script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"]="https://cdn.mathjax.org/mathjax/contrib";
 MathJax.Hub.Config({
     TeX: {
-        extensions: ["physics.js","AMSmath.js","AMSsymbols.js"]
+        extensions: ["[Contrib]/physics/physics.js","[Contrib]/siunitx/siunitx.js","AMSmath.js","AMSsymbols.js"]
     },
     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 });
 </script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full"></script>
 
