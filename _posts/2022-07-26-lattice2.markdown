@@ -55,7 +55,7 @@ tags:
 
 **定义 5** *一个函数家族 $\mathcal{F}=\left\\{f\_{k}\colon X \to Y\right\\}$ 是抗碰撞的如果其对于任意PPT算法 $\mathcal{A}$，*
 
-$$\operatorname{Pr}\left\{x_{1}, x_{2} \in X \wedge x_{1} \neq x_{2} \wedge f_{k}\left(x_{1}\right)=f_{k}\left(x_{2}\right) \mid k \gets K,\left(x_{1}, x_{2}\right) \gets \mathcal{A}(k)\right\} \leq \epsilon$$
+$$\operatorname{Pr}\qty{x_{1}, x_{2} \in X \wedge x_{1} \neq x_{2} \wedge f_{k}\left(x_{1}\right)=f_{k}\left(x_{2}\right) \mid k \gets K,\left(x_{1}, x_{2}\right) \gets \mathcal{A}(k)} \leq \epsilon$$
 
 *对于可忽略的 $\epsilon=n^{-\omega(1)}$。* 比如指数级小数 $\epsilon=2^{-\Omega(n)}$。
 
