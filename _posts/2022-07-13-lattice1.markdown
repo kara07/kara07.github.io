@@ -57,9 +57,13 @@ $$\forall \varepsilon >0,\exists \mathbf{v}_{1},\mathbf{v}_{2}\in \mathcal{L}\co
 
 拿矩阵来定义，也就是最普遍的定义一个格的方式。现在很多论文只会给你一个矩阵，但不会告诉你如何用一个矩阵来定义对应的格。一方面来说，这样的定义隐藏了格的细节，也正是最坏情况复杂度到平均情况复杂度的归约所用到的核心思想：模糊格，方便了参数的选择。另一方面，对于我这种~~菜鸡~~初学者，需要去了解格的性质，因此需要知道如何从一个矩阵定义一个格。
 
-不同地方定义一个格的方式五花八门。比如拿行向量作为基向量的[Mathematics of Public Key Cryptography](https://www.math.auckland.ac.nz/~sgal018/crypto-book/main.pdf),也有拿满足内射性(~~列线性无关~~)的矩阵作为线性变换的，也就是拿列向量作为基向量的，比如[Prof. Daniele Micciancio’s lecture note](https://cseweb.ucsd.edu/classes/fa19/cse206A-a/lec1.pdf)和[Prof. Oded Regev's lecture note](https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/introduction.pdf)。同样一个矩阵可以用不同的方法定义一对有微妙对偶关系的格。毕竟是向量空间的子群，不管怎样定义，都有跟向量空间一样的性质。
+格的定义可以参考[Mathematics of Public Key Cryptography](https://www.math.auckland.ac.nz/~sgal018/crypto-book/main.pdf)，[Prof. Daniele Micciancio’s lecture note](https://cseweb.ucsd.edu/classes/fa19/cse206A-a/lec1.pdf)和[Prof. Oded Regev's lecture note](https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/introduction.pdf)。需要注意的是密码学中常用的 $q$ 阶随机格和数学里点格的定义不同，对于随机格，同样一个矩阵可以用不同的方法定义一对有微妙对偶关系的格，后文会讲到。毕竟是向量空间的子群，不管怎样定义，都有跟向量空间一样的性质。
 
-基向量个数，秩(rank)，小于等于空间的维度(dimansion)。有的地方也会把秩叫做维度反过来乱叫，遇到的话要分辨一下。秩跟$\Lambda$相同的子格叫满秩子格，$\Lambda^{\prime}=\Lambda \cap \operatorname{span}\left(\Lambda^{\prime}\right)$ 叫满子格，类似$\Lambda$在对应空间上的投影。又是满秩子格又是满子格的只有$\Lambda$本身。
+# 点格定义
+
+数学意义上点格的定义：
+
+作用在整数格 $\mathbb{Z}^n$ 上单射(列满秩)的线性变换 $\mathbf{B}\colon \mathbb{R}^{n} \rightarrow \mathbb{R}^{d}$ 所得到的集合 $\mathcal{L}(\mathbf{B})=\mathbf{B}(\mathbb{Z}^n)$。等价的，也可以描述成矩阵列向量的整系数线性组合 $\sum\_{i} \mathbf{b}\_{i} x\_{i}\colon x\_i\in\mathbb{Z},\mathbf{B}=\bqty{b\_1,...,b\_n}$，即列空间的子集。线性变换对应的矩阵 $\mathbf{B}\in \mathbb{R}^{d\times r}$，以其列向量作为格基，其基向量个数，秩(rank)，小于等于空间的维度(dimansion)。有的地方也会把秩叫做维度反过来叫，遇到的话要分辨一下。秩跟$\Lambda$相同的子格叫满秩子格，$\Lambda^{\prime}=\Lambda \cap \operatorname{span}\left(\Lambda^{\prime}\right)$ 叫满子格，类似$\Lambda$在对应空间上的投影。又是满秩子格又是满子格的只有$\Lambda$本身。
 
 # 基
 
