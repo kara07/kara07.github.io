@@ -1,0 +1,22 @@
+---
+layout:          post
+title:           "Lattice Cryptography II"
+subtitle:        "kinda tough aha?"
+date:            2022-07-26 00:00:00
+author:          "kara"
+header-img:      "img/post-bg-unix-linux.jpg"
+tags:
+    - cryptography
+    - lattice
+    - computational complexity theory
+---
+
+# 随机格和对偶性
+
+上文讲了各种平均情况格困难问题，并将其描述为对单向函数求逆或是寻找碰撞。现在可以将这些和特定随机格上的集合问题联系起来。
+
+确定正整数 $n\leq m\leq q$，其中 $n$ 和/或 $m-n$ 作为主要安全参数。通常 $m$ 是 $n$ 较小的倍数，e.g.，$m=O(n)\qor m=O(n\log n)$，$q$ 是一个大小为 $O(\log n)$比特的小素数(甚至不需要是素数)。格参数选择的优点之一可以看到模数的选择相当小，不同于数论密码学里常用的大素模数( $O(n)$ 比特)。对任意矩阵 $\mathbf{A x}=0 \quad(\bmod\enspace q)$ 定义
+
+$$\Lambda_{q}^{\perp}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \mathbf{A} \mathbf{x}=\mathbf{0} \bmod q\right\}$$
+
+$$\Lambda_{q}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \exists\mathbf{x}=\mathbf{A}^{T} \mathbf{s} \bmod q \qq{ for some } \mathbf{s} \in \mathbb{Z}_{q}^{n}\right\}$$
