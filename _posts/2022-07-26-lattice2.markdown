@@ -81,4 +81,10 @@ $$f_{\mathbf{A}}(\mathbf{x})=\mathbf{A} \mathbf{x} \quad(\bmod \enspace q)$$
 
 输入分布为 $D\_{X}$
 
-* $\mathbf{LWE}$ 函数 $g\_{\mathbf{A}}: \mathbb{Z}\_{q}^{n} \times X \rightarrow \mathbb{Z}\_{q}^{m}$
+* $\mathbf{LWE}$ 函数 $g\_{\mathbf{A}}: \mathbb{Z}\_{q}^{n} \times X \rightarrow \mathbb{Z}\_{q}^{m}$ 定义为：
+
+$$g_{\mathbf{A}}(\mathbf{s}, \mathbf{e})=\mathbf{s}^{t} \mathbf{A}+\mathbf{e}^{t} \quad(\bmod\enspace q)$$
+
+输入分布为 $\mathcal{U}\left(\mathbb{Z}\_{q}^{n}\right) \times D\_{X}$
+
+这样定义 $\mathbf{SIS'}$ 问题就变成求逆单向函数 $f\_{\mathbf{A}}$，$\mathbf{LWE}$ 则是求逆 $g\_{\mathbf{A}}$。对于任意集合 $X$，$X'=X-X=\vqty{\mathbf{x}-\mathbf{x}'\mid\mathbf{x},\mathbf{x}'\in X}$ 上的 $\mathbf{SIS}$ 问题就是找到 $f\_{\mathbf{A}}$ 在定义域 $X$ 上的碰撞，因为就是找到零解。

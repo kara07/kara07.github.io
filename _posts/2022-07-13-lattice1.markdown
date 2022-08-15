@@ -47,11 +47,11 @@ tags:
 
 离散：
 
-$$\exists \varepsilon >0:\forall \mathbf{v}_{1},\mathbf{v}_{2}\in \mathcal{L} , \| \mathbf{v}_{1}-\mathbf{v}_{2}\|>\varepsilon$$
+$$\exists \varepsilon >0\colon\forall \mathbf{v}_{1},\mathbf{v}_{2}\in \mathcal{L} , \| \mathbf{v}_{1}-\mathbf{v}_{2}\|>\varepsilon$$
 
 $\mathbb{Z}^n$就是一个格，离散的(有最短距离1)，子群(构成群的子集)。$\mathbb{Q}^n$就不是。虽然它是$\mathbb{R}^n$的子群，但它不离散，因为：
 
-$$\forall \varepsilon >0,\exists \mathbf{v}_{1},\mathbf{v}_{2}\in \mathcal{L}:\|\mathbf{v}_{1}-\mathbf{v}_{2} \| <\varepsilon$$
+$$\forall \varepsilon >0,\exists \mathbf{v}_{1},\mathbf{v}_{2}\in \mathcal{L}\colon\|\mathbf{v}_{1}-\mathbf{v}_{2} \| <\varepsilon$$
 
 有一说一，这只是形象的但不是格严格的定义，毕竟并不是所有向量空间的离散子群都叫做格，但所有 $\mathbb{Z}^n$ 的线性变换一定是格，也就是下面的定义。
 
