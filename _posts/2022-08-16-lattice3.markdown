@@ -20,3 +20,5 @@ tags:
 $$\Lambda_{q}^{\perp}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \mathbf{A} \mathbf{x}=\mathbf{0} \bmod q\right\}$$
 
 $$\Lambda_{q}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \exists\mathbf{x}=\mathbf{A}^{T} \mathbf{s} \bmod q \qq{ for some } \mathbf{s} \in \mathbb{Z}_{q}^{n}\right\}$$
+
+$\Lambda\_{q}(\mathbf{A})$ 直观来看就是 $\mathbf{A}$ 的行向量线性组合模 $q$ 生成的格，$\Lambda\_{q}^{\perp}(\mathbf{A})$ 则是线性方程组 $\mathbf{A} \mathbf{x}=\mathbf{0}$ 的解集，因为 $n \textless m$
