@@ -71,3 +71,14 @@ $$\operatorname{Pr}\left\{x^{\prime} \in X \wedge f_{k}\left(x^{\prime}\right)=y
 
 **定义 7** *一个函数家族 $\mathcal{F}=\\{f\_{k}\colon X \to Y\\}$ 是一个在输入分布 $X$ 上的伪随机生成器，如果这两个分布 $D\_{0}=\\{\left(k, f\_{k}(x)\right) \mid k \gets K, x \gets X\\}$ 和 $D\_{1}=\\{(k, y) \mid k \gets K, y \gets Y\\}$ 是 $\epsilon$-不可区分的对于一些可忽略的 $\epsilon$，i.e.，对任意PPT算法 $\mathcal{A}$，*
 
+$$\left|\operatorname{Pr}\left\{\mathcal{A}(x) \mid x \leftarrow D_{0}\right\}-\operatorname{Pr}\left\{\mathcal{A}(x) \mid x \leftarrow D_{1}\right\}\right| \leq \epsilon$$
+
+$\mathbf{SIS'}$ 问题和 $\mathrm{LWE}$ 问题都可以很简单描述为对单向函数家族求逆，两个函数家族都由 $\mathbf{A} \in \mathbb{Z}^{n\times m}\_{q}$ 索引。
+
+* $\mathbf{SIS}$ 函数 $f\_{\mathbf{A}} \colon X \to \mathbb{Z}\_{q}^{n}$ 定义为：
+
+$$f_{\mathbf{A}}(\mathbf{x})=\mathbf{A} \mathbf{x} \quad(\bmod \enspace q)$$
+
+输入分布为 $D\_{X}$
+
+* $\mathbf{LWE}$ 函数 $g\_{\mathbf{A}}: \mathbb{Z}\_{q}^{n} \times X \rightarrow \mathbb{Z}\_{q}^{m}$
