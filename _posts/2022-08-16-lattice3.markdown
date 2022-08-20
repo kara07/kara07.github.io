@@ -2,7 +2,7 @@
 layout:          post
 title:           "Lattice Cryptography II"
 subtitle:        "kinda tough aha?"
-date:            2022-07-26 00:00:00
+date:            2022-08-16 00:00:00
 author:          "kara"
 header-img:      "img/post-bg-unix-linux.jpg"
 tags:
@@ -21,4 +21,10 @@ $$\Lambda_{q}^{\perp}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \ma
 
 $$\Lambda_{q}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \exists\mathbf{x}=\mathbf{A}^{T} \mathbf{s} \bmod q \qq{ for some } \mathbf{s} \in \mathbb{Z}_{q}^{n}\right\}$$
 
-$\Lambda\_{q}(\mathbf{A})$ 直观来看就是 $\mathbf{A}$ 的行空间模 $q$ 生成的格，$\Lambda\_{q}^{\perp}(\mathbf{A})$ 则是线性方程组 $\mathbf{A} \mathbf{x}=\mathbf{0}$ 的解集，就是 $A$ 的核。因为 $n < m$
+$\Lambda\_{q}(\mathbf{A})$ 直观来看就是 $\mathbf{A}$ 的行空间模 $q$ 生成的格，$\Lambda\_{q}^{\perp}(\mathbf{A})$ 则是线性方程组 $\mathbf{A} \mathbf{x}=\mathbf{0}$ 的解空间，就是 $A$ 的核。因为 $n < m$ 所以线性方程组肯定有无限个解。很好说明他们都是格，并且都是满秩格，因为易知他们包含 $m$ 个线性无关向量 $(0,...,0,q,0,...,0)$。
+
+需要注意的是用来描述随机格的矩阵 $\mathbf{A}$ 并不是格基，对应格的格基 $\mathbf{B}$ 可以由 $\mathbf{A}$ 高效的计算出来，但没有必要。通常直接用 $\mathbf{A}$ 实行操作。
+
+所以完全均匀随机的选取 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$ 定义了两类随机的 $m$ 维整数格，可以记作 $\Lambda\_{q}(m,n)$ 和 $\Lambda\_{q}^{\perp}(m,n)$。
+
+这两类格之间的关系和 $\mathrm{SIS},\mathrm{LWE}$
