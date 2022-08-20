@@ -33,6 +33,22 @@ $\Lambda\_{q}(\mathbf{A})$ 直观来看就是 $\mathbf{A}$ 的行空间模 $q$ �
 
 * $\mathrm{LWE}$ 问题要求在 $\Lambda\_{q}(m,n)$ 的随机格中找到一个离给定目标向量 $\mathbf{b}$ 近的格向量。
 
-这俩问题里“小的”，“近的”都是由集合 $X$ 定义的。如果 $X=\left\{\mathbf{x} \in \mathbb{Z}^{m} \mid norm{x} \leq \beta\right\}$，那么目标就是找到对应范数或是距离最大为 $\beta$ 的向量。要注意的是这里并不总是最小的或是最近的，可能会存在更好的解，所以这里简单说“小的”，“近的”。
+这俩问题里“小的”，“近的”都是由集合 $X$ 定义的。如果 $X=\qty{\mathbf{x} \in \mathbb{Z}^{m} \mid norm{x} \leq \beta\right\}$，那么目标就是找到对应范数或是距离最大为 $\beta$ 的向量。要注意的是这里并不总是最小的或是最近的，可能会存在更好的解，所以这里简单说“小的”，“近的”。
 
-让我们具体的看一看。首先这些格都是 $q$ 阶的，i.e.，他们呈 $q$ 周期性 ：可以抓一个有限集 $Q=L \cap[0, \ldots, q)^{m}$ 这些格点，也就是坐标为 ${0,...,q-1}$，这些点组成的离散超平行体，然后把他的复制 $Q+q\mathbb{Z}^n$ 平铺到整个空间来恢复整个格。这个性质使得将格描述为有限的点集，对这些格进行的绝大多数密码学操作都可以用模 $q$ 有限算术实现。
+让我们具体的看一看。首先这些格都是 $q$ 阶的，i.e.，他们呈 $q$ 周期性 ：可以抓一个有限集 $Q=L \cap[0, \ldots, q)^{m}$ 这些格点，也就是坐标为 $\qty{0,...,q-1}$，这些点组成的离散超平行体，然后把他的复制 $Q+q\mathbb{Z}^n$ 平铺到整个空间来恢复整个格。这个性质使得将格描述为有限的点集，对这些格进行的绝大多数密码学操作都可以用模 $q$ 有限算术实现。
+
+实际上 $\Lambda\_{q}(\mathbf{A})$ 和 $\Lambda\_{q}^{\perp}(\mathbf{A})$ 是标量 $q$ 放缩下的一对对偶格：
+
+$$\Lambda_{q}(\mathbf{A})=q \cdot \widehat{\Lambda_{q}^{\perp}(\mathbf{A})} \qq{ and } \Lambda_{q}^{\perp}(\mathbf{A})=q \cdot \widehat{\Lambda_{q}(\mathbf{A})}$$
+
+特别的，$\det(\Lambda\_{q}(\mathbf{A}))\cdot\det(\Lambda\_{q}^{\perp}(\mathbf{A}))=q^m$。以及对于任意 $\mathbf{A}\in\mathbb{Z}^{n\times m}\_q$，可得 $\det(\Lambda\_{q}(\mathbf{A}))\leq q^n$ 且 $\det(\Lambda\_{q}^{\perp}(\mathbf{A}))\geq q^{m-n}$。
+
+对任意 $q$ 和 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$，可证明一下几个条件是等价的：
+ 1. $\det(\Lambda\_{q}(\mathbf{A}))= q^n$
+ 2. $\det(\Lambda\_{q}^{\perp}(\mathbf{A}))= q^{m-n}$
+ 3. $\mathbf{A}$ 为本原(primitive)矩阵，i.e.，$\mathbf{A} \mathbb{Z}\_{q}^{m}=\mathbb{Z}\_{q}^{n}$
+
+如果 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$，则 $\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}^{\perp}(\mathbf{A})\right)=q^n}=\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}(\mathbf{A})\right)=q^{m-n}}=\operatorname{Pr}\qty{\mathbf{A} \mathbb{Z}\_{q}^{m}=\mathbb{Z}\_{q}^{n}} \geq 1-1 / q^{m-n}$。
+
+总之，对于特定选择的参数，(e.g.，$m\geq 2n$)，所选择的格的分布基本上是理想的，分别有压倒性的概率有上式对应的行列式。
+
