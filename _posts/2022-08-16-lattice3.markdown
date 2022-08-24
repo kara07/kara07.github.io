@@ -48,14 +48,19 @@ $$\Lambda_{q}(\mathbf{A})=q \cdot \widehat{\Lambda_{q}^{\perp}(\mathbf{A})} \qq{
  2. $\det(\Lambda\_{q}^{\perp}(\mathbf{A}))= q^{m-n}$
  3. $\mathbf{A}$ 为本原(primitive)矩阵，i.e.，$\mathbf{A} \mathbb{Z}\_{q}^{m}=\mathbb{Z}\_{q}^{n}$
 
-如果 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$，则 $\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}^{\perp}(\mathbf{A})\right)=q^n}=\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}(\mathbf{A})\right)=q^{m-n}}=\operatorname{Pr}\qty{\mathbf{A} \mathbb{Z}\_{q}^{m}=\mathbb{Z}\_{q}^{n}} \geq 1-1 / q^{m-n}$。
+如果 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$，则 $\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}^{\perp}(\mathbf{A})\right)=q^n}=\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}(\mathbf{A})\right)=q^{m-n}}=\operatorname{Pr}\qty{\mathbf{A} \mathbb{Z}\_{q}^{m}=\mathbb{Z}\_{q}^{n}} \geq 1-1 / q^{m-n}$
 
-总之，对于特定选择的参数，(e.g.，$m\geq 2n$)，所选择的格的分布基本上是理想的，分别有压倒性的概率有上式对应的行列式。
+总之，对于特定选择的参数，(e.g.，$m\geq 2n$)，就分布 $\Lambda\_{q}^{\perp}(m, n)$ 和 $\Lambda\_{q}(m, m-n)$ 所选择的格有压倒性的概率 $\epsilon\geq1-q^{-n}$ 有相同的行列式 $q^n$，且分布 $\Lambda\_{q}^{\perp}(m, n)$ 和 $\Lambda\_{q}(m, m-n)$ 统计学上几乎完全相同。
 
 再来看看 $\mathrm{SIS'},\mathrm{LWE}$ 问题之间的联系，本质上他们是一个问题的不同表示。但在密码学里，这两个问题通常会有完全不一样的参数选择。简单起见矩阵 $\mathbf{A}$ 约束为本原矩阵，或者更简单点直接 $[\mathbf{I}, \overline{\mathbf{A}}]$，假设 $X$ 是长度为 $\beta$ 约束的向量。
 
-咱知道 $\mathrm{LWE}$ 是找距离目标点距离最多为 $\beta$ 的格点。现在令 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$ 为定义 $\mathrm{LWE}$ 格 $\Lambda_{q}(\mathbf{A})$ 的矩阵，咱知道这个格也可以表示为
+咱知道 $\mathrm{LWE}$ 是找距离目标点距离最多为 $\beta$ 的格点。现在令 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$ 为定义 $\mathrm{LWE}$ 格 $\Lambda\_{q}(\mathbf{A})$ 的矩阵，通过上文结论咱知道这个格也可以表示为 $\Lambda\_{q}^{\perp}(\mathbf{H})$，对于 $\mathbf{H} \in \mathbb{Z}_{q}^{(m-n) \times m}$。现在考虑 $\mathrm{SIS'}$ 实例 $\mathbf{H},\mathbf{Hb}$，其解恰恰是这样一个向量 $\norm{\mathbf{x}\leq\beta}\colon\mathbf{Hx=Hb}$，可知 $\mathbf{H(b-x)}=0\quad(\mathrm{mod}\enspace q)$，i.e.，向量 $\mathbf{v=b-x}$ 属于 $\Lambda\_{q}^{\perp}(\mathbf{H})=\Lambda\_{q}(\mathbf{A})$。综上，咱找到了 $\mathrm{LWE}$ 格里的一个向量 $\mathbf{v}\in\Lambda\_{q}(\mathbf{A})$ 距离目标点 $\norm{b-v}=\norm{x}\leq \beta$。
+
+上述证明可以看成一个从 $\mathrm{LWE}$ 到 $\mathrm{SIS}$ 的归约，加深加深理解，类似的也可以通过拆非齐次方程的通解为构建一个从 $\mathrm{SIS}$ 到 $\mathrm{LWE}$ 的归约。
+
+总之这俩问题本质上是一个问题，且等价。但在密码学里这俩问题的参数选择通常大不相同，特别是由于格的行列式大小原因，涉及到 Minkowski 定理的连续极小值 $\mathrm{LWE}$ 问题通常会用比 $\mathrm{SIS'}$ 小的多的(与格的行列式相关)的 $\beta$。
+
+# 瞎勾八格 (Arbitrary Lattices)
 
 
-特别是 $\mathrm{LWE}$ 问题通常会用比 $\mathrm{SIS'}$ 小的多的(与格的行列式相关)的 $\beta$ 
 
