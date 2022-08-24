@@ -15,11 +15,11 @@ tags:
 
 上文讲了各种平均情况格困难问题，并将其描述为对单向函数求逆或是寻找碰撞。现在可以将这些和特定随机格上的集合问题联系起来。
 
-确定正整数 $n\leq m\leq q$，其中 $n$ 和/或 $m-n$ 作为主要安全参数。通常 $m$ 是 $n$ 较小的倍数，e.g.，$m=O(n)$ 或 $m=O(n\log n)$，$q$ 是一个大小为 $O(\log n)$比特的小素数(甚至不需要是素数)。格参数选择的优点之一可以看到模数的选择相当小，不同于数论密码学里常用的大素模数( $O(n)$ 比特)。对任意矩阵 $\mathbf{A x}=0 \quad(\bmod\enspace q)$ 定义
+确定正整数 $n\leq m\leq q$，其中 $n$ 和/或 $m-n$ 作为主要安全参数。通常 $m$ 是 $n$ 较小的倍数，e.g.，$m=O(n)$ 或 $m=O(n\log n)$，$q$ 是一个大小为 $O(\log n)$ 比特的小素数(甚至不需要是素数)。格参数选择的优点之一可以看到模数的选择相当小，不同于数论密码学里常用的大素模数( $O(n)$ 比特)。对任意矩阵 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$ 定义
 
 $$\Lambda_{q}^{\perp}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \mathbf{A} \mathbf{x}=\mathbf{0} \bmod q\right\}$$
 
-$$\Lambda_{q}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \exists\mathbf{x}=\mathbf{A}^{T} \mathbf{s} \bmod q \qq{ for some } \mathbf{s} \in \mathbb{Z}_{q}^{n}\right\}$$
+$$\Lambda_{q}(\mathbf{A})=\left\{\mathbf{x} \in \mathbb{Z}^{m}\colon \mathbf{x}=\mathbf{A}^{T} \mathbf{s} \bmod q \qq{ for some } \mathbf{s} \in \mathbb{Z}_{q}^{n}\right\}$$
 
 $\Lambda\_{q}(\mathbf{A})$ 直观来看就是 $\mathbf{A}$ 的行空间模 $q$ 生成的格，$\Lambda\_{q}^{\perp}(\mathbf{A})$ 则是线性方程组 $\mathbf{A} \mathbf{x}=\mathbf{0}$ 的解空间，就是 $A$ 的核。因为 $n < m$ 所以线性方程组肯定有无限个解。很好说明他们都是格，并且都是满秩格，因为易知他们包含 $m$ 个线性无关向量 $(0,...,0,q,0,...,0)$。
 
@@ -33,7 +33,7 @@ $\Lambda\_{q}(\mathbf{A})$ 直观来看就是 $\mathbf{A}$ 的行空间模 $q$ �
 
 * $\mathrm{LWE}$ 问题要求在 $\Lambda\_{q}(m,n)$ 的随机格中找到一个离给定目标向量 $\mathbf{b}$ 近的格向量。
 
-这俩问题里“小的”，“近的”都是由集合 $X$ 定义的。如果 $X=\qty{\mathbf{x} \in \mathbb{Z}^{m} \mid norm{x} \leq \beta\right\}$，那么目标就是找到对应范数或是距离最大为 $\beta$ 的向量。要注意的是这里并不总是最小的或是最近的，可能会存在更好的解，所以这里简单说“小的”，“近的”。
+这俩问题里“小的”，“近的”都是由集合 $X$ 定义的。如果 $X=\qty{\mathbf{x} \in \mathbb{Z}^{m} \mid norm{x} \leq \beta}$，那么目标就是找到对应范数或是距离最大为 $\beta$ 的向量。要注意的是这里并不总是最小的或是最近的，可能会存在更好的解，所以这里简单说“小的”，“近的”。
 
 让我们具体的看一看。首先这些格都是 $q$ 阶的，i.e.，他们呈 $q$ 周期性 ：可以抓一个有限集 $Q=L \cap[0, \ldots, q)^{m}$ 这些格点，也就是坐标为 $\qty{0,...,q-1}$，这些点组成的离散超平行体，然后把他的复制 $Q+q\mathbb{Z}^n$ 平铺到整个空间来恢复整个格。这个性质使得将格描述为有限的点集，对这些格进行的绝大多数密码学操作都可以用模 $q$ 有限算术实现。
 
@@ -51,4 +51,11 @@ $$\Lambda_{q}(\mathbf{A})=q \cdot \widehat{\Lambda_{q}^{\perp}(\mathbf{A})} \qq{
 如果 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$，则 $\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}^{\perp}(\mathbf{A})\right)=q^n}=\operatorname{Pr}\qty{\operatorname{det}\left(\Lambda_{q}(\mathbf{A})\right)=q^{m-n}}=\operatorname{Pr}\qty{\mathbf{A} \mathbb{Z}\_{q}^{m}=\mathbb{Z}\_{q}^{n}} \geq 1-1 / q^{m-n}$。
 
 总之，对于特定选择的参数，(e.g.，$m\geq 2n$)，所选择的格的分布基本上是理想的，分别有压倒性的概率有上式对应的行列式。
+
+再来看看 $\mathrm{SIS'},\mathrm{LWE}$ 问题之间的联系，本质上他们是一个问题的不同表示。但在密码学里，这两个问题通常会有完全不一样的参数选择。简单起见矩阵 $\mathbf{A}$ 约束为本原矩阵，或者更简单点直接 $[\mathbf{I}, \overline{\mathbf{A}}]$，假设 $X$ 是长度为 $\beta$ 约束的向量。
+
+咱知道 $\mathrm{LWE}$ 是找距离目标点距离最多为 $\beta$ 的格点。现在令 $\mathbf{A}\in \mathbb{Z}^{n\times m}\_q$ 为定义 $\mathrm{LWE}$ 格 $\Lambda_{q}(\mathbf{A})$ 的矩阵，咱知道这个格也可以表示为
+
+
+特别是 $\mathrm{LWE}$ 问题通常会用比 $\mathrm{SIS'}$ 小的多的(与格的行列式相关)的 $\beta$ 
 
