@@ -60,7 +60,5 @@ $$\Lambda_{q}(\mathbf{A})=q \cdot \widehat{\Lambda_{q}^{\perp}(\mathbf{A})} \qq{
 
 总之这俩问题本质上是一个问题，且等价。但在密码学里这俩问题的参数选择通常大不相同，特别是由于格的行列式大小原因，涉及到 Minkowski 定理的连续极小值 $\mathrm{LWE}$ 问题通常会用比 $\mathrm{SIS'}$ 小的多的(与格的行列式相关)的 $\beta$。
 
-# 瞎勾八格 (Arbitrary Lattices)
-
 
 
