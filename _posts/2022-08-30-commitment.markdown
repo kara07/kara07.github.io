@@ -54,7 +54,7 @@ $$P_{1} \sim\qty{(k, c) \mid k \stackrel{\$}{\gets} \mathcal{K}, c \stackrel{\$}
 
 **Binding**：只要 $k\in\mathcal{K}$ 在第一阶段已经选定，发送者在第二阶段就不能发给接收者另一个 $k'\neq k$。计算观点下，方案 $(t,\varepsilon)$-安全，如果 $\forall k\in\mathcal{K}$，对于所有运行在时间 $t$ 的 $\mathbf{Open}$ 算法 $A\in \mathcal{A}$，其输出 $A(k, c)=\left(m\_{0}, m\_{1}, r\_{0}, r\_{1}\right)$，
 
-$$\pr\left[m_{0} \neq m_{1}, \operatorname{Commit}\qty(k, m_{0}, r_{0})=c=\operatorname{Commit}\qty(k, m_{1}, r_{1})\right]<\epsilon$$
+$$\Pr\left[m_{0} \neq m_{1}, \operatorname{Commit}\qty(k, m_{0}, r_{0})=c=\operatorname{Commit}\qty(k, m_{1}, r_{1})\right]<\epsilon$$
 
 简而言之对于同一个 $k$，两次 $\mathbf{Open}$ 结果不能相同，但按他这么说对于不同 $k$ 的输出结果就可能有 noticeable 概率相同了所以第二阶段不能临时变 $k$。不太了解，感觉是个研究方向？
 
