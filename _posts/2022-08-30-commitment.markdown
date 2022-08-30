@@ -46,15 +46,15 @@ return\enspace \mathbf{Commit(k,m',r')==c}$$
 
 **Hiding**：接收到一个 commitment $c$ 应不暴露 $m$ 的任何信息。实际上就等同于加密方案的语义安全性和密文的不可区分性。形式化即：$\forall m\_0,m\_1$，
 
-$$P_{0} \sim\qty{(k, c) \mid k \stackrel{\$}{\gets} \mathcal{K}, c \stackrel{\$}{\gets} \mathbf{Commit}\left(k, m_{0}\right)\right}$$
+$$P_{0} \sim\qty{(k, c) \mid k \stackrel{\$}{\gets} \mathcal{K}, c \stackrel{\$}{\gets} \mathbf{Commit}\left(k, m_{0}\right)}$$
 
-$$P_{1} \sim\qty{(k, c) \mid k \stackrel{\$}{\gets} \mathcal{K}, c \stackrel{\$}{\gets} \mathbf{Commit}\left(k, m_{1}\right)\right}$$
+$$P_{1} \sim\qty{(k, c) \mid k \stackrel{\$}{\gets} \mathcal{K}, c \stackrel{\$}{\gets} \mathbf{Commit}\left(k, m_{1}\right)}$$
 
 这俩概率分布在 $(\mathcal{K},\mathcal{C})$ 上应统计学接近。
 
 **Binding**：只要 $k\in\mathcal{K}$ 在第一阶段已经选定，发送者在第二阶段就不能发给接收者另一个 $k'\neq k$。计算观点下，方案 $(t,\varepsilon)$-安全，如果 $\forall k\in\mathcal{K}$，对于所有运行在时间 $t$ 的 $\mathbf{Open}$ 算法 $A\in \mathcal{A}$，其输出 $A(k, c)=\left(m\_{0}, m\_{1}, r\_{0}, r\_{1}\right)$，
 
-$$\pr\qty[m_{0} \neq m_{1}, \operatorname{Commit}\qty(k, m_{0}, r_{0})=c=\operatorname{Commit}\qty(k, m_{1}, r_{1})]<\epsilon$$
+$$\pr\left[m_{0} \neq m_{1}, \operatorname{Commit}\qty(k, m_{0}, r_{0})=c=\operatorname{Commit}\qty(k, m_{1}, r_{1})\right]<\epsilon$$
 
 简而言之对于同一个 $k$，两次 $\mathbf{Open}$ 结果不能相同，但按他这么说对于不同 $k$ 的输出结果就可能有 noticeable 概率相同了所以第二阶段不能临时变 $k$。不太了解，感觉是个研究方向？
 
