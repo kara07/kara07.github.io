@@ -74,4 +74,3 @@ r
 \end{aligned}$$
 
 总之就是用了$\mathrm{SIS}$ 单向函数，把 message 跟 r 封装到 $\mathbf{x}$ 里面构成 Commit function。并且满足 hiding 和 binding。
-受到
