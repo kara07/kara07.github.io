@@ -1,0 +1,37 @@
+---
+layout:          post
+title:           "Fully H0M0morphic Encryption"
+subtitle:        "ホモホモホモホモホモモモ"
+date:            2022-09-01 00:03:00
+author:          "kara"
+header-img:      "img/post-bg-unix-linux.jpg"
+tags:
+    - cryptography
+    - lattice
+    - algebra
+    - FHE
+
+---
+
+单就讲讲对称的全同态加密。也不能叫对称吧，反正只有客户端一把密钥，加密解密都是同一个客户端。叫私钥加密又容易误解。反正懂的都懂，HE 的典中典了。
+
+反正单一密钥加密的同态方案也可以用常规手段变为公钥加密方案：一般做法是上文的人可以用加解密的私钥对很多 0 进行加密做为公钥，另一个想要用这个公钥进行加密的人先将这些加密后的 0 线性组合，再将它与想要加密的消息相加。这样无法得知消息，也无法得知加密公钥的私钥，因为是同态的最终也可以用私钥进行解密。~~感觉不是 0 也可以，还是看的太少~~
+
+简单起见只看 2bit 的消息 $m\in\qty{0,1,2,3}$，用 $q$ 阶随机格 $\Lambda\_{q}(\mathbf{A})$，其中 $q=n^4$，$n$ 是 2 的幂，所以 $q$ 也是 2 的幂。记法上用 $\pqty{\mathbf{A,B}}$ 表示这俩矩阵的垂直堆叠，$\bqty{\mathbf{A,B}}$ 表示矩阵的水平连接。所以 $(x\_1,\ldots,x\_n)$ 表示列向量，$[x\_1,\ldots,x\_n]$ 则是行向量。
+
+# 咋用 $\mathrm{LWE}$ 加密
+$$
+\mathbf{A}\stackrel{\$}{\gets}\mathbb{Z}^{n\times m}\_q,\\
+\mathbf{s}\stackrel{\$}{\gets}\mathbb{Z}^{n}\_q,\mathbf{e}\stackrel{\$}{\gets}\mathbb{Z}^{m}\_q,\\
+\mathbf{b}=\mathbf{A}^T\mathbf{s+e}
+$$
+
+恢复出 $s$。也可以表示成从
+
+$$\bar{\mathbf{A}}=\bqty{\mathbf{A}, \mathbf{b}^{T}}\in\mathbb{Z}^{(n+1)\times m}$$
+
+恢复出 $s$。这就是 $\mathrm{LWE}$ 问题，一个 $\mathrm{BDD}$ 问题的平均情况变体。在 $q$ 阶随机格
+
+$$\Lambda_{q}(\mathbf{A})=\qty{\mathbf{A}^{T} \mathbf{x} \mid \mathbf{x} \in \mathbb{Z}_{q}^{n}}+q \mathbb{Z}^{m}$$
+
+里，目标向量是 $\mathbf{b}$。
