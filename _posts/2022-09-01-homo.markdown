@@ -30,7 +30,7 @@ $$\mathbf{A}\stackrel{\$}{\gets}\mathbb{Z}^{n\times m}_q,\\
 恢复出 $s$。也可以表示成从
 
 
-$$\bar{\mathbf{A}}=\bqty{\mathbf{A}, \mathbf{b}^{T}}\in\mathbb{Z}^{(n+1)\times m}$$
+$$\bar{\mathbf{A}}=\pqty{\mathbf{A}, \mathbf{b}^{T}}\in\mathbb{Z}^{(n+1)\times m}$$
 
 恢复出 $s$。这就是 $\mathrm{LWE}$ 问题，一个 $\mathrm{BDD}$ 问题的平均情况变体。在 $q$ 阶随机格
 
@@ -38,4 +38,15 @@ $$\Lambda_{q}(\mathbf{A})=\qty{\mathbf{A}^{T} \mathbf{x} \mid \mathbf{x} \in \ma
 
 里，目标向量是 $\mathbf{b}$。这个也式子算是随机格同余定义另一种表达形式吧。在适当的 $\mathbf{e}$ 分布下(离散高斯分布？)，这个问题已知与 n 维格上的各种近似格计算问题的最坏情况复杂度相当，也已知如果 $\mathrm{LWE}$ 困难，则其伪随机，i.e.，分辨均匀随机的 $\mathbb{Z}^{(n+1)\times m}$ 与 $\bar{\mathbf{A}}$ 计算不可行。
 
-这里咱不用特定性质的误差向量分布，只把他看成能吐出无限范式比 $q$ 小很多的关于原点对称的短向量 $\norm{\mathbf{e}}\_{\infty} \leq \beta$，i.e.，$\mathcal{X}$ 和 $\mathcal{-X}$ 是相同的分布
+这里咱不用特定性质的误差向量分布，只把他看成能吐出无限范式比 $q$ 小很多的短向量 $\norm{\mathbf{e}}\_{\infty} \leq \beta$，且关于原点对称，i.e.，$\chi$ 和 $-\chi$ 是相同的分布。通常 $\beta=\sqrt{n}$，这也是这个理论成立的最小值。
+
+全同态之前先整个简单 $\mathrm{LWE}$ 开开胃。总体思想是因为 $\bar{\mathbf{A}}$ 是伪随机的，咱可以把他当成一个一次性密码本。定义加密为：
+
+$$\mathbf{C}=\bar{\mathbf{A}}^{T}+m \mathbf{G}^{T}=\bqty{\mathbf{A}^{T}, \mathbf{A}^{T} \mathbf{s}+\mathbf{e}}+m \mathbf{G}^{T}$$
+
+$\mathbf{G}\in\mathbb{Z}^{(n+1)\times m}\_ q$ 是一个精挑细选的能编码消息 $m$ 的矩阵。按照这个加密方法，$\mathrm{LWE}$ 的安全性紧随所使用的 $\mathrm{LWE}$ 矩阵的伪随机性。如果 $\bar{\mathbf{A}}$ 完全均匀随机，则密文和明文统计学独立。
+
+$\bar{\mathbf{A}}=\pqty{\mathbf{A}, \mathbf{b}^{T}}$ 也可以看成是一个特定格 $\Lambda\_ q\pqty{\bar{A}}$。咱知道如果 $\bar{A}\_ q$ 均匀随机的选择，那么 $\Lambda\_ q\pqty{\bar{A}}$ 似乎不会含有任何长度比 Minkowski 定理短很多的向量，但 $\Lambda\pqty{A\_ q}$ 有：
+
+$$\bar{\mathbf{A}}^{T}\pqty{-\mathbf{s}, 1}=\bqty{\mathbf{A}^{T}, \mathbf{b}}\pqty{-\mathbf{s}, 1)=\mathbf{b}-\mathbf{A}^{T} \mathbf{s}=\mathbf{e} \enspace(\bmod q)$$
+
