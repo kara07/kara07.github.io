@@ -45,8 +45,8 @@ kramdown:
 input: GFM                            # use Github Flavored Markdown !important
 
 # forbid default fomula interpreter
-# kramdown:
-# math_engine: null
+kramdown:
+math_engine: null
 
 
 # Disqus settings
