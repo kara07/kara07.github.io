@@ -14,9 +14,9 @@ tags:
 
 ---
 
-单就讲讲对称的全同态加密。也不能叫对称吧，反正只有客户端一把密钥，加密解密都是同一个客户端。叫私钥加密又容易误解。反正懂的都懂，HE 的典中典了。
+单就讲讲对称的全同态加密。也不能叫对称吧，反正就是 cipher，加密解密都是同一个客户端。叫私钥加密又容易误解。反正懂的都懂，HE 的典中典了。
 
-反正单一密钥加密的同态方案也可以用常规手段变为公钥加密方案：一般做法是上文的人可以用加解密的私钥对很多 0 进行加密作为公钥，另一个想要用这个公钥进行加密的人先将这些加密后的 0 线性组合，再将它与想要加密的消息相加。这样无法得知消息，也无法得知加密公钥的私钥，因为是同态的最终也可以用私钥进行解密。~~感觉不是 0 也可以，还是看的太少~~
+反正也可以用常规手段变为非对称公钥加密方案：一般做法是上文的人可以用加解密的私钥对很多 0 进行加密作为公钥，另一个想要用这个公钥进行加密的人先将这些加密后的 0 线性组合，再将它与想要加密的消息相加。这样无法得知消息，也无法得知加密公钥的私钥，因为是同态的最终也可以用私钥进行解密。~~感觉不是 0 也可以，还是看的太少~~
 
 简单起见只看 2bit 的消息 $m\in\qty{0,1,2,3}$，用 $q$ 阶随机格 $\Lambda\_{q}(\mathbf{A})$，其中 $q=n^4$，$n$ 是 2 的幂，所以 $q$ 也是 2 的幂。记法上用 $\pqty{\mathbf{A,B}}$ 表示这俩矩阵的垂直堆叠，$\bqty{\mathbf{A,B}}$ 表示矩阵的水平连接。所以 $(x\_1,\ldots,x\_n)$ 表示列向量，$[x\_1,\ldots,x\_n]$ 则是行向量。
 
@@ -33,11 +33,11 @@ $$\mathbf{A}\stackrel{\$}{\gets}\mathbb{Z}^{n\times m}_q,\\
 
 $$\bar{\mathbf{A}}=\pqty{\mathbf{A}, \mathbf{b}^{T}}\in\mathbb{Z}^{(n+1)\times m}$$
 
-恢复出 $s$。这就是 $\mathrm{LWE}$ 问题，一个 $\mathrm{BDD}$ 问题的平均情况变体。在 $q$ 阶随机格
+恢复出 $s$。这就是 $\mathrm{LWE}$ 问题，是一个在 $q$ 阶随机格
 
 $$\Lambda_{q}(\mathbf{A})=\qty{\mathbf{A}^{T} \mathbf{x} \mid \mathbf{x} \in \mathbb{Z}_{q}^{n}}+q \mathbb{Z}^{m}$$
 
-里，目标向量是 $\mathbf{b}$。这个也式子算是随机格同余定义另一种表达形式吧。在适当的 $\mathbf{e}$ 分布下(离散高斯分布？)，这个问题已知与 n 维格上的各种近似格计算问题的最坏情况复杂度相当，也已知如果 $\mathrm{LWE}$ 困难，则其伪随机，i.e.，分辨均匀随机的 $\mathbb{Z}^{(n+1)\times m}$ 与 $\bar{\mathbf{A}}$ 计算不可行。
+里的 $\mathrm{BDD}$ 问题的平均情况版本。目标向量是 $\mathbf{b}$。这个式子也算是随机格同余定义另一种表达形式吧。在适当的 $\mathbf{e}$ 分布下(离散高斯分布？)，这个问题已知与 n 维格上的各种近似格计算问题的最坏情况复杂度相当，也已知如果 $\mathrm{LWE}$ 困难，则其伪随机，i.e.，分辨均匀随机的 $\mathbb{Z}^{(n+1)\times m}$ 与 $\bar{\mathbf{A}}$ 计算不可行。
 
 这里咱不用特定性质的误差向量分布，只把他看成能吐出无限范式比 $q$ 小很多的短向量 $\norm{\mathbf{e}}\_{\infty} \leq \beta$，且关于原点对称，i.e.，$\chi$ 和 $-\chi$ 是相同的分布。通常 $\beta=\sqrt{n}$，这也是这个理论成立的最小值。
 
@@ -45,7 +45,7 @@ $$\Lambda_{q}(\mathbf{A})=\qty{\mathbf{A}^{T} \mathbf{x} \mid \mathbf{x} \in \ma
 
 $$\mathbf{C}=\bar{\mathbf{A}}^{T}+m \mathbf{G}^{T}=\bqty{\mathbf{A}^{T}, \mathbf{A}^{T} \mathbf{s}+\mathbf{e}}+m \mathbf{G}^{T}$$
 
-$\mathbf{G}\in\mathbb{Z}^{(n+1)\times m}\_ q$ 是一个精挑细选的能编码消息 $m$ 的矩阵。按照这个加密方法，$\mathrm{LWE}$ 的安全性紧随所使用的 $\mathrm{LWE}$ 矩阵的伪随机性。如果 $\bar{\mathbf{A}}$ 完全均匀随机，则密文和明文统计学独立。
+确实就是一次性密码本的用法。$\mathbf{G}\in\mathbb{Z}^{(n+1)\times m}\_ q$ 是一个精挑细选的能编码消息 $m$ 的矩阵。按照这个加密方法，$\mathrm{LWE}$ 的安全性紧随所使用的 $\mathrm{LWE}$ 矩阵的伪随机性。如果 $\bar{\mathbf{A}}$ 完全均匀随机，则密文和明文统计学独立。
 
 $\bar{\mathbf{A}}=\pqty{\mathbf{A}, \mathbf{b}^{T}}$ 也可以看成是一个特定格 $\Lambda\_ q\pqty{\bar{A}}$。咱知道如果 $\bar{A}\_ q$ 均匀随机的选择，那么 $\Lambda\_ q\pqty{\bar{A}}$ 似乎不会含有任何长度比 Minkowski 定理短很多的向量，但 $\Lambda\pqty{A\_ q}$ 有：
 
@@ -59,9 +59,9 @@ $$\bar{\mathbf{s}}=\pqty{-s,1}$$
 
 $$\mathbf{C} \bar{\mathbf{s}}=\pqty{\bar{\mathbf{A}}^{T}+m \mathbf{G}^{T}} \bar{\mathbf{s}}=\mathbf{e}+m \mathbf{G}^{T} \bar{\mathbf{s}} \approx m \mathbf{G}^{T} \bar{\mathbf{s}} \enspace(\bmod q)$$
 
-咱发现这个约等号成立的条件是消息 $m$ 最终需要能够从上式中恢复出来。$\mathrm{LWE}$ 密文加密方案简单的选取 $\mathbf{G}$ 为单一一个向量：
+咱发现这个约等号成立的条件是消息 $m$ 最终需要能够从 $\mathbf{e}+m \mathbf{G}^{T} \bar{\mathbf{s}}$ 中恢复出来。$\mathrm{LWE}$ 密文加密方案简单的选取 $\mathbf{G}$ 为单一一个向量：
 
 $$\mathbf{g}=\pqty{0, \ldots, 0, q / 4} \in \mathbb{Z}_{q}^{n+1}$$
 
-相似的，$\mathbf{A}=\mathbf{a} \in \mathbb{Z}\_{q}^{n}$ 也只是一个向量，$\mathbf{e}=e\in\mathbb{Z}\_q$则是一个标量。按照这些个简单约束可以搞一个加密方案，密文空间还是上文说的 $\qty{0,1,2,3}$
+相似的，$\mathbf{A}=\mathbf{a} \in \mathbb{Z}\_{q}^{n}$ 也只是一个向量，$\mathbf{e}=e\in\mathbb{Z}\_q$则是一个标量。按照这些个简单约束可以搞一个加密方案，密文空间还是上文说的 $\qty{0,1,2,3}$。
 
