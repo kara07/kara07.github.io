@@ -10,6 +10,7 @@ tags:
     - lattice
     - algebra
     - FHE
+    - cipher
 
 ---
 
@@ -40,7 +41,7 @@ $$\Lambda_{q}(\mathbf{A})=\qty{\mathbf{A}^{T} \mathbf{x} \mid \mathbf{x} \in \ma
 
 这里咱不用特定性质的误差向量分布，只把他看成能吐出无限范式比 $q$ 小很多的短向量 $\norm{\mathbf{e}}\_{\infty} \leq \beta$，且关于原点对称，i.e.，$\chi$ 和 $-\chi$ 是相同的分布。通常 $\beta=\sqrt{n}$，这也是这个理论成立的最小值。
 
-全同态之前先整个简单 $\mathrm{LWE}$ 开开胃。总体思想是因为 $\bar{\mathbf{A}}$ 是伪随机的，咱可以把他当成一个一次性密码本。定义加密为：
+全同态之前先整个简单 $\mathrm{LWE}$ 密文加密开开胃。总体思想是因为 $\bar{\mathbf{A}}$ 是伪随机的，咱可以把他当成一个一次性密码本。定义加密为：
 
 $$\mathbf{C}=\bar{\mathbf{A}}^{T}+m \mathbf{G}^{T}=\bqty{\mathbf{A}^{T}, \mathbf{A}^{T} \mathbf{s}+\mathbf{e}}+m \mathbf{G}^{T}$$
 
@@ -49,4 +50,18 @@ $\mathbf{G}\in\mathbb{Z}^{(n+1)\times m}\_ q$ 是一个精挑细选的能编码�
 $\bar{\mathbf{A}}=\pqty{\mathbf{A}, \mathbf{b}^{T}}$ 也可以看成是一个特定格 $\Lambda\_ q\pqty{\bar{A}}$。咱知道如果 $\bar{A}\_ q$ 均匀随机的选择，那么 $\Lambda\_ q\pqty{\bar{A}}$ 似乎不会含有任何长度比 Minkowski 定理短很多的向量，但 $\Lambda\pqty{A\_ q}$ 有：
 
 $$\bar{\mathbf{A}}^{T}\pqty{-\mathbf{s}, 1}=\bqty{\mathbf{A}^{T}, \mathbf{b}}\pqty{-\mathbf{s}, 1)=\mathbf{b}-\mathbf{A}^{T} \mathbf{s}=\mathbf{e} \enspace(\bmod q)$$
+
+那就可以把这样的向量
+
+$$\bar{\mathbf{s}}=\pqty{-s,1}$$
+
+当成 $\Lambda\_ q\pqty{\bar{A}}$ 对应的密钥。解密就像这样用 $\bar{\mathbf{s}}$ 对密文向量线性组合，就得到了：
+
+$$\mathbf{C} \bar{\mathbf{s}}=\pqty{\bar{\mathbf{A}}^{T}+m \mathbf{G}^{T}} \bar{\mathbf{s}}=\mathbf{e}+m \mathbf{G}^{T} \bar{\mathbf{s}} \approx m \mathbf{G}^{T} \bar{\mathbf{s}} \enspace(\bmod q)$$
+
+咱发现这个约等号成立的条件是消息 $m$ 最终需要能够从上式中恢复出来。$\mathrm{LWE}$ 密文加密方案简单的选取 $\mathbf{G}$ 为单一一个向量：
+
+$$\mathbf{g}=\pqty{0, \ldots, 0, q / 4} \in \mathbb{Z}_{q}^{n+1}$$
+
+相似的，$\mathbf{A}=\mathbf{a} \in \mathbb{Z}\_{q}^{n}$ 也只是一个向量，$\mathbf{e}=e\in\mathbb{Z}\_q$则是一个标量。按照这些个简单约束可以搞一个加密方案，密文空间还是上文说的 $\qty{0,1,2,3}$
 
