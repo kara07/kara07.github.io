@@ -49,7 +49,7 @@ $\mathbf{G}\in\mathbb{Z}^{(n+1)\times m}\_ q$ 是一个精挑细选的能编码�
 
 $\bar{\mathbf{A}}=\pqty{\mathbf{A}, \mathbf{b}^{T}}$ 也可以看成是一个特定格 $\Lambda\_ q\pqty{\bar{A}}$。咱知道如果 $\bar{A}\_ q$ 均匀随机的选择，那么 $\Lambda\_ q\pqty{\bar{A}}$ 似乎不会含有任何长度比 Minkowski 定理短很多的向量，但 $\Lambda\pqty{A\_ q}$ 有：
 
-$$\bar{\mathbf{A}}^{T}\pqty{-\mathbf{s}, 1}=\bqty{\mathbf{A}^{T}, \mathbf{b}}\pqty{-\mathbf{s}, 1)=\mathbf{b}-\mathbf{A}^{T} \mathbf{s}=\mathbf{e} \enspace(\bmod q)$$
+$$\bar{\mathbf{A}}^{T}\pqty{-\mathbf{s}, 1}=\bqty{\mathbf{A}^{T}, \mathbf{b}}\pqty{-\mathbf{s}, 1}=\mathbf{b}-\mathbf{A}^{T} \mathbf{s}=\mathbf{e} \enspace(\bmod q)$$
 
 那就可以把这样的向量
 
