@@ -14,7 +14,7 @@ tags:
 
 ---
 
-单就讲讲对称的全同态加密。也不能叫对称吧，反正就是 cipher，加密解密都是同一个客户端。叫私钥加密又容易误解。反正懂的都懂，HE 的典中典了。
+单就讲讲对称的全同态加密。也不能叫对称吧，反正就是 cipher，加密解密都是同一个密钥。叫私钥加密又容易误解。反正懂的都懂，HE 的典中典了。
 
 反正也可以用常规手段变为非对称公钥加密方案：一般做法是上文的人可以用加解密的私钥对很多 0 进行加密作为公钥，另一个想要用这个公钥进行加密的人先将这些加密后的 0 线性组合，再将它与想要加密的消息相加。这样无法得知消息，也无法得知加密公钥的私钥，因为是同态的最终也可以用私钥进行解密。~~感觉不是 0 也可以，还是看的太少~~
 
@@ -25,7 +25,7 @@ tags:
 从
 
 $$\mathbf{A}\stackrel{\$}{\gets}\mathbb{Z}^{n\times m}_q,\\
-\mathbf{s}\stackrel{\$}{\gets}\mathbb{Z}^{n}_q,\mathbf{e}\stackrel{\$}{\gets}\mathbb{Z}^{m}_q,\\
+\mathbf{s}\stackrel{\$}{\gets}\mathbb{Z}^{n}_q,\mathbf{e}\gets\mathbb{Z}^{m}_q,\\
 \mathbf{b}=\mathbf{A}^T\mathbf{s+e}$$
 
 恢复出 $s$。也可以表示成从
@@ -64,4 +64,40 @@ $$\mathbf{C} \bar{\mathbf{s}}=\pqty{\bar{\mathbf{A}}^{T}+m \mathbf{G}^{T}} \bar{
 $$\mathbf{g}=\pqty{0, \ldots, 0, q / 4} \in \mathbb{Z}_{q}^{n+1}$$
 
 相似的，$\mathbf{A}=\mathbf{a} \in \mathbb{Z}\_{q}^{n}$ 也只是一个向量，$\mathbf{e}=e\in\mathbb{Z}\_q$则是一个标量。按照这些个简单约束可以搞一个加密方案，密文空间还是上文说的 $\qty{0,1,2,3}$。
+
+**定义 1** _明文空间为 $\qty{0,1,2,3}$ 的 $\mathrm{LWE}$ 密文加密方案这么搞：_
+
+* 密钥 $\mathbf{s}\stackrel{\$}{\gets}\mathbb{Z}^{n}_q$.
+* 加密算法输入 $\mathbf{s}$ 和 $m\in\qty{0,1,2,3}$，选 $\mathbf{a}\stackrel{\$}{\gets}\mathbb{Z}^{n}_q,e\gets \chi$，输出密文
+
+$$\operatorname{LWE}_{\mathbf{s}}(m)=\bqty{\mathbf{a}^{T}, \mathbf{a}^{T} \mathbf{s}+e}+m \mathbf{g}^{T}=\bqty{\mathbf{a}^{T}, \mathbf{a}^{T} \mathbf{s}+e+m(q / 4)}$$
+
+* 解密算法输入密钥 $\mathbf{s}$ 和密文 $\mathbf{c}^T=\bqty{\mathbf{a},b}$，上文的解密流程就给密文乘个 $\bar{\mathbf{s}}$，这里对应所指定的 $\mathbf{G}$，$e$ 在特定分布下则解密成功，等同于对 $m$ 加上 $e$ 相关参数并向下取整，输出：
+
+$$\operatorname{LWE}_{\mathbf{s}}^{-1}\left(\mathbf{c}^{T}\right)=\left\lfloor(4 / q)\left((q / 8)+\mathbf{c}^{T} \bar{\mathbf{s}}\right)\right\rfloor$$
+
+因为 $q=n^4$ 所以 $q/8$ 也是个整数，并且 $v=q / 8+\mathbf{c}^{T} \bar{\mathbf{s}} \in \mathbb{Z}\_{q}$ 的值计算的时候也要 mod q。最终输出的 $\lfloor 4 v / q\rfloor$ 取决于 $v$ 的两个bit的值。很容易能知道
+
+**定理 2** _如果 $\abs{e}<q / 8$ 那么解密算法能正确恢复出 $m$。，i.e.，_
+
+$$\operatorname{LWE}_{\mathbf{s}}^{-1}\left(\operatorname{LWE}_{\mathbf{s}}(m)\right)=m$$
+
+_证明：_ 解密算法输出
+
+$$\left\lfloor(4 / q)\left((q / 8)+\mathbf{c}^{T} \bar{\mathbf{s}}\right)\right\rfloor=\lfloor(4 / q)((q / 8)+e+m q / 4)\rfloor=\lfloor(1 / 2)+4 e / q+m\rfloor=m$$
+
+因为 $1 / 2+4 e / q \in[0,1)$。~~感觉也没啥好证的，毕竟就是这么设计的。~~
+
+跟其他大多数加密算法不同，格密码里面密文不尽相同，也有好坏，这好坏由错误分布 $\abs{\mathbf{e}}\leq\beta$ 体现。为啥这玩意这么重要：
+
+* 第一典当然是正确性。这密文要能正常解密。像上面那个例子如果 $\beta>q/8$ 则解密可能会失败。
+
+* 典中典当然是安全性。假设不带这个 $\mathbf{e}$ 玩，这玩意就变成解线性方程组了，直接高斯消元。实际上格计算问题的最坏情况复杂度的归约要求 $\beta\geq\sqrt n$，并且当 $\beta=o(\sqrt n)$ 时就可以用 relinearization techniques 以亚指数时间破解。
+
+于是一个 $\mathrm{LWE}$ 加密就可以表示成 $\mathrm{LWE}\bqty{m,\beta}$，意思是明文是 $m$，噪音 $\abs{\mathbf{e}<\beta}$ 能使她既安全又可行。
+
+# Computing on Ciphertexts
+
+讲了半天没讲到同态。实际上这玩意只能说是(近似)线性同态，支持加(addition)和非(negation)运算，等同于逻辑电路上 NOR 的自足链接词？
+
 
