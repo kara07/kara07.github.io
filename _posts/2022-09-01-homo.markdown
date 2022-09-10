@@ -25,7 +25,7 @@ tags:
 从
 
 $$\mathbf{A}\stackrel{\$}{\gets}\mathbb{Z}^{n\times m}_q,\\
-\mathbf{s}\stackrel{\$}{\gets}\mathbb{Z}^{n}_q,\mathbf{e}\gets\mathbb{Z}^{m}_q,\\
+\mathbf{s}\stackrel{\$}{\gets}\mathbb{Z}^{n}_q,\mathbf{e}\stackrel{\chi}{\gets}\mathbb{Z}^{m}_q,\\
 \mathbf{b}=\mathbf{A}^T\mathbf{s+e}$$
 
 恢复出 $s$。也可以表示成从
@@ -98,6 +98,43 @@ $$\left\lfloor(4 / q)\left((q / 8)+\mathbf{c}^{T} \bar{\mathbf{s}}\right)\right\
 
 # Computing on Ciphertexts
 
-讲了半天没讲到同态。实际上这玩意只能说是(近似)线性同态，支持加(addition)和非(negation)运算，等同于逻辑电路上 NOR 的自足链接词？
+讲了半天没讲到同态。实际上这玩意只能说是(近似)线性同态，支持加(addition)和非(negation)运算，等同于逻辑电路上 XOR 和 NOT 组成的自足链接词？
 
+**定理 3** _如果 $\mathbf{c}\_{0}^{T} \in \mathrm{LWE}\_{\mathbf{s}}\left(m\_{0}, \beta\_{0}\right)$ 和 $\mathbf{c}\_{1}^{T} \in \mathrm{LWE}\_{\mathbf{s}}\left(m\_{1}, \beta\_{1}\right)$_ 
+，那么：
 
+* $\left[\mathbf{0}^{T}, m q / 4\right] \in \mathrm{LWE}\_{\mathbf{s}}(m, 0)$ 是一个无噪音的 $m$ 在 $\bmod\enspace 4$ 下的加密。就是 $\Lambda_q(A)$ 的原点。~~所以 $q/4$ 的选择实际上是模数决定的？~~
+
+* $\mathbf{c}_{0}^{T}+\mathbf{c}_{1}^{T} \in \operatorname{LWE}\left(m_{0}+m_{1}, \beta_{0}+\beta_{1}\right)$ 是 $(m_0+m_1)$ $\bmod\enspace 4$ 下的加密。
+
+* $-\mathbf{c}_{0}^{T} \in \operatorname{LWE}\left(-m_{0}, \beta_{0}\right)$ 是 $(-m\_0)$ 在 $\bmod\enspace 4$ 下的加密。
+
+定理 3 达不到全同态因为：
+
+* 加同态只对线性函数和仿射函数生效。FHE 应对任意函数/电路生效。
+
+* 尽管只限于线性函数，上述的方案不允许任意次数的加运算。因为任意两次的密文相加都会使错误变得更大，最终超过上界使方案有几率无法正常解密。
+
+咱通过一个刷新程序解决上述两个问题。输入密文 $\mathbf{c}^{T} \in \operatorname{LWE}[m, q / 8]$ 输出一个加密的
+
+$$\small\operatorname{HALF}\normalsize(m)=\lfloor m / 2\rfloor \in\{0,1\} \subseteq\{0,1,2,3\}$$
+
+得用更小的 $\beta$，比如咱得
+
+$$\mathbf{Refresh}\colon\mathrm{LWE}_{\mathbf{s}}\pqty{m,q/8}\to\mathrm{LWE}\pqty{\small\mathrm{HALF}\normalsize(m),q/16}$$
+
+能看出在线性函数下这个操作能让我们实现一个 NAND 门~~原来是 NAND~~，是逻辑电路的自足链接词：对于所有 $m\_0,m\_1\in\qty{0,1}$，
+
+$$\small\operatorname{HALF}\normalsize\left(2+m_{0}+m_{1}\right)=\neg\left(m_{0} \wedge m_{1}\right)$$
+
+~~太难辣，布响学辣 XD 有空补完罢~~
+
+# 结论
+
+总之咱用一个刷新程序将累加器设置为 0 计算 $\small\operatorname{HALF}\normalsize(m)$ 的 $\mathrm{LWE}$ 加密，接着进行至多 $n\log q(\log q+1)/2$ 次 $\mathrm{A\small CCUM}$ 操作以及一系列不会增大累加器错误的操作。然后刷新程序 $\mathrm{LWE}\_{\mathbf{Z}}\pqty{\small\mathrm{MSB}\normalsize\pqty{v},\beta'}$ 噪声最大能有
+
+$$\beta^{\prime} \leq n \log q(\log q+1) N \gamma(n+1) \log q=2 n^{2.5}(n+1) \log ^{3} q(\log q+1)=O\left(n^{3.5} \log ^{4} n\right)$$
+
+$n$ 足够大的话，是可以小于期望的 $q/16=\Omega(n^4)$ 的。
+
+另外，看不懂的文字告诉我 circular security 的证明是一个很重要的公开问题。
