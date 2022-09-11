@@ -105,9 +105,9 @@ $$\left\lfloor(4 / q)\left((q / 8)+\mathbf{c}^{T} \bar{\mathbf{s}}\right)\right\
 
 * $\left[\mathbf{0}^{T}, m q / 4\right] \in \mathrm{LWE}\_{\mathbf{s}}(m, 0)$ 是一个无噪音的 $m$ 在 $\bmod\enspace 4$ 下的加密。就是 $\Lambda_q(A)$ 的原点。~~所以 $q/4$ 的选择实际上是模数决定的？~~
 
-* $\mathbf{c}_{0}^{T}+\mathbf{c}_{1}^{T} \in \operatorname{LWE}\left(m_{0}+m_{1}, \beta_{0}+\beta_{1}\right)$ 是 $(m_0+m_1)$ $\bmod\enspace 4$ 下的加密。
+* $\mathbf{c}\_{0}^{T}+\mathbf{c}\_{1}^{T} \in \operatorname{LWE}\left(m\_{0}+m\_{1}, \beta\_{0}+\beta\_{1}\right)$ 是 $(m\_0+m\_1)$ $\bmod\enspace 4$ 下的加密。
 
-* $-\mathbf{c}_{0}^{T} \in \operatorname{LWE}\left(-m_{0}, \beta_{0}\right)$ 是 $(-m\_0)$ 在 $\bmod\enspace 4$ 下的加密。
+* $-\mathbf{c}\_{0}^{T} \in \operatorname{LWE}\left(-m\_{0}, \beta\_{0}\right)$ 是 $(-m\_0)$ 在 $\bmod\enspace 4$ 下的加密。
 
 定理 3 达不到全同态因为：
 
