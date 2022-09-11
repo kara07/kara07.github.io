@@ -1,0 +1,31 @@
+---
+layout:          post
+title:           "Fully H0M0morphic Encryption II"
+subtitle:        "十分难顶，甚至有九分。"
+date:            2022-09-12 00:00:00
+author:          "kara"
+header-img:      "img/post-bg-unix-linux.jpg"
+tags:
+    - cryptography
+    - lattice
+    - algebra
+    - FHE
+    - cipher
+
+---
+
+这次用 $\mathrm{LWE}$ 整点高级的全同态加密(~~低级的都没搞懂，直接整高级的真的大丈夫？~~。同态不多说，比如加同态提供了一个对密文的操作 $\oplus$ 使得解密
+
+$$\operatorname{Enc}\left(m_{1}\right) \oplus \operatorname{Enc}\left(m_{2}\right)$$
+
+将得到明文和 $m\_1+m\_2$。
+
+全同态的动机是数据必须得到保密，意味着操作不能直接作用在数据上。典型使用场景是计算服务提供者，将计算外包给云。用户对数据加密然后云同态的对加密数据进行同态的计算。
+
+整点更复杂和灵活的。
+
+1. 对称加密
+2. 加法同态
+3. 乘法同态
+
+这些都不是真正的加乘同态，因为加乘操作的次数受到限制，因为所保留的正确性是有限的(~~电路规模受到限制？~~)。但利用_自举_，构建一个全同态加密方案是可行的。它在密文的加乘运算下有完全闭包(proper closure)(数学意义上的闭包?)。

@@ -1,0 +1,32 @@
+---
+layout:          post
+title:           "algebra"
+subtitle:        "你是一个一个一个一个抽象带师"
+date:            2022-09-12 00:03:00
+author:          "kara"
+header-img:      "img/post-bg-unix-linux.jpg"
+tags:
+    - cryptography
+    - lattice
+    - algebra
+    - FHE
+    - cipher
+
+---
+
+简单记一下自己可能用的到的代数结论。
+
+Lagrange's Theorem
+
+$$\mathrm{IF}\enspace H\leq G,\mathrm{THEN}\abs{H}\enspace\text{divides}\abs{G}$$
+
+并不是存在性结论比如 $\abs{A\_4}=12$，但它其他阶的都有就是没有阶为6的子群。证明基本上用陪集思想：
+
+给 $G$ 划分为不相交的左陪集：$H,g\_1 H,g\_2 H,\cdots,g\_n H$~~只有 H 是子群，其他陪集不是群~~。每个陪集大小都相同。所以每个陪集大小乘以陪集个数等于群的阶。陪集的个数称为 $G$ 的 index 记作：$\abs{G:H}$。
+
+正规子群是他的所有陪集构成以它划分的商群的子群。充要条件是
+
+$$\forall y\in G,y^{-1}Ny=N\colon N\leq G$$
+
+**阿贝尔群的所有子群都是它的正规子群**
+
