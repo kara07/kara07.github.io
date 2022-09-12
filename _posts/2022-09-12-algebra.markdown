@@ -6,11 +6,8 @@ date:            2022-09-12 00:03:00
 author:          "kara"
 header-img:      "img/post-bg-unix-linux.jpg"
 tags:
-    - cryptography
-    - lattice
     - algebra
-    - FHE
-    - cipher
+    - mathematics
 
 ---
 
