@@ -74,14 +74,14 @@ $$\pqty{7,-1}\cdot\pqty{-3,i}=\pqty{7-3,-1\cdot i}=\qty{4,-i}$$
 
 有限群可以拆成单群，类似素数，又到了元素周期表。单群就是正规子群只有单位元和这个群本身的群。所有单群已经找完了：
 * $\mathbb{Z}/p\mathbb{Z}$，$p$是素数。都是可交换的。
-* $\A\_n\colon\n\geq5$。所有5阶及以上的交错群。找5次多项式求根公式时发现的。都是不可交换的。
+* $A\_n\colon\n\geq5$。所有5阶及以上的交错群。找5次多项式求根公式时发现的。都是不可交换的。
 * 李群。李群又是群又是流形(Manifolds)。流形局部类似 $\mathbb{R}\_n$，全局来看又完全不一样。所有长度小于 1 的复数在乘法下组成一个群，并且是一个圆，也就是一维的流形。如：
 
 群 $M$：$n\times n$ 可逆实数方阵
-$$M=\qty{A=\mqty{a_{11} & a_{12} & \ldots & a_{1 n} \\
+$$M=\qty{A=\mqty(a_{11} & a_{12} & \ldots & a_{1 n} \\
 a_{21} & a_{22} & \ldots & a_{2 n} \\
 \vdots & \vdots & \vdots & \vdots \\
-a_{n 1} & a_{n 2} & \ldots & a_{n n}}\qq{where}\det(A)\ne 0}$$
+a_{n 1} & a_{n 2} & \ldots & a_{n n})\qq{where}\det(A)\ne 0}$$
 
 $$M \to\left(a_{11}, a_{12}, \ldots, a_{1 n}, a_{21}, a_{22}, \ldots, a_{2 n}, \ldots, a_{n n}\right) \in \mathbb{R}^{n^{2}}$$
 
