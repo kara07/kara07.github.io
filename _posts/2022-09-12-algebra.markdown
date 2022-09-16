@@ -15,7 +15,7 @@ tags:
 
 Lagrange's Theorem
 
-$$\mathrm{IF}\enspace H\leq G,\mathrm{THEN}\abs{H}\enspace\text{divides}\abs{G}$$
+$$\mathrm{IF}\enspace H\leq G,\mathrm{THEN}\enspace\abs{H}\enspace\text{divides}\abs{G}$$
 
 并不是存在性结论比如 $\abs{A\_4}=12$，但它其他阶的都有就是没有阶为6的子群。证明基本上用陪集思想：
 
@@ -25,5 +25,17 @@ $$\mathrm{IF}\enspace H\leq G,\mathrm{THEN}\abs{H}\enspace\text{divides}\abs{G}$
 
 $$\forall y\in G,y^{-1}Ny=N\colon N\leq G$$
 
-**阿贝尔群的所有子群都是它的正规子群**
+可见 **阿贝尔群的所有子群都是它的正规子群**
 
+循环群只有两加一种
+
+* 无限：$\mathbb{Z},+$
+* 有限：$\mathbb{Z/nZ},+$
+
+~~有一说一，$\pqty{\mathbb{Z/nZ},+}$ 里的元素应该都是一个陪集吧，这样写成 {0,1,2,3,...,n} 是不是不正规啊~~
+
+想明白了，说成整数集 $\qty{0,1,2,3,...,n}$ 肯定是不行的，连群都不是；但如果说成模 $n$ 整数集就可以了，并且是群。因为所有元素不是整数，都是模 $n$ 整数。比如拿模 $n$ 整数 1 当生成元，1 加加加加到模 $n$ 整数 $n+1$，就是 1。就自带了 $\bmod$ 运算了。感觉确实对，但不推荐。
+
+有一说一，模 $n$ 整数群 $\qty{0,1,2,3,...,n}$ 不就是等价类群 $\qty{\bar0,\bar1,\bar2,\bar3,...,\bar n}$
+
+* 以及平凡群 $\qty{e}$
