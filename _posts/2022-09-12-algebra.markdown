@@ -78,15 +78,13 @@ $$\pqty{7,-1}\cdot\pqty{-3,i}=\pqty{7-3,-1\cdot i}=\qty{4,-i}$$
 * 李群。李群又是群又是流形(Manifolds)。流形局部类似 $\mathbb{R}\_n$，全局来看又完全不一样。所有长度小于 1 的复数在乘法下组成一个群，并且是一个圆，也就是一维的流形。如：
 
 群 $M$：$n\times n$ 可逆实数方阵
-$$M=\qty{A=\mqty(a_{11} & a_{12} & \ldots & a_{1 n} \\ a_{21} & a_{22} & \ldots & a_{2 n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{n 1} & a_{n 2} & \ldots & a_{n n})\qq{where}\det(A)\ne 0}$$
-
-$$\begin{pmatrix}\mqty(a_{11} & a_{12} & \ldots & a_{1 n} \\ a_{21} & a_{22} & \ldots & a_{2 n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{n 1} & a_{n 2} & \ldots & a_{n n})\end{pmatrix}$$
-
-$$\mqty{a & b \\ c & d}$$
+$$M=\qty{A=\begin{pmatrix}a_{11} & a_{12} & \ldots & a_{1 n} \\ a_{21} & a_{22} & \ldots & a_{2 n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{n 1} & a_{n 2} & \ldots & a_{n n}\end{pmatrix}\qq{where}\det(A)\ne 0}$$
 
 $$M \to\left(a_{11}, a_{12}, \ldots, a_{1 n}, a_{21}, a_{22}, \ldots, a_{2 n}, \ldots, a_{n n}\right) \in \mathbb{R}^{n^{2}}$$
 
 $$M=\mathbb{R}^{n^{2}}-\qty{行列式为 0 的矩阵}$$
+
+~~草 为什么 physics 的 js 里面没有mqty 佛了~~
 
 很难想象得到个什么鬼，总之最终剩下的是个流形。李群在线性代数，微分几何，群论的交集里。像上文的圈一样，李群都是无限群，数学家在找有限群。比如有限域 $\mathbb{F}\_{p^n}$ 上的矩阵。这种群叫做李型群(lie type)
 
