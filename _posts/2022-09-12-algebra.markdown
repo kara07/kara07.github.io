@@ -80,7 +80,7 @@ $$\pqty{7,-1}\cdot\pqty{-3,i}=\pqty{7-3,-1\cdot i}=\qty{4,-i}$$
 群 $M$：$n\times n$ 可逆实数方阵
 $$M=\qty{A=\mqty(a_{11} & a_{12} & \ldots & a_{1 n} \\ a_{21} & a_{22} & \ldots & a_{2 n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{n 1} & a_{n 2} & \ldots & a_{n n})\qq{where}\det(A)\ne 0}$$
 
-$$\mqty(a_{11} & a_{12} & \ldots & a_{1 n} \\ a_{21} & a_{22} & \ldots & a_{2 n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{n 1} & a_{n 2} & \ldots & a_{n n})$$
+$$\begin{pmatrix}\mqty(a_{11} & a_{12} & \ldots & a_{1 n} \\ a_{21} & a_{22} & \ldots & a_{2 n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{n 1} & a_{n 2} & \ldots & a_{n n})\end{pmatrix}$$
 
 $$\mqty{a & b \\ c & d}$$
 
