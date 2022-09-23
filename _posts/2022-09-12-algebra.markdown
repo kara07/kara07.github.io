@@ -78,6 +78,7 @@ $$\pqty{7,-1}\cdot\pqty{-3,i}=\pqty{7-3,-1\cdot i}=\qty{4,-i}$$
 * 李群。李群又是群又是流形(Manifolds)。流形局部类似 $\mathbb{R}\_n$，全局来看又完全不一样。所有长度小于 1 的复数在乘法下组成一个群，并且是一个圆，也就是一维的流形。如：
 
 群 $M$：$n\times n$ 可逆实数方阵
+
 $$M=\qty{A=\begin{pmatrix}a_{11} & a_{12} & \ldots & a_{1 n} \\ a_{21} & a_{22} & \ldots & a_{2 n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{n 1} & a_{n 2} & \ldots & a_{n n}\end{pmatrix}\qq{where}\det(A)\ne 0}$$
 
 $$M \to\left(a_{11}, a_{12}, \ldots, a_{1 n}, a_{21}, a_{22}, \ldots, a_{2 n}, \ldots, a_{n n}\right) \in \mathbb{R}^{n^{2}}$$
