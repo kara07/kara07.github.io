@@ -1,6 +1,6 @@
 ---
 layout:          post
-title:           "Fully H0M0morphic Encryption II"
+title:           "TFHE"
 subtitle:        "ドーナツ食べたくなった(*´_ゝ｀)"
 date:            2022-09-22 00:10:00
 author:          "kara"
