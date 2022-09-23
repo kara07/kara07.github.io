@@ -1,0 +1,84 @@
+---
+layout:          post
+title:           "Fully H0M0morphic Encryption II"
+subtitle:        "ドーナツ食べたくなった(*´_ゝ｀)"
+date:            2022-09-22 00:10:00
+author:          "kara"
+header-img:      "img/post-bg-unix-linux.jpg"
+tags:
+    - cryptography
+    - lattice
+    - algebra
+    - FHE
+    - cipher
+
+---
+
+其实是一个 [TFHE](https://eprint.iacr.org/2018/421.pdf) 随便记记。非常感谢作者 Ilaria Chillotti 的讲解和 [FHE_org](https://www.youtube.com/watch?v=npoHSR6-oRw) 让我这种笨比也有机会领会这么高级的 FHE 方案。
+
+[TFHE Deep Dive from ZAMA](https://www.zama.ai/post/tfhe-deep-dive-part-1)
+
+# Algbra
+
+TFHE提供了一个更高效的 FHE 的砖块：一个自举的 NAND 门(~~主要是自举比较高效~~)。其实就是LWE密文？NAND门具有 Functional Completeness，这意味着可以只用 NAND 门构造任何电路。同时在每一次执行 NAND 时刷新噪音。并且可以同态执行任何(?)函数。
+
+FHE 代表全同态加密，T则代表 Torus。一种代数结构。我们用到是实数 Torus。
+
+$$\mathbb{T}=\mathbb{R}/\mathbb{Z}=\mathbb{R}\bmod 1$$
+
+所有模 1 实数。如果定义实数加法和整数环上的数乘，$(\mathbb{T},+,\times)$，Torus 是一个 $\mathbb{Z}$-模(~~任何阿贝尔群都是~~)。模结构和线性空间很类似，在加法上是一个交换群，数乘运算也如同线性空间里的标量乘一样。但它并没有环的结构，原文是实数乘法和模运算不相容。对于两个不同等价类里元素，实数乘法：
+
+$$\exists t_1,t_2\in \bar{t_1},\bar{t_2}\colon t_1 \cdot t_2\bmod 1\neq(t_1\bmod 1)\cdot(t_2\bmod 1)\bmod 1$$
+
+有了 $\mathbb{Z}$-模的属性之后，可以将其拓展到多项式。$\mathbb{T}\_N\bqty{X}$ 表示系数在 $\mathbb{T}$ 里的多项式，模上分圆(~~主要是整系数不可约~~)多项式 $x^N+1$。然后 $(\mathbb{T}\_N\bqty{X},+,\times)$ 是 $\mathfrak{R}=\mathbb{Z}\bqty{X}/(X^N+1)$ 上的模，$\mathbb{T}\_N\bqty{X}\bmod(X^N+1)$同样可以在 Torus 多项式上进行加法和整数多项式的数乘，但两个 Torus 多项式之间的乘法没有定义。
+
+这里用 $\mathcal{R}$ 表示多项式环 $\mathbb{Z}\bqty{X}/(X^N+1)$，$\mathcal{R}\_q$同理。高斯分布 $\chi\_{\mu,\sigma}$。如果 $\mu=0$ 记作 $\chi\_\sigma$。
+
+# cipherS
+
+用三种密文的原因主要是充分利用每种密文的属性。[但好像只用 LWE 就可以构造一个全同态](./2022-09-01-homo.markdown)。GSW 密文 20 年的新论文和 16 年的好像不一样？
+
+## GLWE
+
+yysy，LWE 问题在 FHE 构造里有够被简化，应该有相关的安全性研究？LWE 和 RLWE 加密方式本质上是一样的，LWE 的明文可以被加密成多项式的一个系数。所以密钥直接记作(~~因为多项式所以直接用大写字母~~)：
+
+$$\vec{S}=\pqty{S_0,\dots,S_{k-1}}\in\mathcal{R}^k$$
+
+这样 $A$ 的每一个元素和 $B,M,E$ 都属于 $\mathcal{R\_q}$ 了。多项式系数可以是均匀随机的：二进制分布，三元分布，高斯分布或者均匀分布。对于每种类型的密钥都可以实现特定安全等级的参数。例子里是二进制。
+
+$p,q$ 一般选为 2 的幂，如果不这样在编码消息，i.e.，$\Delta M$ 的时候就需要 rounding。$q$ 一般叫做密文模数，$p$ 叫做明文模数。$\Delta$ 放缩因子？(~~scaling factor~~)密文直接：
+
+$\pty{A\_0,\dots,A\_{k-1},B}\in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_{q}^{k+1}$
+
+一般把 $\pty{A\_0,\dots,A\_{k-1}}$ 叫做 mask，B 叫做 body。每次加密都会采样随机的随机数(mask 和 error)。所以上面式子用的 $\in$。解密就典中典之减一减得到 $\Delta M+E$，然后再 rounding。
+
+模 $X^N+1$ 利用 $X^N\equiv -1$。
+
+Trival GLWE ciphertexts：
+
+$$(0, \dots, 0, \Delta M) \in \mathcal{R}_{q}^{k+1}$$
+
+用来当成公开参数，公钥就 $M$ 也全是 0 再线性组合。
+
+## LWE and RLWE
+
+$k=n\in\mathbb{Z}$(~~为什么要区分 k 跟 n~~) 且 $N=1$ 就得到了 LWE。此时 $\mathcal{R}\_q$ (resp. $\mathcal{R}$) 就是 $\mathbb{Z}\_q$ (resp. $\mathbb{Z}$)。
+
+![](/img/TFHE/LWE.png)
+
+$k=1$ 且 $N$ 是 2 的幂就得到了RLWE。(~~为什么要是 2 的幂~~)
+
+![](/img/TFHE/RLWE.png)
+
+## GLev
+
+leveled 方案里用的很多。
+
+# #########
+
+个人感觉咱可以这样利用一个高性能(~~逼格~~)的全同态方案，难度从易到难排序：
+
+1. 拿来主义。直接将这个方案用在相关领域。毕竟是全同态，可以运用在几乎每一种场景。
+2. extanded TFHE。在原方案或者其他方案的基础上类似方案的功能，实现一些原方案所不具有的功能。比如 [MK-TFHE](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=w_OlJw8AAAAJ&citation_for_view=w_OlJw8AAAAJ:Y0pCki6q_DkC)
+3. 全同态领域的创新。比如 TFHE 比起 FHEW 就提出了使用一种代数结构 TORUS 进行操作。
+4. 
