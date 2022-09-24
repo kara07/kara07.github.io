@@ -20,9 +20,9 @@ tags:
 
 # Algbra
 
-TFHE提供了一个更高效的 FHE 的砖块：一个自举的 NAND 门(~~主要是自举比较高效~~)。其实就是LWE密文？NAND门具有 Functional Completeness，这意味着可以只用 NAND 门构造任何电路。同时在每一次执行 NAND 时刷新噪音。并且可以同态执行任何(?)函数。
+TFHE 提供了一个更高效的 FHE 的砖块：一个自举的 NAND 门(~~主要是自举比较高效~~)。其实就是LWE密文？NAND 门具有 Functional Completeness，这意味着可以只用 NAND 门构造任何电路。同时在每一次执行 NAND 时刷新噪音。并且可以同态执行任何(?)函数。
 
-FHE 代表全同态加密，T则代表 Torus。一种代数结构。我们用到是实数 Torus。
+FHE 代表全同态加密，T则代表 Torus。一种代数结构。我们用到是实数 Torus。~~有没有可能能用环~~
 
 $$\mathbb{T}=\mathbb{R}/\mathbb{Z}=\mathbb{R}\bmod 1$$
 
@@ -48,9 +48,9 @@ $$\vec{S}=\pqty{S_0,\dots,S_{k-1}}\in\mathcal{R}^k$$
 
 $p,q$ 一般选为 2 的幂，如果不这样在编码消息，i.e.，$\Delta M$ 的时候就需要 rounding。$q$ 一般叫做密文模数，$p$ 叫做明文模数。$\Delta$ 放缩因子？(~~scaling factor~~)密文直接：
 
-$\pty{A\_0,\dots,A\_{k-1},B}\in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_{q}^{k+1}$
+$\pqty{A\_0,\dots,A\_{k-1},B}\in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_{q}^{k+1}$
 
-一般把 $\pty{A\_0,\dots,A\_{k-1}}$ 叫做 mask，B 叫做 body。每次加密都会采样随机的随机数(mask 和 error)。所以上面式子用的 $\in$。解密就典中典之减一减得到 $\Delta M+E$，然后再 rounding。
+一般把 $\pqty{A\_0,\dots,A\_{k-1}}$ 叫做 mask，B 叫做 body。每次加密都会采样随机的随机数(mask 和 error)。所以上面式子用的 $\in$。解密就典中典之减一减得到 $\Delta M+E$，然后再 rounding。
 
 模 $X^N+1$ 利用 $X^N\equiv -1$。
 
@@ -72,13 +72,8 @@ $k=1$ 且 $N$ 是 2 的幂就得到了RLWE。(~~为什么要是 2 的幂~~)
 
 ## GLev
 
-leveled 方案里用的很多。
+leveled 方案里用的很多。实际上就是用冗余的和精心设计过 $\Delta$ 的 GLWE 加密单个消息 $M$。虽然一直在用，但正式命名貌似非常的晚([CLOT21](https://eprint.iacr.org/2021/729.pdf))。$\Delta$ 底为 $\beta$，通常为 2 的幂和层数 $\ell$
 
-# #########
+$$\left(GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^{1}} M\right) \times \ldots \times G L W E_{\vec{S}, \sigma}\left(\frac{q}{\beta^{\ell}} M\right)\right)=G L e v_{\vec{S}, \sigma}^{\beta, \ell}(M) \subseteq \mathcal{R}_{q}^{\ell \cdot(k+1)}$$
 
-个人感觉咱可以这样利用一个高性能(~~逼格~~)的全同态方案，难度从易到难排序：
-
-1. 拿来主义。直接将这个方案用在相关领域。毕竟是全同态，可以运用在几乎每一种场景。
-2. extanded TFHE。在原方案或者其他方案的基础上类似方案的功能，实现一些原方案所不具有的功能。比如 [MK-TFHE](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=w_OlJw8AAAAJ&citation_for_view=w_OlJw8AAAAJ:Y0pCki6q_DkC)
-3. 全同态领域的创新。比如 TFHE 比起 FHEW 就提出了使用一种代数结构 TORUS 进行操作。
-4. 
+$\times$，笛卡儿积。
