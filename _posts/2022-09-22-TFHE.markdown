@@ -96,3 +96,54 @@ $$\left(GLev_{\vec{S}, \sigma}^{\beta, \ell}\left(-S_{0} M\right) \times \ldots 
 
 # Encodings and linear leveled operations
 
+加法数乘就对应元素分别计算，没什么好讲的。数乘的噪音增加跟常数多项式 $\Lambda$ 的系数成比例。
+
+## Encoding integers in the MSB
+
+TFHE 错误编码在 LSB，消息编码在 MSB。一些方案跟他一样，比如 [B](https://eprint.iacr.org/2012/078.pdf)/[FV](https://eprint.iacr.org/2012/144.pdf) 和 [HEAAN/CKKS](https://eprint.iacr.org/2016/421.pdf)。一些反过来，比如 [BGV](https://eprint.iacr.org/2011/277.pdf)。
+
+GLWE 能支持更多不同的编码方式。
+
+![](/img/TFHE/encd1.png)
+
+这种编码可以实现模 $p$ 的(leveled operation)分级(~~佛了，原来中文翻译是分级。R18是吧~~)操作(加法和数乘)。比如两个 GLWE 密文用相同的 $\Delta$ 编码在 MSB，加一加结果就是两个明文的模加法，$\Delta$ 不变。当然噪音也加一加，并且还有可能会进位。(~~进位是不是就表示 g 了~~)例子：$q=2^{32},p=2^7,\Delta=2^{25},m\in\mathbb{Z}\_p$。
+
+## Encoding integers in the MSB with padding bits
+
+编码通常会被我们想实现的全同态操作影响。padding 就是前面空一些给分级操作(加法和数乘)提供空间。例子：$q=2^{32},p=2^7,\Delta=2^{25},p'=2^5,m\in\mathbb{Z}\_p'$。也就是有 2 bit padding。
+
+![](/img/TFHE/encd2.png)
+
+这种编码可以实现精确的分级操作。加结果就直接是加。
+
+## Encoding of binaries in GB mode.
+
+一个带 padding 的例子是门自举(gate bootstrapping)里面的。门自举对加密 bits 的 LWE 密文计算二元门(binary gate)。实现可以看 [TFHE lib](https://tfhe.github.io/tfhe/) 和 [concrete](https://github.com/zama-ai/concrete/)。
+
+编码消息是 bits，$\Delta=q/4$，所以有 1 bit 的 padding。因为自举过程中间过程要实现精确的线性组合来得到最终结果。(~~估计就是那一长串的 CMux 门~~)
+
+## Encoding of reals
+
+固定区间内的实数，消息和错误彼此都难以分离...$m$ 占据了整个 $\mathbb{Z}\_q$(怎么用 $\mathbb{Z}\_q$ 表示实数的，计组里的表示法吗？)，LSB 被 $e$ 扰乱，近似(approximates)了信息。实践里，$m+e$ 和 $m\colon m\approx m+e$ 接近。但无法分辨出 $m$ 因为没有 $\Delta$ 可以区分开消息和错误(~~yysy，还是得看实数编码的方式8~~)。
+
+![](/img/TFHE/encd3.png)
+
+这种编码在计算近似达到特定精度的分级操作(approximate leveled operations)(加法和数乘)时很实用。
+
+解密第二阶段 rounding 变化，在 LSB 加一个新的随机错误。可以看[这篇文章](https://eprint.iacr.org/2020/1533.pdf)。
+
+这些编码只是一部分，还有很多。(~~感觉挺自由的~~)
+
+## Torus visualization
+
+一维环面 $\mathbb{R}/\mathbb{Z}$ 说白了一个光滑流形，一条线，一个圆。(~~官图给的二维甜甜圈有够欺诈，想了老半天~~)(~~不知道多维环面可不可行，感觉没必要，也就用到 rounding~~)(~~说不定 ring 的 rounding 能用？~~)。
+
+# Key switching and leveled multiplications
+
+## Homomorphic multiplication by a large constant
+
+![](/img/TFHE/g.png)
+
+系数太大的数乘 $e$ 太大可能直接 g，所以才需要分解(decomposition)。跟 GSW 密文乘法类似。把大的常多项式分解为小的基：
+
+$$\gamma=\gamma_{1} \frac{q}{\beta^{1}}+\gamma_{2} \frac{q}{\beta^{2}}+\ldots+\gamma_{\ell} \frac{q}{\beta^{\ell}}$$
