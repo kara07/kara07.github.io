@@ -72,8 +72,27 @@ $k=1$ 且 $N$ 是 2 的幂就得到了RLWE。(~~为什么要是 2 的幂~~)
 
 ## GLev
 
-leveled 方案里用的很多。实际上就是用冗余的和精心设计过 $\Delta$ 的 GLWE 加密单个消息 $M$。虽然一直在用，但正式命名貌似非常的晚([CLOT21](https://eprint.iacr.org/2021/729.pdf))。$\Delta$ 底为 $\beta$，通常为 2 的幂和层数 $\ell$
+leveled 方案里用的很多。实际上就是用冗余的和精心设计过 $\Delta$ 的 GLWE 加密单个消息 $M$。密文密钥都跟 GLWE 一样。虽然一直在用，但正式命名貌似非常的晚([CLOT21](https://eprint.iacr.org/2021/729.pdf))。$\Delta$ 底为 $\beta$，通常为 2 的幂和层数 $\ell$
 
 $$\left(GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^{1}} M\right) \times \ldots \times G L W E_{\vec{S}, \sigma}\left(\frac{q}{\beta^{\ell}} M\right)\right)=G L e v_{\vec{S}, \sigma}^{\beta, \ell}(M) \subseteq \mathcal{R}_{q}^{\ell \cdot(k+1)}$$
 
-$\times$，笛卡儿积。
+$\times$，笛卡儿积。$\beta,q$ 如果不是 2 的幂，编码的时候需要 rounding。解密就对对应 $\Delta$ 的 GLWE 解密 1 次就行。同样的也有 Lev 和 RLev。
+
+![](/img/TFHE/GLev.png)
+
+## GGSW
+
+说白了就是冗余~~复读~~。
+
+* GLWE 密文是 $\mathcal{R}\_q$ 元素组成的向量(1 维矩阵)。
+* GLev 密文是 GLWE 密文组成的向量。($\mathcal{R}\_q$ 元素组成的 2 维矩阵)
+* GGSW 密文是 GLev 密文组成的向量。($\mathcal{R}\_q$ 元素组成的 2 维矩阵，或 GLWE 密文组成的 2 维矩阵)
+
+$$\left(GLev_{\vec{S}, \sigma}^{\beta, \ell}\left(-S_{0} M\right) \times \ldots \times GLev_{\vec{S}, \sigma}^{\beta, \ell}\left(-S_{k-1} M\right) \times GLev_{\vec{S}, \sigma}^{\beta, \ell}(M)\right)=GGSW_{\vec{S}, \sigma}^{\beta, \ell}(M) \subseteq \mathcal{R}_{q}^{(k+1) \times \ell(k+1)}$$
+
+注意每个 GLev 密文中密钥的 $S\_i$ 项和 $M$ 的乘积。密钥 $\vec{S}$ 跟 GLWE 和 GLev 密文相同。解密时对最后一个 GLev 密文解密就够了(~~毕竟 $\Delta$ 最简单。i.e.，对里面任意一个 GLWE 密文解密~~)。GSW 跟 RGSW 与上文同样操作。
+
+![](/img/TFHE/GGSW.png)
+
+# Encodings and linear leveled operations
+
