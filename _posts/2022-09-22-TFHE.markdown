@@ -96,7 +96,7 @@ $$\left(GLev_{\vec{S}, \sigma}^{\beta, \ell}\left(-S_{0} M\right) \times \ldots 
 
 # Encodings and linear leveled operations
 
-加法数乘就对应元素分别计算，没什么好讲的。数乘的噪音增加跟常数多项式 $\Lambda$ 的系数成比例。
+加法数乘就对应元素分别计算，没什么好讲的。数乘的噪音增加跟常数多项式 $\Lambda$ 的系数成比例。数乘大数需要操作，下文会讲。
 
 ## Encoding integers in the MSB
 
@@ -124,7 +124,7 @@ GLWE 能支持更多不同的编码方式。
 
 ## Encoding of reals
 
-固定区间内的实数，消息和错误彼此都难以分离...$m$ 占据了整个 $\mathbb{Z}\_q$(怎么用 $\mathbb{Z}\_q$ 表示实数的，计组里的表示法吗？)，LSB 被 $e$ 扰乱，近似(approximates)了信息。实践里，$m+e$ 和 $m\colon m\approx m+e$ 接近。但无法分辨出 $m$ 因为没有 $\Delta$ 可以区分开消息和错误(~~yysy，还是得看实数编码的方式8~~)。
+固定区间内的实数，消息和错误彼此都难以分离...$m$ 占据了整个 $\mathbb{Z}\_q$(~~怎么用 $\mathbb{Z}\_q$ 表示实数的，计组里的表示法吗？~~)，LSB 被 $e$ 扰乱，近似(approximates)了信息。实践里，$m+e$ 和 $m\colon m\approx m+e$ 接近。但无法分辨出 $m$ 因为没有 $\Delta$ 可以区分开消息和错误(~~yysy，还是得看实数编码的方式8~~)。
 
 ![](/img/TFHE/encd3.png)
 
@@ -138,12 +138,70 @@ GLWE 能支持更多不同的编码方式。
 
 一维环面 $\mathbb{R}/\mathbb{Z}$ 说白了一个光滑流形，一条线，一个圆。(~~官图给的二维甜甜圈有够欺诈，想了老半天~~)(~~不知道多维环面可不可行，感觉没必要，也就用到 rounding~~)(~~说不定 ring 的 rounding 能用？~~)。
 
+![](/img/TFHE/torus.png)
+
+注意一下负数等价类在 torus 上的表现。
+
 # Key switching and leveled multiplications
 
 ## Homomorphic multiplication by a large constant
 
 ![](/img/TFHE/g.png)
 
-系数太大的数乘 $e$ 太大可能直接 g，所以才需要分解(decomposition)。跟 GSW 密文乘法类似。把大的常多项式分解为小的基：
+系数太大的数乘 $e$ 太大可能直接 g，所以才需要分解(decomposition)。跟 GSW 密文乘法类似。把大的常多项式分解为小的基 $\beta$：
 
 $$\gamma=\gamma_{1} \frac{q}{\beta^{1}}+\gamma_{2} \frac{q}{\beta^{2}}+\ldots+\gamma_{\ell} \frac{q}{\beta^{\ell}}$$
+
+分解出来的元素 $\gamma_{1},\dots,\gamma_{\ell}\in\mathbb{Z}\_\beta$ ，就小了。写成 $\mathsf{Decomp}^{\beta,\ell}(\gamma)=(\gamma_{1},\dots,\gamma_{\ell})$。$q,\beta$ 一般取成 2 的幂，不然需要 rounding。
+
+![](/img/TFHE/decp.png)
+
+分解出来的元素都很小，现在和密文相乘对噪音影响很小。但为了得到与 $\gamma\cdot M$ 相同的结果，我们需要能对逆向分解过程，重组(recompose) $\gamma$。
+
+因此部将分解出来的元素与 $M$ 的 GLWE 密文相乘，而是与 $M$ 的 GLev 密文相乘。根据定义，加密了 $M$ 乘上 $\beta$ 的不同指数作为系数：
+
+$$
+\bar{C}=\left(C_{1}, \dots, C_{\ell}\right) \in\left(GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^{1}} M\right) \times \dots \times GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^{\ell}} M\right)\right)=GLev_{\vec{S},\sigma}^{\beta,\ell}(M) \subseteq \mathcal{R}_{q}^{\ell \cdot(k+1)}
+$$
+
+实践中，用一个类似内积的操作，所以将每一个分解的元素和 GLev 密文的对应元素对应相乘然后把他们加在一起。(~~所以论文里这一大堆式子是这么来的~~)
+
+$$\left\langle \mathsf{Decomp}^{\beta,\ell}(\gamma), \overline{C} \right\rangle = \sum_{j=1}^\ell \gamma_j \cdot C_j \in GLWE_{\vec{S}, \sigma'}\left(\gamma \cdot M\right) \subseteq \mathcal{R}_q^{k+1}$$
+
+$\sigma'$ 是噪音新方差。
+
+![](/img/TFHE/consMult.png)
+
+输出的 GLWE 密文不再有 $\Delta$(~~因为系数加一加加乱了？~~)，新的消息可能占据整个空间 $\mathbb{Z}\_q$。实践里并不直接用这个操作，而是作为更复杂操作的一个构成单元。比如密钥交换和密文之间的同态乘。
+
+## Approximate decomposition
+
+上面的是全精度分解($\beta^\ell=q$)，有时没必要。可以近似分解到指定精度($\beta^\ell<q$)。分解之前对 LSB 进行 rounding。
+
+![](/img/TFHE/apprCsmt.png)
+
+分解参数选的恰当就不会影响到计算正确性。LSB 肯定是噪音。一些同态操作里非常方便。
+
+## Multiplication by a large polynomial
+
+同样的方法乘上一个大的多项式。分解多项式再与 GLev 密文内积。假设多项式是 $\Lambda = \sum\_{i=0}^{N-1} \Lambda\_i \cdot X^i$，分解就是
+
+$$\mathsf{Decomp}^{\beta,\ell}(\Lambda) = (\Lambda^{(1)}, \ldots, \Lambda^{(\ell)})$$
+
+$\Lambda^{(j)} = \sum\_{i=0}^{N-1} \Lambda\_{i,j} \cdot X^i$，其中 $\Lambda_{i,j} \in \mathbb{Z}_\beta$ 使得：
+
+$$\Lambda = \Lambda^{(1)} \frac{q}{\beta^1} + \ldots + \Lambda^{(\ell)} \frac{q}{\beta^\ell}.$$
+
+如果分解是近似的，等式也是近似的。这个操作是密钥交换和同态乘法的主要构成单元。
+
+## Toy example
+
+老参数：$q=64,p=4,\Delta = q/p = 16,N=4,k = 2$，随机多项式：
+
+$$\Lambda = \Lambda_0 + \Lambda_1 X + \Lambda_2 X^2 + \Lambda_3 X^3 = 28 - 5 X - 30 X^2 + 17 X^3$$
+
+选定 $\beta=4,\ell=2,\beta^\ell=16$ ，表示对 4 个 MSB 进行分解。分解之前先对所有参数 rounding。先写成二进制表示：(~~补码。成计组复习了(悲)~~)
+
+$\Lambda\_0 = 28 \longmapsto (0, 1, 1, 1 {\color{red} |} 0, 0)$ after rounding: $\Lambda'\_0 \longmapsto (0, 1, 1, 1);$
+
+$\Lambda\_1 = -5 \longmapsto (1, 1, 1, 0 {\color{red} |} 1, 1)$ after rounding: $\Lambda'\_1 \longmapsto (1, 1, 1, 1);$
