@@ -20,9 +20,9 @@ tags:
 
 # Algbra
 
-TFHE 提供了一个更高效的 FHE 的砖块：一个自举的 NAND 门(~~主要是自举比较高效~~)。其实就是LWE密文？NAND 门具有 Functional Completeness，这意味着可以只用 NAND 门构造任何电路。同时在每一次执行 NAND 时刷新噪音。并且可以同态执行任何(?)函数。
+TFHE 提供了一个更高效的 FHE 的砖块：一个自举的 NAND 门(~~主要是自举比较高效~~)。其实就是LWE密文？NAND 门具有 Functional Completeness，这意味着可以只用 NAND 门构造任何电路。同时在每一次执行 NAND 时刷新噪音。并且可以同态执行任何函数。
 
-FHE 代表全同态加密，T则代表 Torus。一种代数结构。我们用到是实数 Torus。~~有没有可能能用环~~
+FHE 代表全同态加密，T则代表 Torus。一个环面。我们用到是实数 Torus。~~有没有可能能用环~~
 
 $$\mathbb{T}=\mathbb{R}/\mathbb{Z}=\mathbb{R}\bmod 1$$
 
@@ -174,7 +174,7 @@ $\sigma'$ 是噪音新方差。
 
 输出的 GLWE 密文不再有 $\Delta$(~~因为系数加一加加乱了？~~)，新的消息可能占据整个空间 $\mathbb{Z}\_q$。实践里并不直接用这个操作，而是作为更复杂操作的一个构成单元。比如密钥交换和密文之间的同态乘。
 
-## Approximate decomposition
+### Approximate decomposition
 
 上面的是全精度分解($\beta^\ell=q$)，有时没必要。可以近似分解到指定精度($\beta^\ell<q$)。分解之前对 LSB 进行 rounding。
 
@@ -182,7 +182,7 @@ $\sigma'$ 是噪音新方差。
 
 分解参数选的恰当就不会影响到计算正确性。LSB 肯定是噪音。一些同态操作里非常方便。
 
-## Multiplication by a large polynomial
+### Multiplication by a large polynomial
 
 同样的方法乘上一个大的多项式。分解多项式再与 GLev 密文内积。假设多项式是 $\Lambda = \sum\_{i=0}^{N-1} \Lambda\_i \cdot X^i$，分解就是
 
@@ -194,7 +194,7 @@ $$\Lambda = \Lambda^{(1)} \frac{q}{\beta^1} + \ldots + \Lambda^{(\ell)} \frac{q}
 
 如果分解是近似的，等式也是近似的。这个操作是密钥交换和同态乘法的主要构成单元。
 
-## Toy example
+### Toy example
 
 老参数：$q=64,p=4,\Delta = q/p = 16,N=4,k = 2$，随机多项式：
 
@@ -202,6 +202,19 @@ $$\Lambda = \Lambda_0 + \Lambda_1 X + \Lambda_2 X^2 + \Lambda_3 X^3 = 28 - 5 X -
 
 选定 $\beta=4,\ell=2,\beta^\ell=16$ ，表示对 4 个 MSB 进行分解。分解之前先对所有参数 rounding。先写成二进制表示：(~~补码。成计组复习了(悲)~~)
 
-$\Lambda\_0 = 28 \longmapsto (0, 1, 1, 1 {\color{red} |} 0, 0)$ after rounding: $\Lambda'\_0 \longmapsto (0, 1, 1, 1);$
+$\Lambda\_0 = 28 \longmapsto (0, 1, 1, 1 {\color{red} \mid} 0, 0)$ after rounding: $\Lambda'\_0 \longmapsto (0, 1, 1, 1);$
 
-$\Lambda\_1 = -5 \longmapsto (1, 1, 1, 0 {\color{red} |} 1, 1)$ after rounding: $\Lambda'\_1 \longmapsto (1, 1, 1, 1);$
+$\Lambda\_1 = -5 \longmapsto (1, 1, 1, 0 {\color{red} \mid} 1, 1)$ after rounding: $\Lambda'\_1 \longmapsto (1, 1, 1, 1);$
+
+$\beta=4$ 两位两位拆出来，分别映射到 $\qty{-2,-1,0,1}$ (~~带正负~~)取值，最后拆出来
+
+$$\begin{cases}
+\Lambda^{(1)} = -2 -2 X^2 + X^3 \\
+\Lambda^{(2)} = -1 - X + X^2 \\
+\end{cases}$$
+
+$\Lambda\_2$ 由靠近低位的组成。最终可以逆向生成 $\Lambda$：
+
+$$\Lambda^{(1)} \cdot \frac{q}{\beta^1} + \Lambda^{(2)} \cdot \frac{q}{\beta^2} = (-2 -2 X^2 + X^3) \cdot 16 + (-1 - X + X^2) \cdot 4 = 28 - 4 X - 28 X^2 + 16 X^3 \in \mathcal{R}_q$$
+
+## Key switching
