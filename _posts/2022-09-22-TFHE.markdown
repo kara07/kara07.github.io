@@ -86,7 +86,7 @@ $\times$，笛卡儿积。$\beta,q$ 如果不是 2 的幂，编码的时候需�
 
 * GLWE 密文是 $\mathcal{R}\_q$ 元素组成的向量(1 维矩阵)。
 * GLev 密文是 GLWE 密文组成的向量。($\mathcal{R}\_q$ 元素组成的 2 维矩阵)
-* GGSW 密文是 GLev 密文组成的向量。($\mathcal{R}\_q$ 元素组成的 2 维矩阵，或 GLWE 密文组成的 2 维矩阵)
+* GGSW 密文是 GLev 密文组成的向量。($\mathcal{R}\_q$ 元素组成的 3 维矩阵，或 GLWE 密文组成的 2 维矩阵)
 
 $$\left(GLev_{\vec{S}, \sigma}^{\beta, \ell}\left(-S_{0} M\right) \times \ldots \times GLev_{\vec{S}, \sigma}^{\beta, \ell}\left(-S_{k-1} M\right) \times GLev_{\vec{S}, \sigma}^{\beta, \ell}(M)\right)=GGSW_{\vec{S}, \sigma}^{\beta, \ell}(M) \subseteq \mathcal{R}_{q}^{(k+1) \times \ell(k+1)}$$
 
@@ -218,3 +218,40 @@ $\Lambda\_2$ 由靠近低位的组成。最终可以逆向生成 $\Lambda$：
 $$\Lambda^{(1)} \cdot \frac{q}{\beta^1} + \Lambda^{(2)} \cdot \frac{q}{\beta^2} = (-2 -2 X^2 + X^3) \cdot 16 + (-1 - X + X^2) \cdot 4 = 28 - 4 X - 28 X^2 + 16 X^3 \in \mathcal{R}_q$$
 
 ## Key switching
+
+密文实际上就是一个大的常向量、多项式，多项式向量，由模 $q$ 整数组成，(~~伪~~)均匀随机。
+
+密钥更换的常规操作就是用原来的密钥解密，再用新的密钥加密。但需要全同态的操作。并非直接将密钥提供，而是提供原密钥 $\vec{S}$ 在新的密钥 $\vec{S}'$ 下的密文。
+
+这里就要用到大的常数和密文之间的乘法，密文就是 $S\_i$ 的GLev 密文，大常数是 $A\_i$。
+
+所以密钥更换密钥就是由 $\vec{S}$ 的每个元素 $S\_i$ 在新的密钥 $\vec{S}'$ 下的 GLev 密文组成：
+
+$$\mathsf{KSK}_i \in \left( GLWE_{\vec{S}', \sigma_{\mathsf{KSK}}}\left(\frac{q}{\beta^1} S_i\right) \times \ldots \times GLWE_{\vec{S}', \sigma_{\mathsf{KSK}}}\left(\frac{q}{\beta^\ell} S_i\right) \right) = GLev^{\beta, \ell}_{\vec{S}', \sigma_{\mathsf{KSK}}}(S_i) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}.$$
+
+实践中，密钥更换就这样：
+
+$$C' = \underbrace{\overbrace{(0, \ldots, 0, B)}^{\text{Trivial GLWE of } B} - \sum_{i=0}^{k-1} \overbrace{ \langle \mathsf{Decomp}^{\beta,\ell}(A_i), \mathsf{KSK}_i \rangle}^{\text{GLWE encryption of } A_i S_i} }_{\text{GLWE encryption of } B - \sum_{i=0}^{k-1} A_i S_i = \Delta M + E}\in GLWE_{\vec{S}', \sigma'}(\Delta M) \subseteq \mathcal{R}_q^{k+1}.$$
+
+密钥从 $\vec{S}$ 更换到 $\vec{S}'$ 但是密文保持不变。
+
+和 GLWE 密文的全同态计算(~~bootstrapping~~)第一步相似(~~都是解密~~)，只是不进行第二步(~~rounding~~)。这样并不会降低噪音，相反，会增大。
+
+### Various types of key switching
+
+* one LWE to one LWE,
+* one RLWE to one RLWE,
+* one LWE to one RLWE, putting the message encrypted in the LWE into one of the coefficients of the RLWE ciphertext,
+* many LWE to one RLWE, packing the messages encrypted in the many LWE inputs into the RLWE ciphertext.
+
+### Other uses of the key switching
+
+可以调参数。$\vec{S}'$ 的 $N,k$ 可以和输入的不一样。用的很多，比如 bootstrapping。
+
+## External product
+
+大常数乘上密文需要先将大常数分解，然后在和 GLev 密文进行重组得到数乘结果，GLWE 密文由一连串的大常数组成，结合一下：
+
+跟密钥更换类似，对于两个密文，拎一个出来当成要被分解的 GLWE 密文，另外一个是一串 GLev 密文。和密钥更换的不同点是，密钥交换只把 mask 拎出来当成系数，这次是 mask 和 body。
+
+GGSW 正好满足要求(~~一连串的 GLev 密文~~)。所以输入一个 GLWE，一个 GGSW，输出一个 GLWE 密文加密了两个消息的乘积。
