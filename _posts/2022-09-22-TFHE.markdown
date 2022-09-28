@@ -255,3 +255,26 @@ $$C' = \underbrace{\overbrace{(0, \ldots, 0, B)}^{\text{Trivial GLWE of } B} - \
 跟密钥更换类似，对于两个密文，拎一个出来当成要被分解的 GLWE 密文，另外一个是一串 GLev 密文。和密钥更换的不同点是，密钥交换只把 mask 拎出来当成系数，这次是 mask 和 body。
 
 GGSW 正好满足要求(~~一连串的 GLev 密文~~)。所以输入一个 GLWE，一个 GGSW，输出一个 GLWE 密文加密了两个消息的乘积。
+
+GLWE 密文加密了消息 $M\_1\in\mathcal{R}\_q$，密钥是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
+
+$$C = (A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M_1) \subseteq \mathcal{R}_q^{k+1}$$
+
+GGSW 密文加密了消息 $M\_2\in\mathcal{R}\_q$，密钥是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
+
+$$\overline{\overline{C}} = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}$$
+
+其中 $\overline{C}\_i \in GLev^{\beta, \ell}\_{\vec{S}, \sigma}(-S\_i M\_2)$，$i \in [0..k-1]$ 且 $\overline{C}\_k \in GLev^{\beta, \ell}\_{\vec{S}, \sigma}(M\_2)$
+
+则外积运算 $\boxdot$ 像这样：
+
+$$\begin{aligned}
+C' &= \overline{\overline{C}} \boxdot C 
+= \langle \mathsf{Decomp}^{\beta,\ell}(C), \overline{\overline{C}} \rangle \\
+&= \underbrace{ 
+\overbrace{\langle \mathsf{Decomp}^{\beta,\ell}(B), \overline{C}_k \rangle}^{\text{GLWE encrypt. of } B M_2} + \sum_{i=0}^{k-1} \overbrace{\langle \mathsf{Decomp}^{\beta,\ell}(A_i), \overline{C}_i \rangle}^{\text{GLWE encrypt. of } - A_i S_i M_2}
+}_{\text{GLWE encrypt. of } B M_2 - \sum_{i=0}^{k-1} A_i S_i M_2 \approx \Delta M_1 M_2}
+\in GLWE_{\vec{S}, \sigma^{\prime\prime}}(\Delta M_1 M_2) \subseteq \mathcal{R}_q^{k+1}
+\end{aligned}$$
+
+输出的 GLWE 噪音比输入的 GLWE 大，记作 $\sigma^{\prime\prime}$。
