@@ -354,4 +354,8 @@ TFHE 主要用外积，尽量避免使用内积。
 
 ![](/img/TFHE/CMux1.png)
 
+输入 $b$ GGSW 密文，$d\_0,d\_1$ GLWE 密文，外积，同态加减，输出 $d\_b$ GLWE 密文。
+
 ![](/img/TFHE/CMux2.png)
+
+# Programmable Bootstrapping
