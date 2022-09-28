@@ -30,7 +30,7 @@ $$\mathbb{T}=\mathbb{R}/\mathbb{Z}=\mathbb{R}\bmod 1$$
 
 $$\exists t_1,t_2\in \bar{t_1},\bar{t_2}\colon t_1 \cdot t_2\bmod 1\neq(t_1\bmod 1)\cdot(t_2\bmod 1)\bmod 1$$
 
-有了 $\mathbb{Z}$-模的属性之后，可以将其拓展到多项式。$\mathbb{T}\_N\bqty{X}$ 表示系数在 $\mathbb{T}$ 里的多项式，模上分圆(~~主要是整系数不可约~~)多项式 $x^N+1$。然后 $(\mathbb{T}\_N\bqty{X},+,\times)$ 是 $\mathfrak{R}=\mathbb{Z}\bqty{X}/(X^N+1)$ 上的模，$\mathbb{T}\_N\bqty{X}\bmod(X^N+1)$同样可以在 Torus 多项式上进行加法和整数多项式的数乘，但两个 Torus 多项式之间的乘法没有定义。
+有了 $\mathbb{Z}$-模的属性之后，可以将其拓展到多项式。$\mathbb{T}\_N\bqty{X}$ 表示系数在 $\mathbb{T}$ 里的多项式，模上分圆(~~主要是整系数不可约~~)多项式 $x^N+1$。然后 $(\mathbb{T}\_N\bqty{X},+,\times)$ 是 $\mathfrak{R}=\mathbb{Z}\bqty{X}/(X^N+1)$ 上的模，$\mathbb{T}\_N\bqty{X}\bmod(X^N+1)$ 同样可以在 Torus 多项式上进行加法和整数多项式的数乘，但两个 Torus 多项式之间的乘法没有定义。
 
 这里用 $\mathcal{R}$ 表示多项式环 $\mathbb{Z}\bqty{X}/(X^N+1)$，$\mathcal{R}\_q$同理。高斯分布 $\chi\_{\mu,\sigma}$。如果 $\mu=0$ 记作 $\chi\_\sigma$。
 
@@ -256,17 +256,17 @@ $$C' = \underbrace{\overbrace{(0, \ldots, 0, B)}^{\text{Trivial GLWE of } B} - \
 
 GGSW 正好满足要求(~~一连串的 GLev 密文~~)。所以输入一个 GLWE，一个 GGSW，输出一个 GLWE 密文加密了两个消息的乘积。
 
-GLWE 密文加密了消息 $M\_1\in\mathcal{R}\_q$，密钥是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
+* 一个 GLWE 密文加密了消息 $M\_1\in\mathcal{R}\_q$，密钥是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
 
-$$C = (A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M_1) \subseteq \mathcal{R}_q^{k+1}$$
+    $$C = (A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M_1) \subseteq \mathcal{R}_q^{k+1}$$
 
-GGSW 密文加密了消息 $M\_2\in\mathcal{R}\_q$，密钥一样是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
+* 一个 GGSW 密文加密了消息 $M\_2\in\mathcal{R}\_q$，密钥同样是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
 
-$$\overline{\overline{C}} = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}$$
+    $$\overline{\overline{C}} = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}$$
 
-其中 $\overline{C}\_i \in GLev^{\beta, \ell}\_{\vec{S}, \sigma}(-S\_i M\_2)$，$i \in [0..k-1]$ 且 $\overline{C}\_k \in GLev^{\beta, \ell}\_{\vec{S}, \sigma}(M\_2)$
+    其中 $\overline{C}\_i \in GLev^{\beta, \ell}\_{\vec{S}, \sigma}(-S\_i M\_2)$，$i \in [0..k-1]$ 且 $\overline{C}\_k \in GLev^{\beta, \ell}\_{\vec{S}, \sigma}(M\_2)$
 
-则外积运算 $\boxdot$ 像这样：
+则外积运算 $\boxdot$ 如下：
 
 $$\begin{aligned}
 C' &= \overline{\overline{C}} \boxdot C 
@@ -288,3 +288,70 @@ C' &= \overline{\overline{C}} \boxdot C
 用了不同的密钥加密 $\vec{S}'$ 的 GGSW 密文里面是相同的密钥 $\vec{S}$ 的 GLWE 密文的外积如 $GLev^{\beta, \ell}\_{\vec{S}', \sigma\_{\mathsf{KSK}}}(S\_i)$ 叫做功能性密钥更换(functional key switching)。实际上它运行了一个函数(乘上加密的常数)同时更换了密钥。
 
 ## Internal product
+
+外积叫外积因为需要一个外部的 GGSW 密文运作(记法跟模运算的数乘一致，$\mathbb{T}\_N\bqty{X}\bmod(X^N+1)$ 和 $\mathcal{R}\_q$ 的运算)。没有 GLWE 之间的内积，或者说没有直接的方法。[B](https://eprint.iacr.org/2012/078.pdf)/[FV](https://eprint.iacr.org/2012/144.pdf) GLWE 密文之间的内积是通过类似密钥更换的方式实现的。
+
+GGSW 有内积。GGSW 是一串 GLev 密文，GLev 密文是一串 GLWE 密文。三段论 GGSW 密文是一串 GLWE 密文。外积在 GLWE 跟 GGSW 之间定义，我们可以定义内积为一连串的外积，拎一个 GGSW 密文出来把它看成一系列的 GLWE 密文，跟另一个 GGSW 进行外积。所有输出的 GLWE 密文组成了 GGSW 密文。所以输入：
+
+* 一个 GGSW 密文加密了消息 $M\_1\in\mathcal{R}\_q$，密钥是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
+
+    $$\overline{\overline{C}}_1 = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_1) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}$$
+
+    其中，对于 $i \in [0..k-1]$：
+    
+    $$\overline{C}_i = (C_{i,1}, \ldots, C_{i,\ell}) \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(-S_i M_1) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}$$
+
+    包含 $C_{i,j} \in GLWE\_{\vec{S}, \sigma}\left(\frac{q}{\beta^j} (-S\_i M\_1) \right)$，对于 $j \in [1..\ell]$，且：
+
+    $$\overline{C}_k \in (C_{k,1}, \ldots, C_{k,\ell}) \in GLev^{\beta, \ell}_{\vec{S}, \sigma}(M_1) \subseteq \mathcal{R}_q^{\ell \cdot (k+1)}$$
+
+    包含 $C_{k,j} \in GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^j} M_1 \right)$，对于 $j \in [1..\ell]$。
+
+* 一个 GGSW 密文加密了消息 $M\_2\in\mathcal{R}\_q$，密钥同样是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
+
+$$\overline{\overline{C}}_2 \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}$$
+
+则内积运算 $\boxtimes$ 如下：
+
+$$\overline{\overline{C}}' = \overline{\overline{C}}_2 \boxtimes \overline{\overline{C}}_1 
+= (\overline{\overline{C}}_2 \boxdot C_{0,1}, 
+\ldots, 
+\overline{\overline{C}}_2 \boxdot C_{0,\ell}, 
+\ldots, 
+\overline{\overline{C}}_2 \boxdot C_{k,1}, 
+\ldots, 
+\overline{\overline{C}}_2 \boxdot C_{k,\ell})$$
+
+可以发现：
+
+$$\left\lbrace
+\begin{aligned}
+\overline{\overline{C}}_2 \boxdot C_{i,j} &\in GLWE_{\vec{S}, \sigma^{\prime\prime}}\left( \frac{q}{\beta^j} (-S_i M_1 M_2) \right) &\text{for } i \in [0..k-1], j \in [1..\ell] \\
+\overline{\overline{C}}_2 \boxdot C_{k,j} &\in GLWE_{\vec{S}, \sigma^{\prime\prime}}\left( \frac{q}{\beta^j} (M_1 M_2) \right) &\text{for } j \in [1..\ell]
+\end{aligned}
+\right.$$
+
+综上所述：
+
+$$\overline{\overline{C}}' = \overline{\overline{C}}_2 \boxtimes \overline{\overline{C}}_1 
+\in GGSW^{\beta, \ell}_{\vec{S}, \sigma^{\prime\prime}}(M_1 M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}.$$
+
+噪音会变大，记作 $\sigma^{\prime\prime}$(跟外积一样)。
+
+![](/img/TFHE/innrPrdt.png)
+
+### Internal Product vs. External Product
+
+外积算得快但不是可组合的(composable)。内积的输出可以作为任一个输入，但外积的输出(GLWE 密文)只能用作一个输入，还得在拎一个 GGSW 过来。
+
+TFHE 提出了一种同态构造 GGSW 密文的方法，叫电路自举(circuit bootstrapping)，可以看[这个](https://eprint.iacr.org/2018/421.pdf)。
+
+TFHE 主要用外积，尽量避免使用内积。
+
+## CMux
+
+没啥好说的，直接两张图：
+
+![](/img/TFHE/CMux1.png)
+
+![](/img/TFHE/CMux2.png)
