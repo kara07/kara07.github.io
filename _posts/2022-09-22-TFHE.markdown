@@ -156,9 +156,9 @@ $$\gamma=\gamma_{1} \frac{q}{\beta^{1}}+\gamma_{2} \frac{q}{\beta^{2}}+\ldots+\g
 
 ![](/img/TFHE/decp.png)
 
-分解出来的元素都很小，现在和密文相乘对噪音影响很小。但为了得到与 $\gamma\cdot M$ 相同的结果，我们需要能对逆向分解过程，重组(recompose) $\gamma$。
+分解出来的元素都很小，现在和密文相乘对噪音影响很小。但为了得到与 $\gamma\cdot M$ 相同的结果，我们需要能逆向分解过程，重组(recompose) $\gamma$。
 
-因此部将分解出来的元素与 $M$ 的 GLWE 密文相乘，而是与 $M$ 的 GLev 密文相乘。根据定义，加密了 $M$ 乘上 $\beta$ 的不同指数作为系数：
+因此不将分解出来的元素与 $M$ 的 GLWE 密文相乘，而是与 $M$ 的 GLev 密文相乘。根据定义，加密了 $M$ 乘上 $\beta$ 的不同系数：
 
 $$
 \bar{C}=\left(C_{1}, \dots, C_{\ell}\right) \in\left(GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^{1}} M\right) \times \dots \times GLWE_{\vec{S}, \sigma}\left(\frac{q}{\beta^{\ell}} M\right)\right)=GLev_{\vec{S},\sigma}^{\beta,\ell}(M) \subseteq \mathcal{R}_{q}^{\ell \cdot(k+1)}
@@ -250,9 +250,9 @@ $$C' = \underbrace{\overbrace{(0, \ldots, 0, B)}^{\text{Trivial GLWE of } B} - \
 
 ## External product
 
-大常数乘上密文需要先将大常数分解，然后在和 GLev 密文进行重组得到数乘结果，GLWE 密文由一连串的大常数组成，结合一下：
+大常数乘上密文需要先将大常数分解，然后再和 GLev 密文进行重组得到数乘结果，GLWE 密文由一连串的大常数组成，结合一下：
 
-跟密钥更换类似，对于两个密文，拎一个出来当成要被分解的 GLWE 密文，另外一个是一串 GLev 密文。和密钥更换的不同点是，密钥交换只把 mask 拎出来当成系数，这次是 mask 和 body。
+跟密钥更换类似，对于两个密文，拎一个出来当成要被分解的 GLWE 密文，另外一个是一串 GLev 密文。和密钥更换的不同点是，密钥交换只把 mask 拎出来，这次是 mask 和 body 都要。
 
 GGSW 正好满足要求(~~一连串的 GLev 密文~~)。所以输入一个 GLWE，一个 GGSW，输出一个 GLWE 密文加密了两个消息的乘积。
 
@@ -260,7 +260,7 @@ GLWE 密文加密了消息 $M\_1\in\mathcal{R}\_q$，密钥是 $\vec{S} = (S\_0,
 
 $$C = (A_0, \ldots, A_{k-1}, B) \in GLWE_{\vec{S}, \sigma}(\Delta M_1) \subseteq \mathcal{R}_q^{k+1}$$
 
-GGSW 密文加密了消息 $M\_2\in\mathcal{R}\_q$，密钥是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
+GGSW 密文加密了消息 $M\_2\in\mathcal{R}\_q$，密钥一样是 $\vec{S} = (S\_0, \ldots, S\_{k-1}) \in \mathcal{R}^k$：
 
 $$\overline{\overline{C}} = (\overline{C}_0, \ldots, \overline{C}_{k-1}, \overline{C}_k) \in GGSW^{\beta, \ell}_{\vec{S}, \sigma}(M_2) \subseteq \mathcal{R}_q^{(k+1) \times \ell (k+1)}$$
 
@@ -278,3 +278,13 @@ C' &= \overline{\overline{C}} \boxdot C
 \end{aligned}$$
 
 输出的 GLWE 噪音比输入的 GLWE 大，记作 $\sigma^{\prime\prime}$。
+
+### External Product vs. Key Switching
+
+外积就像是用了额外元素的密钥交换密钥(算 $BM\_2$ GLWE 密文時的 $\overline{C}_k$ 的 GLev 密文)的密钥交换。
+
+外积就像是不交换密钥的密钥交换。在 GGSW 密文里用来加密的密钥和 GLev 密文里的是同一个密钥。对比 $GLev^{\beta, \ell}\_{\vec{S}', \sigma\_{\mathsf{KSK}}}(S\_i)$ 和 $\overline{C}\_i \in GLev^{\beta, \ell}\_{\vec{S}, \sigma}(-S\_i M\_2)$
+
+用了不同的密钥加密 $\vec{S}'$ 的 GGSW 密文里面是相同的密钥 $\vec{S}$ 的 GLWE 密文的外积如 $GLev^{\beta, \ell}\_{\vec{S}', \sigma\_{\mathsf{KSK}}}(S\_i)$ 叫做功能性密钥更换(functional key switching)。实际上它运行了一个函数(乘上加密的常数)同时更换了密钥。
+
+## Internal product
