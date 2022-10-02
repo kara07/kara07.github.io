@@ -357,3 +357,149 @@ TFHE 主要用外积，尽量避免使用内积。
 输入 $b$ GGSW 密文，$d\_0,d\_1$ GLWE 密文，外积，同态加减，输出 $d\_b$ GLWE 密文。
 
 ![](/img/TFHE/CMux2.png)
+
+## Modulus Switching
+
+换模数。TFHE 里面一般用在 LWE 密文，也可以拓展到 GLWE 密文。
+
+比如正整数 $\omega$，将 LWE 密文的所有部件的模数从 $q$ 更换到 $\omega$：
+
+$$\tilde{a}_i = \left\lfloor \frac{\omega \cdot a_i}{q} \right\rceil \in \mathbb{Z}_\omega.$$
+
+所以结果是一个新密文：
+
+$$\tilde{c} = (\tilde{a}_0, \ldots, \tilde{a}_{n-1}, \tilde{a}_n = \tilde{b}) \in LWE_{\vec{s}, \sigma}(\tilde{\Delta} m) \subseteq \mathbb{Z}_\omega^{n+1}.$$
+
+一般换到更小的 $\omega$，且都是 2 的幂，$p < \omega < q$，所以 $\Delta$ 相应变为 $\tilde{\Delta} = \frac{\omega \cdot \Delta}{q} = \omega/p$。如果不是 2 的幂需要 rounding。
+
+操作形象描述为保留原密文的 $\log_2(\omega)$ MSB，也就是消息编码的地方，这么做噪音会变大很多，i.e.，离消息编码的位置更近(~~$\Delta$ 变小了~~)。小心使用。
+
+![](/img/TFHE/mdlsSwch.png)
+
+## Sample Extraction
+
+将 GLWE 多项式密文的一个系数(对应明文多项式的一个系数)拎出来作为一个 LWE 密文。
+
+![](/img/TFHE/smplExtc.png)
+
+不增加噪音，只是简单的复制 GLWE 密文的一些系数输出 LWE 密文。
+
+对于 GLWE 密文加密了 $M = \sum\_{j=0}^{N-1} m\_j X^j \in \mathcal{R}\_p$，密钥是 $\vec{S} = (S\_0 = \sum_{j=0}^{N-1} s\_{0,j} X^j, \ldots, S\_{k-1} = \sum_{j=0}^{N-1} s\_{k-1,j} X^j) \in \mathcal{R}^k$，是一个 $k+1$ 元组：
+
+$$C = \left(A_0 = \sum_{j=0}^{N-1} a_{0,j} X^j, \ldots, A_{k-1} = \sum_{j=0}^{N-1} a_{k-1,j} X^j, B = \sum_{j=0}^{N-1} b_j X^j \right) \in GLWE_{\vec{S}, \sigma}(\Delta M) \subseteq \mathcal{R}_q^{k+1}$$
+
+如果想要提取 消息 $M$ 的第 $h$ 个系数，$0 \leq h < N$，LWE 密文 $n = k N$，且密钥为提取的密钥 $\vec{s}$，为 GLWE 密钥的系数复制。
+
+$$\vec{s} = (s_{0,0}, \ldots, s_{0,N-1}, \ldots, s_{k-1,0}, \ldots, s_{k-1,N-1}) \in \mathbb{Z}^{kN}$$
+
+之后通过简单复制一些 GLWE 密文的系数构建 LWE 密文 $c = (a\_0, \ldots, a\_{n-1}, b) \in \mathbb{Z}^{n+1}\_q$：
+
+$$\begin{cases}
+a_{N\cdot i + j} \leftarrow a_{i,h-j} &\text{ for } 0 \leq i < k, 0 \leq j \leq h \\
+a_{N\cdot i + j} \leftarrow - a_{i,h-j+N} &\text{ for } 0 \leq i < k, h+1 \leq j < N \\
+b \leftarrow b_h & \\
+\end{cases}$$
+
+Blind Rotation
+
+把「禁則事項」多项式第「禁則事項」项多项式系数转到常数项。
+
+因为位置 $0 \leq \pi < N$ 是一个整数，Cmux 选择端输入是一个 bit，首先将其二进制表示：
+
+$$\pi = \pi_0 + \pi_1 \cdot 2 + \pi_2 \cdot 2^2 + \ldots + \pi_\delta \cdot 2^\delta$$
+
+其中 $\delta = \log\_2(N)$，我们想算的是：
+
+$$\begin{aligned}
+M \cdot X^{-\pi} 
+&= M \cdot X^{-\pi_0 -\pi_1 \cdot 2 -\pi_2 \cdot 2^2 + \ldots -\pi_\delta \cdot 2^\delta} \\
+&= M \cdot X^{-\pi_0} \cdot X^{-\pi_1 \cdot 2} \cdot X^{-\pi_2 \cdot 2^2} \cdot \ldots \cdot X^{-\pi_\delta \cdot 2^\delta}. \\
+\end{aligned}$$
+
+拎一个 $X^{-\pi\_j \cdot 2^j}$ 出来，因为 $\pi\_j$ 是 bit，算这玩意只有两种情况：
+
+$$M \cdot X^{-\pi_j \cdot 2^j} =
+\begin{cases}
+M &\text{ if } \pi_j = 0 \\
+M \cdot X^{-2^j} &\text{ if } \pi_j = 1 \\
+\end{cases}$$
+
+用一个 CMux 实现：
+
+![](/img/TFHE/blndRttn.png)
+
+递归的计算所有多项式项，所以表现为 $\delta$ 个 CMux 串联。
+
+![](/img/TFHE/blndRttn2.png)
+
+# Bootstrapping
+
+减小噪音的方法是同态解密，解密是唯一可以取消一切随机性的操作。TFHE 的自举在 LWE 密文上进行，所以 $c = (a\_0, \ldots, a\_{n-1}, b) \in LWE\_{\vec{s}, \sigma}(\Delta m) \subseteq \mathbb{Z}\_q^{n+1}$ 加密了消息 $m \in \mathbb{Z}\_p$，密钥是 $\vec{s} = (s\_0, \ldots, s\_{n-1}) \in \mathbb{Z}^n$。解密分为两步：
+
+* 算 $b-\sum_{i=0}^{n-1} a_i s_i = \Delta m + e \in \mathbb{Z}_q$
+* 去掉 $\Delta$ 并取整 $\left\lfloor \frac{\Delta m + e}{\Delta} \right\rceil = m$
+
+TFHE 通过将(负的) $b-\sum_{i=0}^{n-1} a_i s_i = \Delta m + e$ 的计算放在单项式 $X$ 的指数里面，然后用它对查找表(LUT)进行旋转，计算解密的第二步。从第二步开始。
+
+## Step 2
+
+如果想将 $\Delta m + e$ 处理为 $m$，需要将这两者联系起来。$\Delta m + e\in\mathbb{Z}\_q,m\in\mathbb{p},p<q$，所以我们需要重复 $m$ 做成一个 LUT，将所有 $\Delta m + e$ 都取整为 $m$。冗余的框框叫做 mega-cases。
+
+![](/img/TFHE/mega.png)
+
+通过多项式旋转对这个查找表进行查找。将这个冗余查找表的所有元素作为一个多项式的所有系数，然后通过同态的乘 $X^{-(\Delta m + e)}$ 将这个多项式旋转到 $\Delta m + e$ 位置，最终将一个元素转到常数项，其所在的 mega-case 就是 $m$ 的值。所以我们想读多项式的某一项时对其进行旋转将待读系数放到常数项而不是直接去找系数所在位置。(~~快？~~)
+
+![](/img/TFHE/rttn.png)
+
+然而 TFHE 的多项式都是模多项式 $X^N + 1$ 的多项式，所以最多有 $N$ 个系数，一般 $N=2^{10},q=2^{32}$ 不足以放下整个查找表的 $q$ 个元素，所以用前面提到的 modulus switching 压缩信息。
+
+模 $X^N + 1$ 单项式 $X$ 的阶是 $2N$ ($X^N \equiv -1,X^{2N} \equiv 1$)，也就是说确定了多项式的 $N$ 个系数，我们实际上确定了 $2N$ 个系数。另一半是负的。这个属性叫做 negacyclic property。如果要同态计算的 LUT 是 negacyclic 的，你可以编码所有 $m$ 可能的 $p$ 个取值，也可以只编码 $\frac{p}{2}$。所以如果使用的不是 negacyclic LUT，需要在消息编码的时候添加额外的 1 bit padding。modulus switching 从 $q$ 到 $2N$。(~~采用 negacyclic 应该降低了消息编码长度，为了兼容才加了 padding 和确定为 2N~~)
+
+![](/img/TFHE/negaCylc.png)
+
+
+## Step 1
+
+同态计算 $X^{-(\Delta m + e)}$。modulus switching 从 $q$ 到 $2N$：
+
+$$c = (a_0, \ldots, a_{n-1}, b) \in LWE_{\vec{s}, \sigma}(\Delta m) \subseteq \mathbb{Z}_q^{n+1} \longmapsto \tilde{c} = (\tilde{a}_0, \ldots, \tilde{a}_{n-1}, \tilde{b}) \in LWE_{\vec{s}, \sigma'}(\tilde{\Delta} m) \subseteq \mathbb{Z}_{2N}^{n+1}$$
+
+之后用盲转把 modulus switching 的输出放到 $X$ 的指数上。这个过程输入一个 LUT 多项式的平凡 GLWE 加密，记作 $V$，$\tilde{c} = (\tilde{a}_0, \ldots, \tilde{a}_{n-1}, \tilde{b})$ 的所有元素，和 LWE 密钥元素 $\vec{s} = (s_0, \ldots, s_{n-1})$ 在新的 GGSW 密钥 $\vec{S}'$ 下的加密(~~key switching~~)。这个 GGSW 加密密钥的密文就是自举密钥。步骤如下：
+
+* 初始化。$V\cdot X^{-\tilde{b}}$ (rotation)。
+* 将平凡 GLWE 密文 $V\cdot X^{-\tilde{b}} = V\_0$ 作为第一个 CMux 的输入。判断端输入是 LWE 密钥元素 bit $s\_0$ 的 GGSW 加密；0,1 分别对应 $V\_0$ 和 $V\_0 \cdot X^{\tilde{a}\_0}$。等同于输出 GLWE 密文的 $V\_1 = V\_0 \cdot X^{\tilde{a}_0 s_0}$
+* 将 GLWE 密文 $V\_1$ 作为第二个 CMux 的输入。判断端输入是 LWE 密钥元素 bit $s\_1$ 的 GGSW 加密；0,1 分别对应 $V\_1$ 和 $V\_1 \cdot X^{\tilde{a}\_1}$。等同于输出 GLWE 密文的 $V\_1 = V\_0 \cdot X^{\tilde{a}_0 s_0}$。循环全部的 $n$ 个 CMux。
+
+盲转的最终结果是 GLWE 密文：
+
+$$\begin{aligned}
+V_n 
+&= V_{n-1} \cdot X^{\tilde{a}_{n-1} s_{n-1}} \\
+&= \ldots \\
+&= V \cdot X^{-\tilde{b}} \cdot X^{\tilde{a}_0 s_0} \cdot \ldots \cdot X^{\tilde{a}_{n-1} s_{n-1}} \\
+&= V \cdot X^{-\tilde{b} + \sum_{i=0}^{n-1} \tilde{a}_i s_i} = V \cdot X^{-(\tilde{\Delta} m + \tilde{e})} \\
+\end{aligned}$$
+
+![](/img/TFHE/step1.png)
+
+## Putting Things Together
+
+最后一步是 sample extraction。盲转的结果 $V \cdot X^{-(\tilde{\Delta} m + \tilde{e})}$ 是一个多项式，其常数项对应 $m$ 的 mega-case 的一个元素。用 sample extraction 给常数项提取出来作为 LWE 密文。一些高级用法：
+
+* 盲转实际上计算了一个编码在多项式 $V$ 里面的 LUT。前面只说了是自举的输出是一个 $m$ 的密文，并且我们将 $m$ 编码到了 $V$ 里面，但 LUT 能编码输入值的任何函数。所以我们用 $f_m$ 替代 $m$ 输入 $V$ 中，同时降低了噪音。所以叫 programmable bootstrapping。$m$ 实际上就是 $f_m$ 的特殊情况。不管 $f_m$ 的值是啥通常在前面加个标量，可以是 $\Delta$ 也可以是新的 $\Delta'$。执行函数只是输入了不同的函数值不会增加开销。
+* 多项式 $V$ 通常明文给出(输入给自举一个 $V$ 的平凡加密)。如果我们想保密要计算的 LUT，可以扔给自举一个非平凡加密的 $V$ 的 GLWE 密文。对噪音有极小的影响。因此隐藏要计算的函数对性能几乎没有影响。
+* 虽然自举可以消除噪音，但自举执行过程的一大堆同态操作又会使噪音增长。因此自举密钥选取过程中需要选择尽可能小的参数(在保持安全等级的情况下)。因此使得输出的噪音要比输入的 LWE 密文小。因此错误的参数选择是致命的，并且是 TFHE 最难的部分之一。
+
+总结一下。自举输入一个 LWE 密文 $c = (a\_0, \ldots, a\_{n-1}, b) \in LWE\_{\vec{s}, \sigma}(\Delta m) \subseteq \mathbb{Z}\_q^{n+1}$，一个多项式 $V \in \mathcal{R}\_q$ 和一个自举密钥 $\mathsf{BK} = (\mathsf{BK}\_0, \ldots, \mathsf{BK}\_{n-1})$，其中 $\mathsf{BK}\_i \in GGSW^{\beta, \ell}\_{\vec{S}', \sigma}(s\_i) \subseteq \mathcal{R}\_q^{(k+1) \times \ell (k+1)}$ 是 LWE 密钥的每一个 bit $s\_i$ 在 GLWE 密钥 $\vec{S}'$ 下的 GGSW 加密。步骤如下：
+* **Modulus switching:** 输入 LWE 密文 $c$ 从 $q$ 到 $2N$ 换模，输出：
+
+$$\tilde{c} = (\tilde{a}_0, \ldots, \tilde{a}_{n-1}, \tilde{b}) \in LWE_{\vec{s}, \sigma'}(\tilde{\Delta} m) \subseteq \mathbb{Z}_{2N}^{n+1}$$
+
+* **Blind rotation:** 用 modulus switching 输出的 LWE 密文 $\tilde{c}$ 和自举密钥 $\mathsf{BK}$ 对多项式 $V$ (平凡加密的 GLWE 密文) 盲转，输出一个 GLWE 密钥 $\vec{S}'$ 下 $V \cdot X^{-(\tilde{\Delta} m + \tilde{e})}$ 的 GLWE 密文。
+* **Sample extraction:** 提取盲转输出 GLWE 密文的常数项，作为 $f_m$ 的 LWE 密文，密钥是提取的 LWE 密钥 $\vec{s}'$。
+
+如果想将输出的 LWE 密文的密钥 $\vec{s}'$ 转换为输入的 $\vec{s}$，可以用 LWE-to-LWE 密钥更换。总结如下图：
+
+![](/img/TFHE/exap.png)
+
+## An example of bootstrapping: the Gate Bootstrapping
