@@ -400,7 +400,7 @@ a_{N\cdot i + j} \leftarrow - a_{i,h-j+N} &\text{ for } 0 \leq i < k, h+1 \leq j
 b \leftarrow b_h & \\
 \end{cases}$$
 
-Blind Rotation
+## Blind Rotation
 
 把「禁則事項」多项式第「禁則事項」项多项式系数转到常数项。
 
@@ -439,11 +439,11 @@ M \cdot X^{-2^j} &\text{ if } \pi_j = 1 \\
 * 算 $b-\sum_{i=0}^{n-1} a_i s_i = \Delta m + e \in \mathbb{Z}_q$
 * 去掉 $\Delta$ 并取整 $\left\lfloor \frac{\Delta m + e}{\Delta} \right\rceil = m$
 
-TFHE 通过将(负的) $b-\sum_{i=0}^{n-1} a_i s_i = \Delta m + e$ 的计算放在单项式 $X$ 的指数里面，然后用它对查找表(LUT)进行旋转，计算解密的第二步。从第二步开始。
+TFHE 通过将(负的) $b-\sum_{i=0}^{n-1} a_i s_i = \Delta m + e$ 的计算放在单项式 $X$ 的指数里面，然后用它对查找表(LUT)进行旋转，进行解密的第二步。从第二步开始。
 
 ## Step 2
 
-如果想将 $\Delta m + e$ 处理为 $m$，需要将这两者联系起来。$\Delta m + e\in\mathbb{Z}\_q,m\in\mathbb{p},p<q$，所以我们需要重复 $m$ 做成一个 LUT，将所有 $\Delta m + e$ 都取整为 $m$。冗余的框框叫做 mega-cases。
+将 $\Delta m + e$ 处理为 $m$，需要将这两者联系起来。$\Delta m + e\in\mathbb{Z}\_q,m\in\mathbb{p},p<q$，所以我们需要重复 $m$ 做成一个 LUT，将所有 $\Delta m + e$ 都取整为 $m$。冗余的框框叫做 mega-cases。
 
 ![](/img/TFHE/mega.png)
 
@@ -503,3 +503,30 @@ $$\tilde{c} = (\tilde{a}_0, \ldots, \tilde{a}_{n-1}, \tilde{b}) \in LWE_{\vec{s}
 ![](/img/TFHE/exap.png)
 
 ## An example of bootstrapping: the Gate Bootstrapping
+
+同态二元电路门，同时进行自举降低噪音。所有的电路门都可以被运算 (AND, NAND, OR, XOR, etc.)。以 AND 为例。
+
+自举电路门输入两个 LWE 密文 $c\_1, c\_2$，在相同的密钥下加密两个 bits $\mu\_1, \mu\_2$。bit 信息以特殊的方式编码：0 编码为 $-q/8$，1 编码为 $q/8$。以下两个步骤：
+
+* 对两个密文进行线性组合 (取决与要运算的电路门)。
+* 自举 (并对输出更换为原密钥)，运算了编码为多项式 $V = \sum\_{j=0}^{N-1} \frac{q}{8} X^j$ 的 LUT。这是一种变更缩放的符号函数，对所有正的消息输出 $q/8$，对所有负的消息输出 $-q/8$。这是负循环的函数所以不需要 1 bit 的 padding (?)。
+
+![](/img/TFHE/and.png)
+
+自举可视化：
+
+![](/img/TFHE/andBtstp.png)
+
+输出跟输入编码一样，可以直接传给第二个电路门。
+
+## An example of bootstrapping: Neural Networks applications
+
+门自举工作原理跟神经元很像，i.e.，输入 $(x\_1, \ldots, x\_n)$
+* 对其加权线性组合附带偏转，输出 $y = \sum\_{i=1}^{n} x\_i w\_i + b$
+* 对输出 $y$ 运算激活函数 $f$，非线性，如 ReLU，sigmoid, hyperbolic tangent 等。
+
+![](/img/TFHE/nn.png)
+
+TFHE 可以同态的推理神经网络，加密输入 $x\_i$ (最高大概 8 bits) 作为 LWE 输入，用数乘和 LWE 加法计算线性组合，激活函数以可编程自举计算，在降低噪音的同时输出可以给下一层神经元。可以计算任意，任何深度神经元。
+
+![](/img/TFHE/homonn.png)
