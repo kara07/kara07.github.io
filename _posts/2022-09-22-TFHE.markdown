@@ -64,7 +64,6 @@ $A_i$ 均匀随机的在 $\mathcal{R}_q$ 采样，$B = \sum\_{i=0}^{k-1} A\_i \c
 
 ![](/img/TFHE/GLWE.png)
 
-
 模 $X^N+1$ 利用 $X^N\equiv -1$。
 
 Trival GLWE ciphertexts：
